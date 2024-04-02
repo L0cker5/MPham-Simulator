@@ -75,13 +75,13 @@ public class InstantiateWallArtPrefab : MonoBehaviour
     async Task SpawnOnWallArt(GameObject prefab, GameObject roomGameObject, OVRAnchor wallArt)
     {
         // creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
-        TestProps test = wallArtPrefab.GetComponent<TestProps>();
+        //TestProps test = wallArtPrefab.GetComponent<TestProps>();
 
-        float objectDepth = 0;
+        //float objectDepth = 0;
         // assigns the value of test.objHeight to the variable objectHeight
-        objectDepth = test.objDepth;
+        //objectDepth = test.objDepth;
         // get half of the height
-        float halfDepth = objectDepth / 2.0f;
+        //float halfDepth = objectDepth / 2.0f;
 
         // enable locatable/tracking by checking for the presence of an OVRLocatable component.
         if (!wallArt.TryGetComponent(out OVRLocatable locatable))
@@ -99,9 +99,9 @@ public class InstantiateWallArtPrefab : MonoBehaviour
             var helper = new InstantiateHelper(gameObject);
             helper.SetWallArtLocation(locatable);
         
-            var position = gameObject.transform.position + (Vector3.left * halfDepth);
+            //var position = gameObject.transform.position + (Vector3.left * halfDepth);
 
-            gameObject.transform.SetPositionAndRotation(position, Quaternion.identity);
+            //gameObject.transform.SetPositionAndRotation(position, Quaternion.identity);
         
             Instantiate(prefab, gameObject.transform);
 
