@@ -1,122 +1,100 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckRoomModel : MonoBehaviour
 {
     // UI text GameObjects
     public TMP_Text textmeshpro_ObjectA;
+    public GameObject prefab_ObjectA;
     public TMP_Text textmeshpro_ObjectB;
+    public GameObject prefab_ObjectB;
     public TMP_Text textmeshpro_ObjectC;
+    public GameObject prefab_ObjectC;
 
-    // Default Variables
-    private string objectA = "Active";
-    private string objectB = "Missing";
+    // Constants
+    private readonly string ACTIVE_TEXT = "Active";
+    private readonly string MISSING_TEXT = "Missing";
 
     async void Start()
     {
-        textmeshpro_ObjectA.text = objectB;
-        textmeshpro_ObjectA.color = Color.red;
-        textmeshpro_ObjectB.text = objectB;
-        textmeshpro_ObjectB.color = Color.red;
-        textmeshpro_ObjectC.text = objectB;
-        textmeshpro_ObjectC.color = Color.red;
 
-        await CheckForTable();
-        await CheckForWallArt();
-        await CheckForPlant();
+        //var objA = textmeshpro_ObjectA;
+        //var objB = textmeshpro_ObjectB;
+        //var objC = textmeshpro_ObjectC;
+
+        var tableAnchor = OVRSceneManager.Classification.Table;
+        var wallArtAnchor = OVRSceneManager.Classification.WallArt;
+        var plantAnchor = OVRSceneManager.Classification.Plant;
+             
+        _ = new List<OVRAnchor>();
+
+        List<OVRAnchor> anchors = await GetAnchors();
+        
+        Debug.Log("Anchors main" + anchors.Count);
+
+        await CheckForAnchor(anchors, tableAnchor, textmeshpro_ObjectA, prefab_ObjectA);
+        await CheckForAnchor(anchors, wallArtAnchor, textmeshpro_ObjectB, prefab_ObjectB);
+        await CheckForAnchor(anchors, plantAnchor, textmeshpro_ObjectC, prefab_ObjectC);
+
     }
 
-    async Task CheckForTable()
-    {
 
+    async Task<List<OVRAnchor>> GetAnchors()
+    {
         var anchors = new List<OVRAnchor>();
         await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(anchors);
 
-        Debug.Log("Anchors " + anchors.Count);
+        Debug.Log("Anchors get" + anchors.Count);
 
         // get the component to access its data
         var room = anchors.First();
 
-        if (!room.TryGetComponent(out OVRAnchorContainer container))
-            return;
+        room.TryGetComponent(out OVRAnchorContainer container);
 
         // access all child anchors
         await container.FetchChildrenAsync(anchors);
 
-        Debug.Log("Anchors " + anchors.Count);
-        //get all anchors in the room that are a table
-        foreach (var roomAnchor in anchors)
-        {
-
-            if (roomAnchor.TryGetComponent(out OVRSemanticLabels labels) &&
-                labels.Labels.Contains(OVRSceneManager.Classification.Table))
-            {
-                textmeshpro_ObjectA.text = objectA;
-                textmeshpro_ObjectA.color = Color.green;
-            }
-
-        }
-
+        return anchors;
     }
-
-    async Task CheckForWallArt()
+    async Task CheckForAnchor(List<OVRAnchor> anchors, string anchorLabel, TMP_Text obj, GameObject prefab)
     {
-        var anchors = new List<OVRAnchor>();
-        await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(anchors);
-        Debug.Log("Anchors " + anchors.Count);
-        // get the component to access its data
-        var room = anchors.First();
 
-        if (!room.TryGetComponent(out OVRAnchorContainer container))
-            return;
+        Debug.Log("Anchors table 2" + anchors.Count);
 
-        // access all child anchors
-        await container.FetchChildrenAsync(anchors);
-        Debug.Log("Anchors " + anchors.Count);
-        //get all anchors in the room that are a table
+        //
         foreach (var roomAnchor in anchors)
         {
-
-            if (roomAnchor.TryGetComponent(out OVRSemanticLabels labels) &&
-                labels.Labels.Contains(OVRSceneManager.Classification.WallArt))
+ 
+            if (roomAnchor.TryGetComponent(out OVRSemanticLabels label) && 
+                label.Labels.Contains(anchorLabel))
             {
-                textmeshpro_ObjectB.text = objectA;
-                textmeshpro_ObjectB.color = Color.green;
+                // Get access to the bounding plane information of the anchor
+                roomAnchor.TryGetComponent(out OVRBounded2D bounds);
+                var bbox = bounds.BoundingBox;
+
+                // Get the width of the anchor
+                float anchorWidth = bbox.width;
+
+                //// creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
+                //TestProps test = prefab.GetComponent<TestProps>();
+
+                obj.text = ACTIVE_TEXT;
+                obj.color = Color.green;
+            return;
+            }
+            else
+            {
+                obj.text = MISSING_TEXT;
+                obj.color = Color.red;
             }
 
         }
-
-    }
-
-    async Task CheckForPlant()
-    {
-        var anchors = new List<OVRAnchor>();
-        await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(anchors);
-        Debug.Log("Anchors " + anchors.Count);
-        // get the component to access its data
-        var room = anchors.First();
-
-        if (!room.TryGetComponent(out OVRAnchorContainer container))
-            return;
-
-        // access all child anchors
-        await container.FetchChildrenAsync(anchors);
-        Debug.Log("Anchors " + anchors.Count);
-        //get all anchors in the room that are a table
-        foreach (var roomAnchor in anchors)
-        {
-
-            if (roomAnchor.TryGetComponent(out OVRSemanticLabels labels) &&
-                labels.Labels.Contains(OVRSceneManager.Classification.Plant))
-            {
-                textmeshpro_ObjectC.text = objectA;
-                textmeshpro_ObjectC.color = Color.green;
-            }
-
-        }
+        await Task.WhenAll();
     }
 
     // Update is called once per frame
