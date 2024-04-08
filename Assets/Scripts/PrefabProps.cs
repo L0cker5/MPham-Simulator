@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestProps : MonoBehaviour
+public class PrefabProps : MonoBehaviour
 {
     public float objHeight = 1.0f;
     public float objWidth = 1.0f;
