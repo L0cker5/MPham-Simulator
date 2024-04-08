@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3100436699910867676}
-  - component: {fileID: 3620126159307585974}
+  - component: {fileID: 5278843061782681783}
   m_Layer: 0
   m_Name: ShelfObject
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 4154188822594680354}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3620126159307585974
+--- !u!114 &5278843061782681783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,12 +44,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8896696079865340540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1800a10ae1c1994380eae7d3084144e, type: 3}
+  m_Script: {fileID: 11500000, guid: c05c256cacad7dd46becd58b161d42b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objHeight: 0.02
-  objWidth: 0.6
-  objDepth: 0.2
+  objHeight: 1
+  objWidth: 1
+  objDepth: 1
 --- !u!1001 &1072288604833691692
 PrefabInstance:
   m_ObjectHideFlags: 0

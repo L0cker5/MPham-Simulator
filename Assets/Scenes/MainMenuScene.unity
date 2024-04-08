@@ -863,6 +863,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8628333823343118212, guid: eb71ff0f5d4ca8b419c8909184313a26,
+        type: 3}
+      propertyPath: prefab_ObjectA
+      value: 
+      objectReference: {fileID: 2930191464888824168, guid: 30d7b530d4d5bb144af257d1c9f5c6ab,
+        type: 3}
+    - target: {fileID: 8628333823343118212, guid: eb71ff0f5d4ca8b419c8909184313a26,
+        type: 3}
+      propertyPath: prefab_ObjectB
+      value: 
+      objectReference: {fileID: 2930191464888824168, guid: 14e4ccb34a20d3546a67de2e2f4d9ee9,
+        type: 3}
+    - target: {fileID: 8628333823343118212, guid: eb71ff0f5d4ca8b419c8909184313a26,
+        type: 3}
+      propertyPath: prefab_ObjectC
+      value: 
+      objectReference: {fileID: 2930191464888824168, guid: 30d7b530d4d5bb144af257d1c9f5c6ab,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -884,38 +902,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 1098595818464109069, guid: eb71ff0f5d4ca8b419c8909184313a26,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2115322767349749190, guid: eb71ff0f5d4ca8b419c8909184313a26,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2555116080194262666, guid: eb71ff0f5d4ca8b419c8909184313a26,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4983942675235265982, guid: eb71ff0f5d4ca8b419c8909184313a26,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6806381353787808907, guid: eb71ff0f5d4ca8b419c8909184313a26,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6529207381320948957, guid: eb71ff0f5d4ca8b419c8909184313a26,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4195885251057705565, guid: eb71ff0f5d4ca8b419c8909184313a26,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2254901297070652800, guid: eb71ff0f5d4ca8b419c8909184313a26,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2229324411653201282, guid: eb71ff0f5d4ca8b419c8909184313a26,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
