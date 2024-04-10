@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class InstantiateHelper : MonoBehaviour
+public class InstantiateHelper
 {
     public GameObject AnchorGameObject { get; }
 
