@@ -30,7 +30,7 @@ public class InstantiateTablePrefab : MonoBehaviour
         // fetch all rooms, with a SceneCapture fallback
         var rooms = new List<OVRAnchor>();
         var tableAnchors = new List<OVRAnchor>();
-        var wallArtAnchors = new List<OVRAnchor>();
+        //var wallArtAnchors = new List<OVRAnchor>();
         await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(rooms);
         if (rooms.Count == 0)
         {
@@ -61,6 +61,7 @@ public class InstantiateTablePrefab : MonoBehaviour
 
             }
 
+            // get the first anchor in the list
             table = tableAnchors[0];
 
             await SpawnOnTable(tablePrefab, roomObject, table);

@@ -5,14 +5,6 @@ using UnityEngine;
 public class AccessMedicationList : MonoBehaviour
 {
     
-    //IEnumerator Start()
-    //{
-    //    rc = GetComponent<ReadCSV>();
-    //    yield return new WaitForEndOfFrame();
-    //    foreach(var s in rc.medications)
-    //        Debug.Log("scriptItems "+ s.scriptItems);
-    //}
-
     // Start is called before the first frame update
     void Start()
     {

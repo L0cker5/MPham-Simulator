@@ -31,7 +31,7 @@ public class InstantiateWallArtPrefab : MonoBehaviour
     {
         // fetch all rooms, with a SceneCapture fallback
         var rooms = new List<OVRAnchor>();
-        var tableAnchors = new List<OVRAnchor>();
+        //var tableAnchors = new List<OVRAnchor>();
         var wallArtAnchors = new List<OVRAnchor>();
         
         await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(rooms);
@@ -64,6 +64,7 @@ public class InstantiateWallArtPrefab : MonoBehaviour
 
             }
 
+            // get the first anchor in the list
             wallArt = wallArtAnchors[0];
 
             await SpawnOnWallArt(wallArtPrefab, roomObject, wallArt);
