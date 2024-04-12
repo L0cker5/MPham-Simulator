@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 3401085511925036680}
   - component: {fileID: 7029045556265719860}
   m_Layer: 0
-  m_Name: Label (Grab)
+  m_Name: Label
   m_TagString: Label
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,7 +490,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.1042, y: 0, z: 2}
   m_LocalScale: {x: 0.05, y: 0.1, z: 0.001}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7950084145751521966}
   - {fileID: 3688756770473991976}
@@ -640,7 +640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6708185737297856981
 Transform:
   m_ObjectHideFlags: 0
