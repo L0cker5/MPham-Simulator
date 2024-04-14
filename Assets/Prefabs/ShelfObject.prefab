@@ -99,6 +99,7 @@ Transform:
   - {fileID: 5600891000724990923}
   - {fileID: 4154188822594680354}
   - {fileID: 6428683264071833279}
+  - {fileID: 6070596975312882132}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5278843061782681783
@@ -209,6 +210,80 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5934582560805318045, guid: 139ff204928d12c4cbadf0b130945fcd,
     type: 3}
   m_PrefabInstance: {fileID: 2297262239157208662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7768521991173627256
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3100436699910867676}
+    m_Modifications:
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.11119999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.034999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1451
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827814355267536017, guid: b0ffe756a073bd243b9d558c122a71ce,
+        type: 3}
+      propertyPath: m_Name
+      value: Medication Box Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b0ffe756a073bd243b9d558c122a71ce, type: 3}
+--- !u!4 &6070596975312882132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4607255391664018604, guid: b0ffe756a073bd243b9d558c122a71ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 7768521991173627256}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8065223305309173219
 PrefabInstance:

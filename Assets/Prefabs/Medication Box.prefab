@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9097872037261906494}
+  - component: {fileID: -2765023055443366996}
   m_Layer: 0
   m_Name: Medication Box
   m_TagString: Medication
@@ -32,6 +33,20 @@ Transform:
   - {fileID: 9024548652725649487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2765023055443366996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248322226301911555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb96d4dd6503f14880c79e3eaba9543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medsBox: {fileID: 1248322226301911555}
+  strength: 0
 --- !u!1001 &3958172543885741284
 PrefabInstance:
   m_ObjectHideFlags: 0

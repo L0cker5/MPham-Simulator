@@ -84,7 +84,7 @@ public class CheckRoomModel : MonoBehaviour
                     + ", Width: " + anchorWidth);
 
                 // creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
-                PrefabProps prefabProps = prefab.GetComponent<PrefabProps>();
+                PrefabProperties prefabProps = prefab.GetComponent<PrefabProperties>();
 
                 float prefabHeight = prefabProps.objHeight;
                 float prefabWidth = prefabProps.objWidth;

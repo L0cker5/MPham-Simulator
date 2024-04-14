@@ -78,7 +78,7 @@ public class InstantiateTablePrefab : MonoBehaviour
                 return;
             await locatable.SetEnabledAsync(true);
 
-            // get semantic classification for object name
+            // get semantic classification for object _name
             var label = "other";
             table.TryGetComponent(out OVRSemanticLabels labels);
             label = labels.Labels;

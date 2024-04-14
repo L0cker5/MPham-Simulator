@@ -75,7 +75,7 @@ public class InstantiatePrefab : MonoBehaviour
             Debug.Log("Wall Art Anchor Width " + anchorWidth);
 
             // creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
-            PrefabProps test = wallArtPrefab.GetComponent<PrefabProps>();
+            PrefabProperties test = wallArtPrefab.GetComponent<PrefabProperties>();
 
             float objectDepth = 0;
             // assigns the value of test.objDepth to the variable objectDepth
@@ -162,7 +162,7 @@ public class InstantiatePrefab : MonoBehaviour
             Debug.Log("Table Anchor Width " + anchorWidth);
 
             // creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
-            PrefabProps test = tablePrefab.GetComponent<PrefabProps>();
+            PrefabProperties test = tablePrefab.GetComponent<PrefabProperties>();
 
             // assigns the value of test.objHeight & Width to the variables objectHeight & objectWidth
             float objectHeight = test.objHeight;

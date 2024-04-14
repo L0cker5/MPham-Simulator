@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventTrigger : MonoBehaviour
+public class ShelfTrigger : MonoBehaviour
 {
 
     private void OnTriggerEnter(Collider other)

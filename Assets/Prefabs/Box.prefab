@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lableIsAttached: 0
+  parentObject: {fileID: 0}
 --- !u!1 &3906340527685976908
 GameObject:
   m_ObjectHideFlags: 0
