@@ -4,14 +4,7 @@ public class BoxProperties : MonoBehaviour
 {
 
     public GameObject medsBox;
-    // private string _name;
-    public int strength;
-
-    //public BoxProperties(string _name, int strength)
-    //{
-    //    this._name = _name;
-    //    this.strength = strength;
-    //}
+    private int _strength = 50;
 
     public string Name
     {
@@ -26,14 +19,14 @@ public class BoxProperties : MonoBehaviour
     public int Strength
     {
         get
-        { return strength; }
+        { return _strength; }
     }
 
     public string StrengthWithMg
     {
         get
         {
-            string strengthWMg = strength.ToString() + "mg";
+            string strengthWMg = _strength.ToString() + "mg";
             return strengthWMg;
         }
     }
@@ -43,7 +36,7 @@ public class BoxProperties : MonoBehaviour
     void Start()
     {
 
-        Debug.Log("Box Properties " + Name + " " + StrengthWithMg);
+        //Debug.Log("Box Properties " + Name + " " + StrengthWithMg);
 
     }
 

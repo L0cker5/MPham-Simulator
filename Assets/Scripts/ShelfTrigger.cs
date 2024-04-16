@@ -1,45 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShelfTrigger : MonoBehaviour
 {
+    private readonly string box = "Box";
+    private readonly string prescriptionMedication = "PrescriptionMedication";
+
+    public GameObject meds;
+
+    string medsName;
+    int medsStrength;
+    string labelName;
+    string labelFrequency;
+
+    string test = "test";
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.CompareTag("Label") && other.gameObject.CompareTag("Medication"))
-        //{
-        //    Debug.Log("Entering Trigger ");
-        //}
-
-        if (other.gameObject.CompareTag("Label"))
-        {
-            Debug.Log("Entering Trigger ");
-        }
-
-        //Debug.Log("Object with Tag entered " + other.gameObject.tag);
-
+        
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Label"))
+        
+        if (other.gameObject.CompareTag(box))
         {
-            Debug.Log("Staying in Trigger ");
-        }
+            BoxProperties boxProperties = other.GetComponentInParent<BoxProperties>();
 
-        //Debug.Log("Object with Tag stayed " + other.gameObject.tag);
+            if (boxProperties.CompareTag(prescriptionMedication))
+            {
+                medsName = boxProperties.Name;
+                medsStrength = boxProperties.Strength;
+              
+                LabelProperties labelProperties = boxProperties.GetComponentInChildren<LabelProperties>();
+
+                labelName = labelProperties.MedicationName;
+                labelFrequency = labelProperties.Frequency;
+                
+                Debug.Log("Label Trigger Name: " + medsName + " Strength " + medsStrength + ", Label: " + labelName + " " +labelFrequency);
+            }
+
+        }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Label"))
-        {
-            Debug.Log("Exiting Trigger ");
-        }
-
-        //Debug.Log("Object with Tag exited " + other.gameObject.tag);
 
     }
 

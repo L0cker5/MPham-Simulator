@@ -6,13 +6,13 @@ public class LabelProperties : MonoBehaviour
     private string _frequency = "every 4-6 hours";
 
 
-    public LabelProperties(string name, string freq)
-    {
-        this._medicationName = name;
-        this._frequency = freq;
-        //_medicationName = _name;
-        //_frequency = freq;
-    }
+    //public LabelProperties(string name, string freq)
+    //{
+    //    //this._medicationName = name;
+    //    //this._frequency = freq;
+    //    _medicationName = name;
+    //    _frequency = freq;
+    //}
 
     public string MedicationName
     {
@@ -34,21 +34,7 @@ public class LabelProperties : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //LabelProperties lProps = new LabelProperties("John", "never");
-
-        //string lName = lProps.MedicationName;
-        //string lFreq = lProps.Frequency;
-
-
-        //Debug.Log("Label Properties " + lName + " " +  lFreq);
-        Debug.Log("Label Properties " + MedicationName + " " + Frequency);
-
-        string lName = MedicationName = "Bob";
-        string lFreq = Frequency = "Always";
-
-
-        Debug.Log("Label Properties " + lName + " " + lFreq);
-
+        //Debug.Log("Label Properties " + MedicationName + " " + Frequency);
     }
 
     // Update is called once per frame
