@@ -89,7 +89,7 @@ public class InstantiateWallArtPrefab : MonoBehaviour
                 return;
             await locatable.SetEnabledAsync(true);
 
-            // get semantic classification for object name
+            // get semantic classification for object _name
             var label = "other";
             wallArt.TryGetComponent(out OVRSemanticLabels labels);
             label = labels.Labels;
