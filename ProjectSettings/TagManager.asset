@@ -9,6 +9,8 @@ TagManager:
   - Label
   - Box
   - PrescriptionMedication
+  - Drawer
+  - Computer
   layers:
   - Default
   - TransparentFX
