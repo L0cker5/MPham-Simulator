@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
 public class KeyboardManager : MonoBehaviour
 {
     public static KeyboardManager instance;
-
-    //public Button shiftButton;
 
     public TMP_InputField inputField;
 

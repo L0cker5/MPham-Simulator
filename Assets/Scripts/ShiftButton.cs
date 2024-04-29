@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class ShiftButton : MonoBehaviour
 {
@@ -9,21 +7,27 @@ public class ShiftButton : MonoBehaviour
     public static ShiftButton instance;
 
     public bool shifted = false;
-
-    public void TypeShiftKey()
-    {
-        
-        shifted = !shifted;
-        
-        Debug.Log("Shifted in Shift Button = " + shifted);
-
-    }
-
+    
+    public event Action OnActonEvent;
+    
+    
     private void Awake()
     {
+
+        //Debug.Log("Shifted in Shift Button Awake = " + shifted);
+
         if (instance == null)
         {
             instance = this;
         }
     }
+
+    public void TypeShiftKey()
+    {
+        OnActonEvent?.Invoke();
+
+        //Debug.Log("Shifted in Shift Button TypeShiftKey = " + shifted);
+    }
+
+
 }

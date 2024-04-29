@@ -35,8 +35,8 @@ namespace Oculus.Interaction
         [SerializeField]
         private float _height = 1.0f;
 
-        [SerializeField]
-        private Color _color = Color.white;
+        //[SerializeField]
+        public Color color = Color.white;
 
         [SerializeField]
         private Color _borderColor = Color.black;
@@ -91,11 +91,11 @@ namespace Oculus.Interaction
         {
             get
             {
-                return _color;
+                return color;
             }
             set
             {
-                _color = value;
+                color = value;
             }
         }
 
@@ -225,7 +225,7 @@ namespace Oculus.Interaction
 
             MaterialPropertyBlock block = _editor.MaterialPropertyBlock;
 
-            block.SetColor(_colorShaderID, _color);
+            block.SetColor(_colorShaderID, color);
             block.SetColor(_borderColorShaderID, _borderColor);
             block.SetVector(_radiiShaderID,
                                              new Vector4(

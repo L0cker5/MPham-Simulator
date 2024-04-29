@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class KeyboardButton : MonoBehaviour
 {
@@ -9,18 +8,75 @@ public class KeyboardButton : MonoBehaviour
 
     public TextMeshProUGUI keyLabel;
 
-    //private Button thisKey;
+    public GameObject shiftKey;
 
-    private bool isShifted = false;
+    public bool isShifted = false;
 
-    public void Update()
+    public void Awake()
     {
-        //KeyboardManager.instance.shiftButton.onClick.AddListener(HandleShift);
-        isShifted = ShiftButton.instance.shifted;
-        //HandleShift();
-        Debug.Log("Shifted in Keyboard Button = " + isShifted);
-        //thisKey=GetComponent<Button>();
-        //thisKey.onClick.AddListener(TypeKey);
+        //Debug.Log("Shifted in Keyboard Button Awake 1 = " + isShifted);
+
+        // get character from the text input field of the button assiging it to the 'character variable'
+        character = keyLabel.text;
+        // & assigning its uppercase character to 'shiftCharacter'
+        shiftCharacter = keyLabel.text.ToUpper();
+
+        ShiftButton shiftButton = shiftKey.GetComponent<ShiftButton>();
+        shiftButton.OnActonEvent += ShiftButton_OnActonEvent;
+
+        //Debug.Log("Shifted in Keyboard Button Awake 2 = " + isShifted);
+        string numbers = "1234567890";
+        
+        if (numbers.Contains(keyLabel.text))
+        {
+            shiftCharacter = GetShiftCharacter();
+        }
+    }
+
+    private string GetShiftCharacter()
+    {
+        switch (keyLabel.text)
+        {
+            case "1":
+                return "!";
+            case "2":
+                return "@";
+            case "3":
+                return "£";
+            case "4":
+                return "$";
+            case "5":
+                return "%";
+            case "6":
+                return "^";
+            case "7":
+                return "&";
+            case "8":
+                return "*";
+            case "9":
+                return "(";
+            case "0":
+                return ")";
+            default:
+                break;
+        }
+        return string.Empty;
+    }
+
+    private void ShiftButton_OnActonEvent()
+    {
+        isShifted = !isShifted;
+        
+        if (isShifted == true)
+        {
+            keyLabel.text = shiftCharacter;
+        }
+        else
+        {
+            keyLabel.text = character;
+        }
+
+        Debug.Log("Shifted in Button OnActionEvent = " + isShifted);
     }
 
     public void TypeKey()
@@ -33,22 +89,8 @@ public class KeyboardButton : MonoBehaviour
         {
             KeyboardManager.instance.inputField.text += character;
         }
-        
+
+        Debug.Log("Shifted in Keyboard TypeKey = " + isShifted);
     }
 
-    private void HandleShift()
-    {
-        
-        //isShifted = !isShifted;
-
-        if (isShifted == true)
-        {
-            keyLabel.text = shiftCharacter;
-        }
-        else
-        {
-            keyLabel.text = character;
-        }
-        //Debug.Log("Shifted in Keyboard= " + isShifted);
-    }
 }
