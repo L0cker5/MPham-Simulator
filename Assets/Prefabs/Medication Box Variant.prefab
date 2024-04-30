@@ -38,6 +38,11 @@ PrefabInstance:
       propertyPath: lableIsAttached
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7886013021676045535, guid: 390e14dcda652424ea626ca6f1433f00,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9097872037261906494, guid: 390e14dcda652424ea626ca6f1433f00,
         type: 3}
       propertyPath: m_LocalPosition.x

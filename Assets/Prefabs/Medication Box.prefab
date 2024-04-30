@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   medsBox: {fileID: 1248322226301911555}
-  strength: 0
 --- !u!1001 &3958172543885741284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,6 +118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6601995555748481083, guid: 605652d0777db6449b66b1063cd9ecfd,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
