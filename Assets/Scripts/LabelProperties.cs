@@ -1,40 +1,44 @@
+using TMPro;
 using UnityEngine;
 
 public class LabelProperties : MonoBehaviour
 {
-    private string _medicationName = "OxyNorm";
-    private string _frequency = "every 4-6 hours";
+    [SerializeField] TMP_Text text1, text2;
+
+    public string medicationName = null;
+    public string frequency = null;
 
 
     //public LabelProperties(string name, string freq)
     //{
-    //    //this._medicationName = name;
-    //    //this._frequency = freq;
-    //    _medicationName = name;
-    //    _frequency = freq;
+    //    //this.medicationName = name;
+    //    //this.frequency = freq;
+    //    medicationName = name;
+    //    frequency = freq;
     //}
 
     public string MedicationName
     {
-        get { return _medicationName; }
+        get { return medicationName; }
 
-        set { _medicationName = value; }
+        set { medicationName = value; }
     }
 
     public string Frequency
     {
         
         // changes to how you grab data
-        get { return _frequency; }
+        get { return frequency; }
         // restrict changes to the data 
-        set { _frequency = value;}
+        set { frequency = value;}
     }
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        //Debug.Log("Label Properties " + MedicationName + " " + Frequency);
+        text1.text = medicationName;
+        text2.text = frequency;
     }
 
     // Update is called once per frame

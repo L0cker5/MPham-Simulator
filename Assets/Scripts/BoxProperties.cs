@@ -15,7 +15,6 @@ public class BoxProperties : MonoBehaviour
         }
     }
 
-
     public int Strength
     {
         get
@@ -30,7 +29,6 @@ public class BoxProperties : MonoBehaviour
             return strengthWMg;
         }
     }
-
 
     // Start is called before the first frame update
     void Start()
