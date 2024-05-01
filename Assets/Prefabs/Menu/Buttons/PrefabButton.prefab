@@ -766,7 +766,7 @@ MonoBehaviour:
   _editor: {fileID: 405408595800283779}
   _width: 4
   _height: 1
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 0.21960784}
   _borderColor: {r: 0.102171585, g: 0.35197213, b: 0.5283019, a: 1}
   _radiusTopLeft: 0.3
   _radiusTopRight: 0.3
