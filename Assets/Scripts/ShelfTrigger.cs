@@ -7,12 +7,12 @@ public class ShelfTrigger : MonoBehaviour
 
     public GameObject meds;
 
-    string medsName;
-    int medsStrength;
-    string labelName;
-    string labelFrequency;
+    string boxMedicationName;
+    int boxStrength;
+    string labelPatientName, labelTodaysDate, labelMedicationName, labelQuantity, labelStrength,
+    labelStrengthUnit, labelMedicationType, labelDoseage, labelFrequency;
 
-    string test = "test";
+    //string test = "test";
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,15 +28,25 @@ public class ShelfTrigger : MonoBehaviour
 
             if (boxProperties.CompareTag(prescriptionMedication))
             {
-                medsName = boxProperties.Name;
-                medsStrength = boxProperties.Strength;
+                boxMedicationName = boxProperties.Name;
+                boxStrength = boxProperties.Strength;
               
                 LabelProperties labelProperties = boxProperties.GetComponentInChildren<LabelProperties>();
 
-                labelName = labelProperties.MedicationName;
+                labelPatientName = labelProperties.patientName;
+                labelTodaysDate = labelProperties.TodaysDate;
+                labelQuantity = labelProperties.Quantity;
+                labelMedicationName = labelProperties.MedicationName;
+                labelStrength = labelProperties.Strength;
+                labelStrengthUnit = labelProperties.StrengthUnit;
+                labelMedicationType = labelProperties.MedicationType;
+                labelDoseage = labelProperties.Dosage;
                 labelFrequency = labelProperties.Frequency;
-                
-                Debug.Log("Label Trigger Name: " + medsName + " Strength " + medsStrength + ", Label: " + labelName + " " +labelFrequency);
+
+                Debug.Log("Box Trigger Name: " + boxMedicationName + " Strength " + boxStrength);
+                Debug.Log("Label Trigger Patient Name: " + labelPatientName + " Date: " + labelTodaysDate +
+                " " + labelQuantity + " " + labelMedicationName + " " + labelStrength + " " + labelStrengthUnit
+                + " " + labelMedicationType + " Take " + labelDoseage + " " + labelFrequency);
             }
 
         }

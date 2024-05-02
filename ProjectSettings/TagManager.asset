@@ -11,6 +11,9 @@ TagManager:
   - PrescriptionMedication
   - Drawer
   - Computer
+  - Medication Name Toggle
+  - Strength Unit Toggle
+  - Medication Type Toggle
   layers:
   - Default
   - TransparentFX
@@ -47,4 +50,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UIBackround
+    uniqueID: 907834813
+    locked: 0
+  - name: UIInteractable
+    uniqueID: 1039715889
     locked: 0

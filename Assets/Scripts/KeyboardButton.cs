@@ -7,6 +7,8 @@ public class KeyboardButton : MonoBehaviour
     public string shiftCharacter;
 
     public TextMeshProUGUI keyLabel;
+    
+    //public int caretPos = 0;
 
     public GameObject shiftKey;
 
@@ -81,13 +83,16 @@ public class KeyboardButton : MonoBehaviour
 
     public void TypeKey()
     {
+        
         if (isShifted == true)
         {
             KeyboardManager.instance.inputField.text += shiftCharacter;
+            KeyboardManager.instance.inputField.caretPosition ++;
         }
         else
         {
             KeyboardManager.instance.inputField.text += character;
+            KeyboardManager.instance.inputField.caretPosition ++;
         }
 
         Debug.Log("Shifted in Keyboard TypeKey = " + isShifted);

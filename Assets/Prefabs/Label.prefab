@@ -936,10 +936,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78da94b33e056849939571474695830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text1: {fileID: 5735937772817303643}
-  text2: {fileID: 8879761860663681659}
-  medicationName: 2
-  frequency: "\u200B2"
+  patientNameText: {fileID: 5735937772817303643}
+  todaysDateText: {fileID: 8879761860663681659}
+  medicationText: {fileID: 3565480433581282665}
+  frequencyText: {fileID: 486484197401467467}
+  patientName: 
+  todaysDate: 
+  medicationName: 
+  quantity: 
+  strength: 
+  strengthUnit: 
+  medicationType: 
+  doseage: 
+  frequency: 
 --- !u!1 &3702479583548316862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,7 +1158,7 @@ GameObject:
   - component: {fileID: 1566420029500667078}
   - component: {fileID: 486484197401467467}
   m_Layer: 0
-  m_Name: Doseage
+  m_Name: frequency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1543,7 +1552,7 @@ GameObject:
   - component: {fileID: 3416008163315157510}
   - component: {fileID: 3565480433581282665}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: medication
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

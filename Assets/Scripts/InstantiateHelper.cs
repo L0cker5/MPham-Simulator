@@ -35,6 +35,29 @@ public class InstantiateHelper
                 position.Value, rotation);
     }
 
+    public void SetTableTwoLocation(OVRLocatable locatable, Camera camera = null)
+    {
+        if (!locatable.TryGetSceneAnchorPose(out var pose))
+            return;
+
+        var projectionCamera = camera == null ? Camera.main : camera;
+        var position = pose.ComputeWorldPosition(projectionCamera);
+        //var camRotation = pose.ComputeWorldRotation(projectionCamera);
+        Quaternion rotation = (Quaternion)pose.ComputeWorldRotation(projectionCamera);
+
+        // converts a Vector3 representation of the Quaternion using EulerAngles
+        Vector3 newRot = rotation.eulerAngles;
+
+        // Add a value to the relevent x,y,z to ammend the rotation 
+        Vector3 updatedRot = new Vector3(newRot.x + 90, newRot.y - 90, newRot.z);
+
+        // Convert the Vector3 back to a Quaternion using Quaternion.Euler
+        rotation = Quaternion.Euler(updatedRot);
+
+        if (position != null && rotation != null)
+            AnchorGameObject.transform.SetPositionAndRotation(
+                position.Value, rotation);
+    }
     public void SetWallArtLocation(OVRLocatable locatable, Camera camera = null)
     {
         if (!locatable.TryGetSceneAnchorPose(out var pose))
