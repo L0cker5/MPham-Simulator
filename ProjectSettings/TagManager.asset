@@ -14,6 +14,7 @@ TagManager:
   - Medication Name Toggle
   - Strength Unit Toggle
   - Medication Type Toggle
+  - Attached Label
   layers:
   - Default
   - TransparentFX

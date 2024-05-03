@@ -1,3 +1,6 @@
+using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -9,7 +12,11 @@ public class LabelProperties : MonoBehaviour
 
     public string patientName, todaysDate, medicationName, quantity, strength,
     strengthUnit, medicationType, doseage, frequency;
+    
+    private bool grabInteraction;
 
+    [SerializeField]
+    private HandGrabInteractable _interactable;
 
     //public LabelProperties(string name, string freq)
     //{
@@ -92,8 +99,23 @@ public class LabelProperties : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
+        //GrabInteractable _interactable = transform.GetComponent<GrabInteractable>();
+
+        //var grab = _interactable.Interactors.FirstOrDefault<HandGrabInteractor>();
+
+        ////grabInteraction = _interactable.ResetGrabOnGrabsUpdated;
         
+        ////Debug.Log("Grab " + grab);
+
+        //if (grab == null) 
+        //{
+        //    Debug.Log("Grab released");
+        //} 
+        //else if (grab != null)
+        //{
+        //    Debug.Log("Grab grabed");
+        //}
     }
 }
