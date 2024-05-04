@@ -17,7 +17,7 @@ public class InstantiateTableTwoPrefab : MonoBehaviour
     List<(GameObject, OVRLocatable)> _tableObjects = new List<(GameObject, OVRLocatable)>();
 
     // List of Room Anchors https://developer.oculus.com/documentation/unity/unity-scene-ovranchor/
-    void Start()
+    void Awake()
     {
         SpawnStart();
         StartCoroutine(UpdateAnchorsPeriodically());
