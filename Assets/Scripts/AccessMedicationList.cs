@@ -21,7 +21,7 @@ public class AccessMedicationList : MonoBehaviour
 
         //foreach (Medication m in medications)
         //{
-        //    Debug.Log("Access meds " + m.medicationName);
+        //    Debug.Log("Access meds " + m._medicationName);
         //}
     }
 }

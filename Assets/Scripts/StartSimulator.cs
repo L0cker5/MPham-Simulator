@@ -24,9 +24,12 @@ public class StartSimulator : MonoBehaviour
         Patient patient = getRandomPatient();
         Doctor doctor = getRandomDoctor();
 
-        Debug.Log("Random Medication: " + medication.medicationName + " " + medication.Strength);
-        Debug.Log("Random Patient: " + patient.name);
+        string med = medication.PrintToScript();
+        Debug.Log("Random:\n" + med);
+        Debug.Log("Random Medication: " + medication.MedicationName + " " + medication.Strength + " " + medication.StrengthUnit + " " + medication.MedicationType + " BNF: " + medication.BnfLabels);
+        Debug.Log("Random Patient: " + patient.Name + " DOB: " + patient.DateOfBirth);
         Debug.Log("Random Doctor:  " + doctor.name);
+
 
     }
 
@@ -61,7 +64,7 @@ public class StartSimulator : MonoBehaviour
     private Medication getRandomMedication()
     {
         int mIndex = rand.Next(medicationData.Count);
-
+        //Debug.Log($"Medication {mIndex}");
         Medication m = medicationData[mIndex];
 
         return m;

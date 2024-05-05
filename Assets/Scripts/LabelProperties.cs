@@ -18,9 +18,9 @@ public class LabelProperties : MonoBehaviour
 
     //public LabelProperties(string name, string freq)
     //{
-    //    //this.medicationName = name;
+    //    //this._medicationName = name;
     //    //this.frequency = freq;
-    //    medicationName = name;
+    //    _medicationName = name;
     //    frequency = freq;
     //}
 

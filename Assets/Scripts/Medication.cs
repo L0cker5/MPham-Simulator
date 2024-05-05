@@ -6,100 +6,209 @@ using UnityEngine;
 public class Medication
 {
 
-    public string medicationName;
-    public float strength;
-    public string strengthUnit;
-    //public Medicationtype medicationType;
-    public string medicationType;
-    public string dose;
-    public int expectedDose;
-    public string dosingFrequency;
-    public int quantity;
-    public string bnfLabels;
-    public bool isOutOfDate;
-    public bool isSigned;
+    private string _medicationName;
+    private float _strength;
+    //private string _strengthUnit;
+    private StrengthUnit _strengthUnit;
+    //private string _medicationType;
+    private MedicationType _medicationType;
+    private string _dose;
+    private int _expectedDose;
+    private string _dosingFrequency;
+    private int _quantity;
+    private string _bnfLabels;
+    private bool _isOutOfDate;
+    private bool _isSigned;
 
+    public Medication() { }
 
-    //public void printDetails()
-    //{
-    //    Debug.Log("Medication Name: " + medicationName);
-    //    Debug.Log("Medication : " + strength + strengthUnit + " " + medicationType);
-    //    Debug.Log("Medication Dose : " + dose + " " + dosingFrequency);
-    //}
+    public Medication(String medication, float strength, StrengthUnit strengthUnit, MedicationType medicationType, String dose,
+    int expectedDose, String dosingFrequency, int quantity, string bnfLabels, bool isOutOfDate, bool isSigned)
+    {
+    
+        this.MedicationName = medication;
+        this.Strength = strength;
+        this.StrengthUnit = strengthUnit;
+        this.MedicationType = medicationType;
+        this.Dose = dose;
+        this.ExpectedDose = expectedDose;
+        this.DosingFrequency = dosingFrequency;
+        this.Quantity = quantity;
+        this.BnfLabels = bnfLabels;
+        this.IsOutOfDate = isOutOfDate;
+        this.IsSigned = isSigned;
+    }
 
     public string MedicationName
     {
-        get { return medicationName; }
+        get { return _medicationName; }
      
-        set { medicationName = value; }
+        set 
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("Medication name cannot be null");
+            } 
+            else if (value.Length <= 0 || value.Length > 50)
+            {
+                throw new ArgumentOutOfRangeException("Invalid length of medication name");
+            }
+            else { this._medicationName = value; }
+             
+        }
     }
 
     public float Strength
     {
-        get { return strength; }
+        get { return _strength; }
 
-        set { strength = value; }
+        set 
+        { 
+            if (value <=0 || value > 9999) 
+            {
+                throw new ArgumentException("Strength out of range");
+            }
+            else { this._strength = value; }
+        }
     }
 
-    public string StrengthUnit
+    public StrengthUnit StrengthUnit
     {
-        get { return strengthUnit; }
+        get { return _strengthUnit; }
 
-        set { strengthUnit = value; }
+        set 
+        { 
+            if (Enum.IsDefined(typeof(StrengthUnit),value))
+            {
+                this._strengthUnit = value;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid strength unit enum value.");
+            }
+        }
     }
-    public string MedicationType
+    public MedicationType MedicationType
     {
-        get { return medicationType; }
+        get { return _medicationType; }
 
-        set { medicationType = value; }
+        set
+        {
+            if (Enum.IsDefined(typeof(MedicationType), value))
+            {
+                this._medicationType = value;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid medication type enum value.");
+            }
+        }
     }
 
     public string Dose
     {
-        get { return dose; }
+        get { return _dose; }
 
-        set { dose = value; }
+        set
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("Dose cannot be null");
+            }
+            else if (value.Length <= 0 || value.Length > 50)
+            {
+                throw new ArgumentOutOfRangeException("Invalid length of dose");
+            }
+            else { this._dose = value; }
+        }
     }
 
     public int ExpectedDose
     {
-        get { return expectedDose; }
+        get { return _expectedDose; }
 
-        set { expectedDose = value; }
+        set
+        {
+            if (value <= 0 || value > 10)
+            {
+                throw new ArgumentException("Expected dose out of range");
+            }
+            else { this._expectedDose = value; }
+        }
     }
 
     public string DosingFrequency
     {
-        get { return dosingFrequency; }
+        get { return _dosingFrequency; }
 
-        set { dosingFrequency = value; }
+        set
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("Dosing frequency cannot be null");
+            }
+            else if (value.Length <= 0 || value.Length > 50)
+            {
+                throw new ArgumentOutOfRangeException("Invalid length of dose");
+            }
+            else { this._dosingFrequency = value; }
+        }
     }
 
     public int Quantity
     {
-        get { return quantity; }
+        get { return _quantity; }
 
-        set { quantity = value; }
+        set
+        {
+            if (value <= 0 || value >= 1000)
+            {
+                throw new ArgumentException("Expected dose out of range");
+            }
+            else { this._quantity = value; }
+        }
     }
 
     public string BnfLabels
     {
-        get { return bnfLabels; }
+        get { return _bnfLabels; }
 
-        set { bnfLabels = value; }
+        set
+        {
+            if (value.Length < 0 || value.Length > 50)
+            {
+                throw new ArgumentOutOfRangeException("Invalid length of BNF Label");
+            }
+            else { this._bnfLabels = value; }
+        }
     }
 
     public bool IsOutOfDate
     {
-        get { return isOutOfDate; }
+        get { return _isOutOfDate; }
 
-        set { isOutOfDate = value; }
+        set { _isOutOfDate = value; }
     }
 
     public bool IsSigned
     {
-        get { return isSigned; }
+        get { return _isSigned; }
 
-        set { isSigned = value; }
+        set { _isSigned = value; }
+    }
+
+    public void PrintDetails()
+    {
+        Debug.Log("Medication Name: " + _medicationName);
+        Debug.Log("Medication : " + _strength + _strengthUnit + " " + _medicationType);
+        Debug.Log("Medication Dose : " + _dose + " " + _dosingFrequency);
+    }
+
+    public string PrintToScript()
+    {
+        string print = MedicationName + " " + Strength + " " + StrengthUnit + " " + MedicationType + "\n"
+            + Dose + " " + DosingFrequency + "\n"
+            + "x " + Quantity;
+        return print;
     }
 }

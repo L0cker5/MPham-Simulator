@@ -6,39 +6,11 @@ using UnityEngine;
 public class ReadCSV : MonoBehaviour
 {
     
-    void Awake()
-    {
-        //List<Medication> readMedication = readMedicationData();
-
-        //Debug.Log("Medication file " + readMeds.Count);
-        //foreach (Medication medications in readMeds)
-        //{
-        //    Debug.Log("Medication file name: " + medications.medicationName);
-        //}
-
-
-        //List<Patient> readPatient = readPatientData();
-
-        //Debug.Log("Patient file " + readPatient.Count);
-        //foreach (Patient patients in readPatient)
-        //{
-        //    Debug.Log("Patient file date: " + patients.dateOfBirth);
-        //}
-
-        //List<Doctor> readDoctor = readDoctorData();
-
-        //Debug.Log("Doctor file " + readDoctor.Count);
-        //foreach (Doctor doctors in readDoctor)
-        //{
-        //    Debug.Log("Doctor file date: " + doctors.name);
-        //}
-    }
-
     public static List<Medication> readMedicationData()
     {
         List<Medication> medicationsFromFile = new List<Medication>();
         string file = "medicationdata";
-        int date, signed;
+        
 
         TextAsset medicationData = Resources.Load<TextAsset>(file);
 
@@ -68,58 +40,55 @@ public class ReadCSV : MonoBehaviour
                         if (row[0] != "")
                         {
 
-                                //Do i need a try catch around this???????????************************
+                            //Do i need a try catch around this???????????************************
                         
-                                Medication m = new Medication();
-                                //if there is no data in the row it will leave it blank
-                                m.MedicationName = row[0];
-                                float st = float.Parse(row[1]);
-                                m.Strength = st;
-                                //int.TryParse(row[1], out m.strength);
-                                m.StrengthUnit = row[2].ToUpper();
-                                m.MedicationType = row[3].ToUpper();
-                                m.Dose = row[4];
-                                int ed = int.Parse(row[5]);
-                                m.ExpectedDose = ed;
-                                //int.TryParse(row[5], out m.expectedDose);
-                                m.DosingFrequency = row[6];
-                                int qt = int.Parse(row[7]);
-                                m.Quantity = qt;
-                                //int.TryParse(row[7], out m.quantity);
-                                m.BnfLabels = row[8];
-                                date = int.Parse(row[9]);
-                                
-                                //int.TryParse(row[9], out date);
+                            float st = float.Parse(row[1]);
 
-                                if (date == 0)
-                                {
-                                    m.IsOutOfDate = false;
-                                }
-                                else if (date == 1)
-                                {
-                                    m.IsOutOfDate = true;
-                                }
-                                else
-                                {
-                                    throw new ArgumentException("Cannot be a value other than 0 or 1");
-                                }
+                            StrengthUnit sU;
+                            Enum.TryParse(row[2], out sU);
 
-                                int.TryParse(row[10], out signed);
+                            MedicationType mT;
+                            Enum.TryParse(row[3], out mT);
 
-                                if (signed == 0)
-                                {
-                                    m.IsSigned = false;
-                                }
-                                else if (signed == 1)
-                                {
-                                    m.IsSigned = true;
-                                }
-                                else
-                                {
-                                    throw new ArgumentException("Cannot be a value other than 0 or 1");
-                                }
+                            int ed = int.Parse(row[5]);
+                            int qt = int.Parse(row[7]);
+                            int date = int.Parse(row[9]);
 
-                                medicationsFromFile.Add(m);
+                            bool dateBool;
+
+                            if (date == 0)
+                            {
+                                dateBool = false;
+                            }
+                            else if (date == 1)
+                            {
+                                dateBool = true;
+                            }
+                            else
+                            {
+                                throw new ArgumentException("Cannot be a value other than 0 or 1");
+                            }
+
+                            int signed = int.Parse(row[10]);
+                            bool signedBool;
+
+                            if (signed == 0)
+                            {
+                                signedBool = false;
+                            }
+                            else if (signed == 1)
+                            {
+                                signedBool = true;
+                            }
+                            else
+                            {
+                                throw new ArgumentException("Cannot be a value other than 0 or 1");
+                            }
+
+                            Medication m = new Medication(row[0], st, sU, mT, row[4],
+                                ed, row[6], qt, row[8], dateBool, signedBool );
+
+                            medicationsFromFile.Add(m);
                         }
 
                     }
@@ -141,7 +110,7 @@ public class ReadCSV : MonoBehaviour
             }
         }
 
-        Debug.Log("File meds length after for in ReadCSV " + medicationsFromFile.Count);
+        Debug.Log("Random File meds length after for in ReadCSV " + medicationsFromFile.Count);
 
         return medicationsFromFile;
     }
@@ -150,7 +119,6 @@ public class ReadCSV : MonoBehaviour
     {
         List<Patient> patientsFromFile = new List<Patient>();
         string file = "dummypatientdata";
-        //int date, signed;
 
         TextAsset patientData = Resources.Load<TextAsset>(file);
 
@@ -182,14 +150,22 @@ public class ReadCSV : MonoBehaviour
 
                             //Do i need a try catch around this???????????************************
 
-                            Patient p = new Patient();
                             //if there is no data in the row it will leave it blank
-                            
-                            p.name = row[0];
-                            p.address = row[1];
-                            p.city = row[2];
-                            //var dateInfo = new DateInfo("dd-mm-yyy");
-                            DateTime.TryParse(row[3], out p.dateOfBirth);
+                            DateTime dateTime;
+
+                            //string dob = "30/02/2020";
+                            string dob = row[3];
+                            bool isValid = IsValidDate(dob);
+                            if ( isValid == false)
+                            {
+                                throw new ArgumentException("Date is not valid");
+                            }
+                            else
+                            {
+                                DateTime.TryParse (dob, out dateTime);
+                            }
+
+                            Patient p = new Patient(row[0], row[1], row[2], dateTime);
 
                             patientsFromFile.Add(p);
                         }
@@ -216,6 +192,13 @@ public class ReadCSV : MonoBehaviour
         Debug.Log("File patient length after for in ReadCSV " + patientsFromFile.Count);
 
         return patientsFromFile;
+    }
+
+    private static bool IsValidDate(string dateTime)
+    {
+        DateTime temp;
+        return DateTime.TryParse(dateTime, out temp);
+
     }
 
     public static List<Doctor> readDoctorData()
