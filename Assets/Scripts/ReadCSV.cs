@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class ReadCSV : MonoBehaviour
 {
-    
+
     public static List<Medication> readMedicationData()
     {
         List<Medication> medicationsFromFile = new List<Medication>();
         string file = "medicationdata";
-        
+
 
         TextAsset medicationData = Resources.Load<TextAsset>(file);
 
@@ -41,7 +41,7 @@ public class ReadCSV : MonoBehaviour
                         {
 
                             //Do i need a try catch around this???????????************************
-                        
+
                             float st = float.Parse(row[1]);
 
                             StrengthUnit sU;
@@ -85,25 +85,27 @@ public class ReadCSV : MonoBehaviour
                                 throw new ArgumentException("Cannot be a value other than 0 or 1");
                             }
 
+                            //string nullName = "";
+
                             Medication m = new Medication(row[0], st, sU, mT, row[4],
-                                ed, row[6], qt, row[8], dateBool, signedBool );
+                                ed, row[6], qt, row[8], dateBool, signedBool);
 
                             medicationsFromFile.Add(m);
                         }
 
                     }
 
-                } 
-                else 
+                }
+                else
                 {
 
                     throw new ArgumentException("File is empty");
-                
+
                 }
 
 
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 Debug.LogError("Exception" + e);
                 Console.WriteLine("Exception" + e);
@@ -153,34 +155,28 @@ public class ReadCSV : MonoBehaviour
                             //if there is no data in the row it will leave it blank
                             DateTime dateTime;
 
-                            //string dob = "30/02/2020";
+                            //string wrongDob = "30/02/2020";
                             string dob = row[3];
                             bool isValid = IsValidDate(dob);
-                            if ( isValid == false)
+                            if (isValid == false)
                             {
                                 throw new ArgumentException("Date is not valid");
                             }
                             else
                             {
-                                DateTime.TryParse (dob, out dateTime);
+                                DateTime.TryParse(dob, out dateTime);
                             }
 
                             Patient p = new Patient(row[0], row[1], row[2], dateTime);
 
                             patientsFromFile.Add(p);
                         }
-
                     }
-
                 }
                 else
                 {
-
                     throw new ArgumentException("File is empty");
-
                 }
-
-
             }
             catch (Exception e)
             {
@@ -218,7 +214,6 @@ public class ReadCSV : MonoBehaviour
             Debug.Log("File read");
             try
             {
-
                 string[] data = doctorData.text.Split(new char[] { '\n' });
 
                 Debug.Log("File doctor length before for in ReadCSV " + doctorsFromFile.Count);
@@ -236,30 +231,27 @@ public class ReadCSV : MonoBehaviour
 
                             //Do i need a try catch around this???????????************************
 
-                            Doctor d = new Doctor();
+                            //Doctor d = new Doctor();
                             //if there is no data in the row it will leave it blank
 
-                            d.name = row[0];
-                            d.signature = row[1];
-                            d.healthCentre = row[2];
-                            d.addressLineOne = row[3];
-                            d.town = row[4];
-                            d.postcode = row[5];
+                            //d.name = row[0];
+                            //d.signature = row[1];
+                            //d.healthCentre = row[2];
+                            //d.addressLineOne = row[3];
+                            //d.town = row[4];
+                            //d.postcode = row[5];
+                            //string wrongPostcode = "BT2 03RU";
+
+                            Doctor d = new Doctor(row[0], row[1], row[2], row[3], row[4], row[5]);
 
                             doctorsFromFile.Add(d);
                         }
-
                     }
-
                 }
                 else
                 {
-
                     throw new ArgumentException("File is empty");
-
                 }
-
-
             }
             catch (Exception e)
             {
@@ -267,14 +259,12 @@ public class ReadCSV : MonoBehaviour
                 Console.WriteLine("Exception" + e);
             }
         }
-
         Debug.Log("File doctor length after for in ReadCSV " + doctorsFromFile.Count);
-
         return doctorsFromFile;
     }
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

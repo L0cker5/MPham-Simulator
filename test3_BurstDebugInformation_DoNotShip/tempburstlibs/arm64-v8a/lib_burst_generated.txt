@@ -8,6 +8,7 @@ Library: E:\Unity Projects\MPham Simulator\Temp\BurstOutput\tempburstlibs\arm64-
 --float-precision=Standard
 --target-framework=NetFramework
 --assembly-defines=Assembly-CSharp;
+--assembly-defines=Meta.XR.Audio;
 --assembly-defines=Meta.XR.BuildingBlocks;
 --assembly-defines=meta.xr.mrutilitykit;
 --assembly-defines=Mono.Security;
@@ -120,6 +121,7 @@ Library: E:\Unity Projects\MPham Simulator\Temp\BurstOutput\tempburstlibs\arm64-
 --target-framework=NetFramework
 --float-mode=Fast
 --assembly-defines=Assembly-CSharp;
+--assembly-defines=Meta.XR.Audio;
 --assembly-defines=Meta.XR.BuildingBlocks;
 --assembly-defines=meta.xr.mrutilitykit;
 --assembly-defines=Mono.Security;

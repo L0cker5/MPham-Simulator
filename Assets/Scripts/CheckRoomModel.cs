@@ -98,21 +98,21 @@ public class CheckRoomModel : MonoBehaviour
 
                 if (prefabWidth > anchorWidth && prefabHeight > anchorHeight) {
                     activeText = "The dimensions of the anchor are too small and need to be atleast " + prefabWidth.ToString("0.00") 
-                        + "m wide & " + prefabHeight.ToString("0.00")+ "m heigh/deep.";
+                        + "med wide & " + prefabHeight.ToString("0.00")+ "med heigh/deep.";
                     activeTextSize = 12;
                     activeTextColor = Color.yellow;
                 } 
                 else if (prefabHeight > anchorHeight)
                 {
-                    activeText = "The " + anchorLabel + " anchor height " + anchorHeight.ToString("0.00") + "m is to small." +
-                        " The anchor needs to be at least " + prefabHeight.ToString("0.00") + "m.";
+                    activeText = "The " + anchorLabel + " anchor height " + anchorHeight.ToString("0.00") + "med is to small." +
+                        " The anchor needs to be at least " + prefabHeight.ToString("0.00") + "med.";
                     activeTextSize = 12;
                     activeTextColor = Color.yellow;
                 }
                 else if (prefabWidth > anchorWidth)
                 {
-                    activeText = "The " + anchorLabel + " anchor width " + anchorWidth.ToString("0.00") + "m is to small." +
-                        " The anchor needs to be at least " + prefabWidth.ToString("0.00") + "m.";
+                    activeText = "The " + anchorLabel + " anchor width " + anchorWidth.ToString("0.00") + "med is to small." +
+                        " The anchor needs to be at least " + prefabWidth.ToString("0.00") + "med.";
                     activeTextSize = 12;
                     activeTextColor = Color.yellow;
                 }

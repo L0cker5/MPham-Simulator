@@ -10,7 +10,13 @@ public class StartSimulator : MonoBehaviour
     private List<Patient> patientData;
     private List<Doctor> doctorData;
 
-    private System.Random rand = new System.Random();
+    //private System.Random rand = new System.Random();
+
+    //PrescriptionProperties pProps = new PrescriptionProperties();
+
+    public Medication medication;
+    public Patient patient;
+    public Doctor doctor;
 
     private void Awake()
     {
@@ -20,15 +26,15 @@ public class StartSimulator : MonoBehaviour
         doctorData = ReadCSV.readDoctorData();
 
         //call the methods to get a random medication, patient & doctor for the lists
-        Medication medication = getRandomMedication();
-        Patient patient = getRandomPatient();
-        Doctor doctor = getRandomDoctor();
+        medication = getRandomMedication(medicationData);
+        patient = getRandomPatient(patientData);
+        doctor = getRandomDoctor(doctorData);
 
-        string med = medication.PrintToScript();
+        string med = medication.PrintMedicationToScript();
         Debug.Log("Random:\n" + med);
         Debug.Log("Random Medication: " + medication.MedicationName + " " + medication.Strength + " " + medication.StrengthUnit + " " + medication.MedicationType + " BNF: " + medication.BnfLabels);
         Debug.Log("Random Patient: " + patient.Name + " DOB: " + patient.DateOfBirth);
-        Debug.Log("Random Doctor:  " + doctor.name);
+        Debug.Log("Random Doctor:  " + doctor.Name + " " + doctor.Postcode);
 
 
     }
@@ -39,35 +45,64 @@ public class StartSimulator : MonoBehaviour
 
     }
 
-    private Doctor getRandomDoctor()
+    private Doctor getRandomDoctor(List<Doctor> dData)
     {
-        //System.Random rand = new System.Random();
+
+        if (dData.Count <= 0)
+        { 
+            throw new ArgumentException("No doctors added");
+        } 
+        else
+        {
+            System.Random rand = new System.Random();
+
+            int dIndex = rand.Next(dData.Count);
         
-        int dIndex = rand.Next(doctorData.Count);
+            Debug.Log("Random index " + dIndex);
 
-        Doctor d = doctorData[dIndex];
-
+            Doctor d = dData[dIndex];
+            
+            
         return d;
+        }
     }
 
-    private Patient getRandomPatient()
+    private Patient getRandomPatient(List<Patient> pData)
     {
-        //System.Random rand = new System.Random();
+        if (pData.Count <= 0)
+        {
+            throw new ArgumentException("No patients added");
+        }
+        else
+        {
+            System.Random rand = new System.Random();
 
-        int pIndex = rand.Next(patientData.Count);
+            int pIndex = rand.Next(pData.Count);
 
-        Patient p = patientData[pIndex];
+            Patient p = pData[pIndex];
 
-        return p;
+            return p;
+        }
     }
 
-    private Medication getRandomMedication()
+    private Medication getRandomMedication(List<Medication> mData)
     {
-        int mIndex = rand.Next(medicationData.Count);
-        //Debug.Log($"Medication {mIndex}");
-        Medication m = medicationData[mIndex];
+
+        if (mData.Count <= 0)
+        {
+            throw new ArgumentException("No medication added");
+        }
+        else
+        {
+            System.Random rand = new System.Random();
+
+            int mIndex = rand.Next(mData.Count);
+            //Debug.Log($"Medication {mIndex}");
+            Medication m = mData[mIndex];
+
 
         return m;
+        }
     }
 
 

@@ -204,11 +204,11 @@ public class Medication
         Debug.Log("Medication Dose : " + _dose + " " + _dosingFrequency);
     }
 
-    public string PrintToScript()
+    public string PrintMedicationToScript()
     {
-        string print = MedicationName + " " + Strength + " " + StrengthUnit + " " + MedicationType + "\n"
-            + Dose + " " + DosingFrequency + "\n"
-            + "x " + Quantity;
+        string print = (this.MedicationName + " " + this.Strength + " " + this.StrengthUnit + " " + this.MedicationType + "\n"
+            + this.Dose + " " + this.DosingFrequency + "\n"
+            + "x " + this.Quantity);
         return print;
     }
 }

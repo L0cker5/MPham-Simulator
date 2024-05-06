@@ -74,4 +74,12 @@ public class Patient
         get { return _dateOfBirth; }
         set { _dateOfBirth = value; }
     }
+
+    public string PrintPatientToScript()
+    {
+        string print = Name + "\n" + Address + "\n" + City;
+
+        return print;
+    }
+
 }
