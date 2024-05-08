@@ -5,11 +5,13 @@ public class ShelfTrigger : MonoBehaviour
     private readonly string box = "Box";
     private readonly string prescriptionMedication = "PrescriptionMedication";
 
+    public bool shelftriggered = false;
+
     public GameObject meds;
 
-    string boxMedicationName;
-    int boxStrength;
-    string labelPatientName, labelTodaysDate, labelMedicationName, labelQuantity, labelStrength,
+    //string boxMedicationName;
+    public float boxStrength, labelStrength;
+    public string boxMedicationName, labelPatientName, labelTodaysDate, labelMedicationName, labelQuantity,
     labelStrengthUnit, labelMedicationType, labelDoseage, labelFrequency;
 
     //string test = "test";
@@ -28,6 +30,8 @@ public class ShelfTrigger : MonoBehaviour
 
             if (boxProperties.CompareTag(prescriptionMedication))
             {
+                shelftriggered = true;
+
                 boxMedicationName = boxProperties.Name;
                 boxStrength = boxProperties.Strength;
               
@@ -55,7 +59,33 @@ public class ShelfTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag(box))
+        {
+            BoxProperties boxProperties = other.GetComponentInParent<BoxProperties>();
 
+            if (boxProperties.CompareTag(prescriptionMedication))
+            {
+                shelftriggered = false;
+
+                boxMedicationName = null;
+                boxStrength = 0;
+                labelPatientName = null;
+                labelTodaysDate = null;
+                labelQuantity = null ;
+                labelMedicationName = null;
+                labelStrength = 0;
+                labelStrengthUnit = null;
+                labelMedicationType = null;
+                labelDoseage = null;
+                labelFrequency = null;
+
+                Debug.Log("Box Trigger Name: " + boxMedicationName + " Strength " + boxStrength);
+                Debug.Log("Label Trigger Patient Name: " + labelPatientName + " Date: " + labelTodaysDate +
+                " " + labelQuantity + " " + labelMedicationName + " " + labelStrength + " " + labelStrengthUnit
+                + " " + labelMedicationType + " Take " + labelDoseage + " " + labelFrequency);
+            }
+
+        }
     }
 
 }

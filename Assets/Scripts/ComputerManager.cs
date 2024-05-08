@@ -1,13 +1,24 @@
 using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 public class ComputerManager : MonoBehaviour
 {
     public static ComputerManager instance;
-    
+
     //[SerializeField] 
-    public TMP_Text patientName, quantity, medicationName, strength, strengthUnit, medicationType, 
-        dose, frequency, errorPatientName, errorQuantity, errorStrength, errorDose, errorFrequency;
+    public TMP_InputField patientName, quantity, strength,
+        dose, frequency; 
+
+    public TMP_Text medicationName, strengthUnit, medicationType, errorPatientName, errorQuantity, 
+        errorStrength, errorDose, errorFrequency;
+
+    private bool nameError = true;
+    private bool quantityError = true;
+    private bool strengthError = true;
+    private bool doseError = true;
+    private bool frequencyError = true;
 
     private DateTime date;
     //TMP_InputField inputField;
@@ -42,17 +53,20 @@ public class ComputerManager : MonoBehaviour
 
     public void PrintLabel()
     {
-        bool nameError = true;
-        bool quantityError = true;
-        bool strengthError = true;
-        bool doseError = true;
-        bool frequencyError = true;
+        ResetErrorMessages();
 
-        errorDose.enabled = false;
-        errorFrequency.enabled = false;
-        errorPatientName.enabled = false;
-        errorQuantity.enabled = false;
-        errorStrength.enabled = false;
+
+    //    private bool nameError = true;
+    //private bool quantityError = true;
+    //private bool strengthError = true;
+    //private bool doseError = true;
+    //private bool frequencyError = true;
+
+        //errorDose.enabled = false;
+        //errorFrequency.enabled = false;
+        //errorPatientName.enabled = false;
+        //errorQuantity.enabled = false;
+        //errorStrength.enabled = false;
 
         nameError = CheckName(patientName.text);
         quantityError = CheckQuantity(quantity.text);
@@ -69,6 +83,10 @@ public class ComputerManager : MonoBehaviour
 
         date = DateTime.Now;
         
+
+        float.TryParse(strength.text, out float st);
+        Debug.Log("Float = " +  st);
+
         Vector3 position = spawnPoint.position;
         Quaternion rotation = spawnPoint.rotation;
         Debug.Log("Label Printed");
@@ -77,21 +95,37 @@ public class ComputerManager : MonoBehaviour
         labelProperties.TodaysDate = date.ToString("dd-MM-yyyy");
         labelProperties.Quantity = quantity.text;
         labelProperties.MedicationName = medicationName.text;
-        labelProperties.Strength = strength.text;
+        labelProperties.Strength = st;
         labelProperties.StrengthUnit = strengthUnit.text;
         labelProperties.MedicationType = medicationType.text;
         labelProperties.Dosage = this.dose.text;
         labelProperties.Frequency = frequency.text;
         Instantiate(label, position, rotation);
-        Debug.Log("Label Printed");
+        Debug.Log("Label Printed " + st);
         }
 
 
     }
 
+    private void ResetErrorMessages()
+    {
+        nameError = true;
+        quantityError = true;
+        strengthError = true;
+        doseError = true;
+        frequencyError = true;
+
+        errorDose.enabled = false;
+        errorFrequency.enabled = false;
+        errorPatientName.enabled = false;
+        errorQuantity.enabled = false;
+        errorStrength.enabled = false;
+
+    }   
+
     private bool CheckFrequency(string f)
     {
-        if (f.Length <= 1)
+        if (f.Length <= 0)
         {
             errorFrequency.enabled = true;
             errorFrequency.text = "Frequency cannot be left blank";
@@ -105,10 +139,24 @@ public class ComputerManager : MonoBehaviour
 
     private bool CheckDose(string d)
     {
-        if (d.Length <= 1)
+        Regex regex = new Regex(@"^[\p{L}]+$");
+        //Regex regex = new Regex("/^[a-zA-Z&._-]+$/");
+        //Regex regex = new Regex(@"^\d$");
+        //Regex regex = new Regex([1 - 9] | [1 - 9][0 - 9] | [1 - 9][0 - 9][0 - 9] | 1000)
+        //string value = d.Trim();
+
+        Debug.Log("String Length: " + d.Length + " : " + d);
+
+        if (d.Length <= 0)
         {
             errorDose.enabled = true;
             errorDose.text = "Dose cannot be left blank";
+            return false;
+        }
+        else if (!regex.IsMatch(d))
+        {
+            errorDose.enabled = true;
+            errorDose.text = "Please type the dosage as a word";
             return false;
         }
         else
@@ -119,7 +167,7 @@ public class ComputerManager : MonoBehaviour
 
     private bool CheckStrength(string s)
     {
-        if (s.Length <= 1)
+        if (s.Length <= 0)
         {
             errorStrength.enabled = true;
             errorStrength.text = "Strength cannot be left blank";
@@ -133,11 +181,11 @@ public class ComputerManager : MonoBehaviour
 
     private bool CheckName(string p)
     {
-        if (p.Length <= 1)
+        if (p.Length <= 0)
         {
             errorPatientName.enabled = true;
             errorPatientName.text = "Name cannot be left blank";
-            Debug.Log("Error there is no name");
+            Debug.Log("Error there is no name" + p.Length);
             return false;
         }
         else
@@ -149,7 +197,7 @@ public class ComputerManager : MonoBehaviour
 
     private bool CheckQuantity(string q)
     {
-        if (q.Length <= 1)
+        if (q.Length <= 0)
         {
             errorQuantity.enabled = true;
             errorQuantity.text = "Quantity cannot be left blank";

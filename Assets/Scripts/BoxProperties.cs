@@ -4,21 +4,21 @@ public class BoxProperties : MonoBehaviour
 {
 
     public GameObject medsBox;
-    private int _strength = 50;
+
+    [SerializeField]
+    private string _name;
+
+    [SerializeField]
+    private float _strength;
 
     public string Name
     {
-        get
-        {
-            string boxName = medsBox.name;
-            return boxName;
-        }
+        get { return _name; }
     }
 
-    public int Strength
+    public float Strength
     {
-        get
-        { return _strength; }
+        get { return _strength; }
     }
 
     public string StrengthWithMg
@@ -29,13 +29,4 @@ public class BoxProperties : MonoBehaviour
             return strengthWMg;
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        //Debug.Log("Box Properties " + Name + " " + StrengthWithMg);
-
-    }
-
 }

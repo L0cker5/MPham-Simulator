@@ -8,9 +8,11 @@ public class LabelProperties : MonoBehaviour
     private TMP_Text patientNameText, todaysDateText, 
     medicationText, frequencyText;
 
-    public string patientName, todaysDate, medicationName, quantity, strength,
+    public string patientName, todaysDate, medicationName, quantity,
     strengthUnit, medicationType, doseage, frequency;
-    
+
+    public float strength;
+
     private bool grabInteraction;
 
     [SerializeField]
@@ -51,7 +53,7 @@ public class LabelProperties : MonoBehaviour
 
         set { quantity = value; }
     }
-        public string Strength
+        public float Strength
     {
         get { return strength; }
 

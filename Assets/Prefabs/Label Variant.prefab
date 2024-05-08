@@ -390,7 +390,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5806610451371026108, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
+      propertyPath: _handAligment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806610451371026108, guid: e5977e27a92f7a34cb6421fe88fa16ef,
+        type: 3}
       propertyPath: _supportedGrabTypes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806610451371026108, guid: e5977e27a92f7a34cb6421fe88fa16ef,
+        type: 3}
+      propertyPath: _pinchGrabRules._unselectMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806610451371026108, guid: e5977e27a92f7a34cb6421fe88fa16ef,
+        type: 3}
+      propertyPath: _palmGrabRules._indexRequirement
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806610451371026108, guid: e5977e27a92f7a34cb6421fe88fa16ef,
+        type: 3}
+      propertyPath: _palmGrabRules._pinkyRequirement
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806610451371026108, guid: e5977e27a92f7a34cb6421fe88fa16ef,
+        type: 3}
+      propertyPath: _palmGrabRules._thumbRequirement
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806610451371026108, guid: e5977e27a92f7a34cb6421fe88fa16ef,
+        type: 3}
+      propertyPath: _pinchGrabRules._ringRequirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806610451371026108, guid: e5977e27a92f7a34cb6421fe88fa16ef,
+        type: 3}
+      propertyPath: _pinchGrabRules._pinkyRequirement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7293671133587347093, guid: e5977e27a92f7a34cb6421fe88fa16ef,

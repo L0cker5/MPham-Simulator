@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CloseApplication : MonoBehaviour
+public class ApplicationManager : MonoBehaviour
 {
     public void QuitGame()
     {

@@ -2,14 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.Xml.Linq;
+using System.Linq;
 
 public class StartSimulator : MonoBehaviour
 {
+
+    [SerializeField]
+    private ShelfTrigger trigger;
+
+    public TMP_Text errorMsgs;
 
     private List<Medication> medicationData;
     private List<Patient> patientData;
     private List<Doctor> doctorData;
 
+    private List<string> errors;
+
+    private bool matchBoxAndLabel = true;
+    private bool nameError = true; 
+    private bool strengthError = true;
     //private System.Random rand = new System.Random();
 
     //PrescriptionProperties pProps = new PrescriptionProperties();
@@ -20,6 +33,11 @@ public class StartSimulator : MonoBehaviour
 
     private void Awake()
     {
+        //GameObject trigger = GameObject.Find("ShelfObject");
+
+        //var obj = trigger.GetComponentInChildren<ShelfTrigger>();
+        
+
         //get the lists of medication, patient & doctor data
         medicationData = ReadCSV.readMedicationData();
         patientData = ReadCSV.readPatientData();
@@ -43,6 +61,94 @@ public class StartSimulator : MonoBehaviour
     void Start()
     {
 
+    }
+
+    public void CheckTriggerActive()
+    {
+        errorMsgs.enabled = false;
+        //ShelfTrigger trigger2 = new ShelfTrigger();
+        string boxName = trigger.boxMedicationName;
+        
+        if (trigger.shelftriggered == true)
+        {
+            CheckBoxAndLabel();
+        } 
+        else
+        {
+            errorMsgs.text = "No prescribable medication has been dispensed, " +
+                "please check the label has been attached to the medication box " +
+                "and it has been placed in the dispensing area."; 
+            errorMsgs.enabled = true;
+            Debug.Log("The box name is: " + boxName);
+        }
+    }
+
+    private bool CheckBoxAndLabel()
+    {
+        //float.TryParse(trigger.labelStrength, out float labelStrength);
+
+        if (trigger.boxStrength != trigger.labelStrength)
+        {
+            errorMsgs.text = "The strength on the label does not match the box";
+            errorMsgs.enabled = true;
+            return false;
+        }
+        else if (trigger.boxMedicationName == trigger.labelMedicationName) 
+        {
+            //errorMsgs.text = " Names Match";
+            CheckPrescription();
+            return true;
+        }
+        else
+        {
+            errorMsgs.text = "The name and or the strengths on the label and box do not match";
+            errorMsgs.enabled = true;
+            return false;
+        }
+
+    }
+
+    private void CheckPrescription()
+    {
+        nameError = CheckMedicationBoxName();
+        //strengthError = CheckMedicationBoxStrength();
+
+        if (nameError) 
+        {
+            errorMsgs.text = "well done";
+            errorMsgs.enabled = true;
+        } else
+        {
+            errorMsgs.text = String.Join("\n",errors);
+            errorMsgs.enabled = true;
+        }
+    }
+
+    private bool CheckMedicationBoxStrength()
+    {
+        if (trigger.boxStrength == medication.Strength)
+        {
+            return true;
+        } else
+        {
+            string error = "The medication strength on the prescription does not match what you are trying to dispense.";
+            errors.Add(error);
+            return false;
+        }
+    }
+
+    private bool CheckMedicationBoxName()
+    {
+        if (trigger.boxMedicationName == medication.MedicationName)
+        {
+            return true;
+        }
+        else
+        {
+            string error = "The medication name on the prescription does not match what you are trying to dispense.";
+            errors.Add(error);
+            return false;
+        }
     }
 
     private Doctor getRandomDoctor(List<Doctor> dData)
