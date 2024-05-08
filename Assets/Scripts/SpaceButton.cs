@@ -8,7 +8,7 @@ public class SpaceButton : MonoBehaviour
         TMP_InputField inputField = KeyboardManager.instance.inputField;
 
         inputField.text += " ";
-
+        inputField.caretPosition ++;
         //Debug.Log("Space Button Pressed");
     }
 }

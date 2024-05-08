@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -13,6 +11,9 @@ public class GetActiveToggle : MonoBehaviour
     [SerializeField]
     private TMP_Text toggleText;
 
+    private readonly string medicationNameTag = "Medication Name Toggle";
+    private readonly string strengthUnitTag = "Strength Unit Toggle";
+    private readonly string medicationTypeTag = "Medication Type Toggle";
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +30,23 @@ public class GetActiveToggle : MonoBehaviour
     public void ToggleChanged()
     {
         
-        if (toggle.isOn) 
+        if (toggle.isOn && toggle.CompareTag(medicationNameTag)) 
         { 
-        Debug.Log("Toggle " + toggleText.text + " active");
-        ComputerManager.instance.toggle1Text = toggleText;
+        Debug.Log("Toggle Tag " + toggleText.text + " active");
+        
+        ComputerManager.instance.medicationName = toggleText;
+        }
+        else if (toggle.isOn && toggle.CompareTag(strengthUnitTag))
+        {
+            Debug.Log("Toggle Tag " + toggleText.text + " active");
+
+            ComputerManager.instance.strengthUnit = toggleText;
+        }
+        else if (toggle.isOn && toggle.CompareTag(medicationTypeTag))
+        {
+            Debug.Log("Toggle Tag " + toggleText.text + " active");
+
+            ComputerManager.instance.medicationType = toggleText;
         }
     }
 }

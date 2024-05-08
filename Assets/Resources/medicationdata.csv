@@ -1,5 +1,6 @@
-﻿ID,Script items,Errors/Actions 1,General,BNF Labels,Codes/POR
-0,OxyNorm capsules,Strength missing - add 5 mg,initial dose (5mg every 4-6 hrs - increase sos. Usual max 400 mg daily) and for moderate to severe pain in palliative care,2,1639 (5 mg)
-1,Concerta XL 18 mg,Rx not signed – sign appropriately,Tablet matrix may pass through GIT unchanged,25,70424
-2,,,,,
-3,,,,,
+﻿medication_name,strength,strength_unit,medication_type,dose,expected_dose,dosing_frequency,quantity,bnf_labels,is_out_of_date,is_signed
+Phenoxymethylpenicillin,250,mg,tablet,500 mg,2,every 6 hours,40,2;20,0,1
+Phenoxymethylpenicillin,250,mg,tablet,2 tablets,2,every 6 hours,40,2;20,1,1
+Phenoxymethylpenicillin,250,mg,tablet,2 tablets,2,every 6 hours,40,2;20,0,0
+Simvastatin,40,mg,tablet,i,1,nocte,28,,0,1
+Digoxin,62.5,mcg,tablet,i,1,od,28,,0,1

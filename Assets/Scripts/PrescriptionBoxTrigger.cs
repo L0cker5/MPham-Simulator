@@ -1,3 +1,5 @@
+using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
 using UnityEngine;
 
 /*
@@ -20,8 +22,11 @@ public class PrescriptionBoxTrigger : MonoBehaviour
     // A reference to the prescription label object
     GameObject prescriptionLabel;
 
+    //Grabbable labelGrabbable;
+
     // Tag names used for object comparison
     private readonly string label = "Label";
+    private readonly string attachedLabel = "Attached Label";
     private readonly string prescriptionMedication = "PrescriptionMedication";
     private readonly string medication = "Medication";
 
@@ -38,6 +43,13 @@ public class PrescriptionBoxTrigger : MonoBehaviour
         if (other.gameObject.CompareTag(label))
         {
             prescriptionLabel = other.gameObject;
+            //prescriptionLabel.GetComponentInChildren<Grabbable>().TransferOnSecondSelection = true;
+            //prescriptionLabel.GetComponentInChildren<HandGrabInteractable>().enabled = false;
+            
+            //prescriptionLabel.GetComponentInChildren<TwoGrabFreeTransformer>().enabled = false;
+            //Grabbable labelGrabbable = prescriptionLabel.GetComponent<Grabbable>();
+
+            //labelGrabbable.enabled = false;
 
             MakeChild(prescriptionLabel, true);
         }
@@ -45,14 +57,14 @@ public class PrescriptionBoxTrigger : MonoBehaviour
 
     /// <summary>
     /// Called when a collider exits the trigger area. 
-    /// If the exiting object has the tag "Label," it sets this object as 
+    /// If the exiting object has the tag "Attached Label," it sets this object as 
     /// the prescriptionLabel gameObject and calls the DetachFromParent() method 
     /// passing the prescriptionLabel and a value of "false".
     /// </summary>
     /// <param name="other">the object exiting the trigger</param>
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag(label))
+        if (other.gameObject.CompareTag(attachedLabel))
         {
             prescriptionLabel = other.gameObject;
 
@@ -62,16 +74,24 @@ public class PrescriptionBoxTrigger : MonoBehaviour
 
     /// <summary>
     /// Sets the prescriptionLabel gameObject as a child of the parent object 
-    /// if b is true, otherwise detaches it.
+    /// if b is true. updates the tag to "Attached Label" and enables the 
+    /// Transfer On Second Selection check box in the Gabbable on the prescriptionLabel 
+    /// gameObject to prevent the label from being able to have its scale altered when 
+    /// attached to the box.  
     /// </summary>
     /// <param name="pLabel">prescriptionLabel gameObject.</param>
     /// <param name="b">true or false.</param>
     private void MakeChild(GameObject pLabel, bool b)
     {
         lableIsAttached = b;
+
         if (lableIsAttached)
         {
             pLabel.transform.SetParent(parentObject.transform);
+            Debug.Log("Grabble disabled");
+            pLabel.tag = attachedLabel;
+            pLabel.GetComponentInChildren<Grabbable>().TransferOnSecondSelection = true;
+            Debug.Log("Grabble disabled");
             UpdateTag(b);
         }
         else
@@ -92,6 +112,8 @@ public class PrescriptionBoxTrigger : MonoBehaviour
         if (!lableIsAttached)
         {
             pLabel.transform.SetParent(null);
+            pLabel.tag = label;
+            pLabel.GetComponentInChildren<Grabbable>().TransferOnSecondSelection = false;
             UpdateTag(b);
         }
     }

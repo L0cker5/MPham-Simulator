@@ -3,14 +3,19 @@ using UnityEngine;
 
 public class SetKeyboardToInputFiled : MonoBehaviour
 {
-    
+    private TMP_InputField input;
+
     public void SetKeyboardInput()
     {
-        KeyboardManager.instance.inputField = GetComponentInChildren<TMP_InputField>();
 
+        input = GetComponentInChildren<TMP_InputField>();
+        
+        input.ActivateInputField();
+        
+        KeyboardManager.instance.inputField = input;
 
         Debug.Log("Set Keyboard");
-
+        
     }
 
 }

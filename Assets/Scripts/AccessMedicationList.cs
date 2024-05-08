@@ -11,17 +11,17 @@ public class AccessMedicationList : MonoBehaviour
     //}
 
     // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        List<Medication> medications = new List<Medication>();
+        //List<Medication> medications = new List<Medication>();
 
-        medications = ReadCSV.medications;
+        //medications = ReadCSV.readMedicationData();
 
-        Debug.Log("meds length " +  medications.Count);
+        //Debug.Log("Access meds length " + medications.Count);
 
-        foreach (Medication m in medications)
-        {
-            Debug.Log("meds " + m.scriptItems);
-        }
+        //foreach (Medication med in medications)
+        //{
+        //    Debug.Log("Access meds " + med._medicationName);
+        //}
     }
 }

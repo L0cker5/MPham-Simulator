@@ -5,14 +5,16 @@ public class ShelfTrigger : MonoBehaviour
     private readonly string box = "Box";
     private readonly string prescriptionMedication = "PrescriptionMedication";
 
+    public bool shelftriggered = false;
+
     public GameObject meds;
 
-    string medsName;
-    int medsStrength;
-    string labelName;
-    string labelFrequency;
+    //string boxMedicationName;
+    public float boxStrength, labelStrength;
+    public string boxMedicationName, labelPatientName, labelTodaysDate, labelMedicationName, labelQuantity,
+    labelStrengthUnit, labelMedicationType, labelDoseage, labelFrequency;
 
-    string test = "test";
+    //string test = "test";
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,15 +30,27 @@ public class ShelfTrigger : MonoBehaviour
 
             if (boxProperties.CompareTag(prescriptionMedication))
             {
-                medsName = boxProperties.Name;
-                medsStrength = boxProperties.Strength;
+                shelftriggered = true;
+
+                boxMedicationName = boxProperties.Name;
+                boxStrength = boxProperties.Strength;
               
                 LabelProperties labelProperties = boxProperties.GetComponentInChildren<LabelProperties>();
 
-                labelName = labelProperties.MedicationName;
+                labelPatientName = labelProperties.patientName;
+                labelTodaysDate = labelProperties.TodaysDate;
+                labelQuantity = labelProperties.Quantity;
+                labelMedicationName = labelProperties.MedicationName;
+                labelStrength = labelProperties.Strength;
+                labelStrengthUnit = labelProperties.StrengthUnit;
+                labelMedicationType = labelProperties.MedicationType;
+                labelDoseage = labelProperties.Dosage;
                 labelFrequency = labelProperties.Frequency;
-                
-                Debug.Log("Label Trigger Name: " + medsName + " Strength " + medsStrength + ", Label: " + labelName + " " +labelFrequency);
+
+                Debug.Log("Box Trigger Name: " + boxMedicationName + " Strength " + boxStrength);
+                Debug.Log("Label Trigger Patient Name: " + labelPatientName + " Date: " + labelTodaysDate +
+                " " + labelQuantity + " " + labelMedicationName + " " + labelStrength + " " + labelStrengthUnit
+                + " " + labelMedicationType + " Take " + labelDoseage + " " + labelFrequency);
             }
 
         }
@@ -45,7 +59,33 @@ public class ShelfTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag(box))
+        {
+            BoxProperties boxProperties = other.GetComponentInParent<BoxProperties>();
 
+            if (boxProperties.CompareTag(prescriptionMedication))
+            {
+                shelftriggered = false;
+
+                boxMedicationName = null;
+                boxStrength = 0;
+                labelPatientName = null;
+                labelTodaysDate = null;
+                labelQuantity = null ;
+                labelMedicationName = null;
+                labelStrength = 0;
+                labelStrengthUnit = null;
+                labelMedicationType = null;
+                labelDoseage = null;
+                labelFrequency = null;
+
+                Debug.Log("Box Trigger Name: " + boxMedicationName + " Strength " + boxStrength);
+                Debug.Log("Label Trigger Patient Name: " + labelPatientName + " Date: " + labelTodaysDate +
+                " " + labelQuantity + " " + labelMedicationName + " " + labelStrength + " " + labelStrengthUnit
+                + " " + labelMedicationType + " Take " + labelDoseage + " " + labelFrequency);
+            }
+
+        }
     }
 
 }
