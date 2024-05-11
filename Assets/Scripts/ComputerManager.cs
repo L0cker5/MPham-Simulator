@@ -20,6 +20,10 @@ public class ComputerManager : MonoBehaviour
     private bool doseError = true;
     private bool frequencyError = true;
 
+    private float _strength;
+
+    private int _quantity;
+
     private DateTime date;
     //TMP_InputField inputField;
 
@@ -56,9 +60,9 @@ public class ComputerManager : MonoBehaviour
         ResetErrorMessages();
 
 
-    //    private bool nameError = true;
+    //    private bool _checkMedName = true;
     //private bool quantityError = true;
-    //private bool strengthError = true;
+    //private bool _checkStrength = true;
     //private bool doseError = true;
     //private bool frequencyError = true;
 
@@ -80,32 +84,67 @@ public class ComputerManager : MonoBehaviour
         }
         else
         {
-
-        date = DateTime.Now;
+            date = DateTime.Now;
         
+            Vector3 position = spawnPoint.position;
+            Quaternion rotation = spawnPoint.rotation;
 
-        float.TryParse(strength.text, out float st);
-        Debug.Log("Float = " +  st);
+            Debug.Log("Float = " +  _strength);
 
-        Vector3 position = spawnPoint.position;
-        Quaternion rotation = spawnPoint.rotation;
-        Debug.Log("Label Printed");
-        LabelProperties labelProperties = label.GetComponent<LabelProperties>();
-        labelProperties.PatientName = patientName.text;
-        labelProperties.TodaysDate = date.ToString("dd-MM-yyyy");
-        labelProperties.Quantity = quantity.text;
-        labelProperties.MedicationName = medicationName.text;
-        labelProperties.Strength = st;
-        labelProperties.StrengthUnit = strengthUnit.text;
-        labelProperties.MedicationType = medicationType.text;
-        labelProperties.Dosage = this.dose.text;
-        labelProperties.Frequency = frequency.text;
-        Instantiate(label, position, rotation);
-        Debug.Log("Label Printed " + st);
+            Debug.Log("Label Printed");
+
+            LabelProperties labelProperties = label.GetComponent<LabelProperties>();
+           
+            labelProperties.PatientName = patientName.text.Trim();
+            labelProperties.TodaysDate = date.ToString("dd-MM-yyyy");
+            labelProperties.Quantity = _quantity;
+            labelProperties.MedicationName = medicationName.text.Trim();
+            labelProperties.Strength = _strength;
+            Enum.TryParse(strengthUnit.text, out StrengthUnit unit);
+            Debug.Log("Unit " + unit);
+            labelProperties.StrengthUnit = unit;
+            //StrengthUnitEnum(strengthUnit.text);
+            Enum.TryParse(medicationType.text, out MedicationType type);
+            labelProperties.MedicationType = type;
+            labelProperties.Dosage = this.dose.text.Trim();
+            labelProperties.Frequency = frequency.text.Trim();
+            Instantiate(label, position, rotation);
+            Debug.Log("Label Printed " + _strength);
         }
 
 
     }
+
+    //private StrengthUnit StrengthUnitEnum(string text)
+    //{
+        
+    //    if (Enum.TryParse<StrengthUnit>(text, true, out StrengthUnit unit)) {  return unit; }
+
+    //    if (Enum.TryParse<StrengthUnit>(text, true, out StrengthUnit unit)) { return unit; }
+        //bool 
+
+        //switch (text)
+        //{
+        //    case "mL":
+        //        return StrengthUnit.mL;
+        //    case "kg":
+        //        return StrengthUnit.kg;
+        //    case "g":
+        //        return StrengthUnit.g;
+        //    case "mg":
+        //        return StrengthUnit.mg;
+        //    case "mcg":
+        //        return StrengthUnit.mcg;
+        //    case "ng":
+        //        return StrengthUnit.ng;
+        //    case "L":
+        //        return StrengthUnit.L;
+
+        //    default:
+        //        break;
+        //}
+    //    return StrengthUnit.mg;
+    //}
 
     private void ResetErrorMessages()
     {
@@ -167,10 +206,19 @@ public class ComputerManager : MonoBehaviour
 
     private bool CheckStrength(string s)
     {
-        if (s.Length <= 0)
+        //Regex regex = new Regex([1 - 9] | [1 - 9][0 - 9] | [1 - 9][0 - 9][0 - 9] | 1000)
+        bool successfullyParsed = float.TryParse(s, out _strength);
+
+        if (!successfullyParsed)
         {
             errorStrength.enabled = true;
-            errorStrength.text = "Strength cannot be left blank";
+            errorStrength.text = "Strength must be a number";
+            return false;
+        }
+        else if ( _strength <= 0 || _strength > 10000)
+        {
+            errorStrength.enabled = true;
+            errorStrength.text = "Strength must be more than 0 and less that 10000";
             return false;
         }
         else
@@ -197,10 +245,18 @@ public class ComputerManager : MonoBehaviour
 
     private bool CheckQuantity(string q)
     {
-        if (q.Length <= 0)
+        bool successfullyParsed = int.TryParse(q, out _quantity);
+
+        if (!successfullyParsed)
         {
             errorQuantity.enabled = true;
-            errorQuantity.text = "Quantity cannot be left blank";
+            errorQuantity.text = "Quantity must be a number";
+            return false;
+        }
+        else if (_quantity <= 0 || _quantity > 100)
+        {
+            errorQuantity.enabled = true;
+            errorQuantity.text = "Quantity must be more than 0 and less that 100";
             return false;
         }
         else

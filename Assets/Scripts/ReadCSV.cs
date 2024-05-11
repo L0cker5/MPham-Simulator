@@ -87,8 +87,8 @@ public class ReadCSV : MonoBehaviour
 
                             //string nullName = "";
 
-                            Medication m = new Medication(row[0], st, sU, mT, row[4],
-                                ed, row[6], qt, row[8], dateBool, signedBool);
+                            Medication m = new Medication(row[0].Trim(), st, sU, mT, row[4].Trim(),
+                                ed, row[6].Trim(), qt, row[8].Trim(), dateBool, signedBool);
 
                             medicationsFromFile.Add(m);
                         }
@@ -167,7 +167,7 @@ public class ReadCSV : MonoBehaviour
                                 DateTime.TryParse(dob, out dateTime);
                             }
 
-                            Patient p = new Patient(row[0], row[1], row[2], dateTime);
+                            Patient p = new Patient(row[0].Trim(), row[1].Trim(), row[2].Trim(), dateTime);
 
                             patientsFromFile.Add(p);
                         }
@@ -242,7 +242,7 @@ public class ReadCSV : MonoBehaviour
                             //d.postcode = row[5];
                             //string wrongPostcode = "BT2 03RU";
 
-                            Doctor d = new Doctor(row[0], row[1], row[2], row[3], row[4], row[5]);
+                            Doctor d = new Doctor(row[0].Trim(), row[1].Trim(), row[2].Trim(), row[3].Trim(), row[4].Trim(), row[5].Trim());
 
                             doctorsFromFile.Add(d);
                         }

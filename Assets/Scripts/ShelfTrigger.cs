@@ -11,9 +11,14 @@ public class ShelfTrigger : MonoBehaviour
 
     //string boxMedicationName;
     public float boxStrength, labelStrength;
-    public string boxMedicationName, labelPatientName, labelTodaysDate, labelMedicationName, labelQuantity,
-    labelStrengthUnit, labelMedicationType, labelDoseage, labelFrequency;
+    
+    public int labelQuantity;
+    
+    public string boxMedicationName, labelPatientName, labelTodaysDate, labelMedicationName, 
+    labelDoseage, labelFrequency;
 
+    public StrengthUnit labelStrengthUnit;
+    public MedicationType labelMedicationType;
     //string test = "test";
 
     private void OnTriggerEnter(Collider other)
@@ -71,11 +76,9 @@ public class ShelfTrigger : MonoBehaviour
                 boxStrength = 0;
                 labelPatientName = null;
                 labelTodaysDate = null;
-                labelQuantity = null ;
+                labelQuantity = 0;
                 labelMedicationName = null;
                 labelStrength = 0;
-                labelStrengthUnit = null;
-                labelMedicationType = null;
                 labelDoseage = null;
                 labelFrequency = null;
 
