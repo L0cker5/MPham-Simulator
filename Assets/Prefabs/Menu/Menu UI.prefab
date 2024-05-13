@@ -1406,8 +1406,8 @@ Transform:
   m_GameObject: {fileID: 5966796813115152627}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.03, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.51, z: 1}
+  m_LocalPosition: {x: 0, y: 0.0313, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.41, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7879523000732975509}
@@ -1494,7 +1494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _editor: {fileID: 1122884180362515176}
   _width: 0.34
-  _height: 0.5
+  _height: 0.4
   color: {r: 0, g: 0, b: 0, a: 0.12156863}
   _borderColor: {r: 0.101960786, g: 0.3529412, b: 0.5294118, a: 1}
   _radiusTopLeft: 0.015
@@ -1606,13 +1606,13 @@ MonoBehaviour:
   startButton: {fileID: 5110920478685433376}
   disabledStartButton: {fileID: 6110204928261953654}
   textmeshpro_ObjectA: {fileID: 8412189927558564737}
-  prefab_ObjectA: {fileID: 2930191464888824168, guid: 14e4ccb34a20d3546a67de2e2f4d9ee9,
+  prefab_ObjectA: {fileID: 2930191464888824168, guid: 7fe7a12ad3178674ea0334e4bf9f73fb,
     type: 3}
   textmeshpro_ObjectB: {fileID: 2650041101258364038}
-  prefab_ObjectB: {fileID: 2930191464888824168, guid: 14e4ccb34a20d3546a67de2e2f4d9ee9,
+  prefab_ObjectB: {fileID: 2930191464888824168, guid: 7fe7a12ad3178674ea0334e4bf9f73fb,
     type: 3}
   textmeshpro_ObjectC: {fileID: 9025402721951460287}
-  prefab_ObjectC: {fileID: 2930191464888824168, guid: 14e4ccb34a20d3546a67de2e2f4d9ee9,
+  prefab_ObjectC: {fileID: 2930191464888824168, guid: 7fe7a12ad3178674ea0334e4bf9f73fb,
     type: 3}
 --- !u!114 &1772832003787644589
 MonoBehaviour:

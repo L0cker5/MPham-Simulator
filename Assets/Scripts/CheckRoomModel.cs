@@ -46,7 +46,7 @@ public class CheckRoomModel : MonoBehaviour
 
         await Check3DAnchor(anchors, OVRSceneManager.Classification.Table, textmeshpro_ObjectA, prefab_ObjectA);
         await Check2DAnchor(anchors, OVRSceneManager.Classification.WallArt, textmeshpro_ObjectB, prefab_ObjectB);
-        await Check3DAnchor(anchors, OVRSceneManager.Classification.Other, textmeshpro_ObjectC, prefab_ObjectC);
+        await Check3DAnchor(anchors, OVRSceneManager.Classification.Table, textmeshpro_ObjectC, prefab_ObjectC);
 
     }
 
@@ -82,6 +82,9 @@ public class CheckRoomModel : MonoBehaviour
             if (roomAnchor.TryGetComponent(out OVRSemanticLabels label) && 
                 label.Labels.Contains(anchorLabel))
             {
+                startButton.SetActive(true);
+                disabledStartButton.SetActive(false);
+
                 string activeText = _activeText;
                 var activeTextColor = _activeTextColor;
                 float activeTextSize = _defaultTextSize;
@@ -140,7 +143,9 @@ public class CheckRoomModel : MonoBehaviour
             {
                 obj.text = _missingText;
                 obj.color = _missingTextColor;
-                DisableStartButton(false);
+                //DisableStartButton();
+                startButton.SetActive(false);
+                disabledStartButton.SetActive(true);
             }
 
         }
@@ -160,6 +165,9 @@ public class CheckRoomModel : MonoBehaviour
             if (roomAnchor.TryGetComponent(out OVRSemanticLabels label) &&
                 label.Labels.Contains(anchorLabel))
             {
+                startButton.SetActive(true);
+                disabledStartButton.SetActive(false);
+
                 string activeText = _activeText;
                 var activeTextColor = _activeTextColor;
                 float activeTextSize = _defaultTextSize;
@@ -219,26 +227,21 @@ public class CheckRoomModel : MonoBehaviour
             {
                 obj.text = _missingText;
                 obj.color = _missingTextColor;
-                DisableStartButton(false);
+                startButton.SetActive(false);
+                disabledStartButton.SetActive(true);
+                //DisableStartButton();
             }
 
         }
         await Task.WhenAll();
     }
-    private void DisableStartButton(bool v)
-    {
-        // v is false disable startbutton and enable disabledStartButton
-        if (!v) 
-        {
-            startButton.SetActive(false);
-            disabledStartButton.SetActive(true);
 
-        } else
-        {
-            startButton.SetActive(true);
-            disabledStartButton.SetActive(false);
-        }
 
-    }
+    //private void DisableStartButton()
+    //{
+    //    // v is false disable startbutton and enable disabledStartButton
+
+        
+    //}
 
 }
