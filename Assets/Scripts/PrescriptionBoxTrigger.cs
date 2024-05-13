@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
  * This class will check if a GameObject with the tag "Label"
- * has been attached to the medication box. If it has the Label 
+ * has been attached to the prescription box. If it has the Label 
  * GameObject becomes a child of the Medication Box GameObject. 
  * It will then check the Medication Box GameObject tag and
  * update this to "PrescriptionMedication".

@@ -1,8 +1,8 @@
 public enum MedicationType
 {
-    topical,
-    suppositorie,
-    drops,
-    inhaler,
-    tablet
+    Topical,
+    Suppositorie,
+    Drops,
+    Inhaler,
+    Tablet
 }

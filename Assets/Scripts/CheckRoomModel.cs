@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +7,15 @@ using UnityEngine;
 
 public class CheckRoomModel : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject startButton;
+
+    [SerializeField]
+    private GameObject disabledStartButton;
+
+    private bool startButtonActive = true;
+    private bool disabledButtonActive = false;
+
     // UI text GameObjects and links to anchor prefabs GameObjects
     public TMP_Text textmeshpro_ObjectA;
     public GameObject prefab_ObjectA;
@@ -15,30 +25,35 @@ public class CheckRoomModel : MonoBehaviour
     public GameObject prefab_ObjectC;
 
     // Constants 
-    private readonly string MISSING_TEXT = "Missing";
+    private readonly string _activeText = "Active";
+    private readonly string _missingText = "Missing";
+
+    private readonly int _defaultTextSize = 36;
+    private readonly int _errorTextSize = 10;
+
+    private readonly Color _activeTextColor = Color.green;
+    private readonly Color _errorTextColor = Color.yellow;
+    private readonly Color _missingTextColor = Color.red;
 
     async void Start()
     {
 
-        //var tableAnchor = OVRSceneManager.Classification.Table;
-        var wallArtAnchor = OVRSceneManager.Classification.WallArt;
-        var plantAnchor = OVRSceneManager.Classification.Plant;
-             
         _ = new List<OVRAnchor>();
 
         List<OVRAnchor> anchors = await GetAnchors();
         
         Debug.Log("Anchors main" + anchors.Count);
 
-        await CheckForAnchor(anchors, OVRSceneManager.Classification.Table, textmeshpro_ObjectA, prefab_ObjectA);
-        await CheckForAnchor(anchors, wallArtAnchor, textmeshpro_ObjectB, prefab_ObjectB);
-        await CheckForAnchor(anchors, plantAnchor, textmeshpro_ObjectC, prefab_ObjectC);
+        await Check3DAnchor(anchors, OVRSceneManager.Classification.Table, textmeshpro_ObjectA, prefab_ObjectA);
+        await Check2DAnchor(anchors, OVRSceneManager.Classification.WallArt, textmeshpro_ObjectB, prefab_ObjectB);
+        await Check3DAnchor(anchors, OVRSceneManager.Classification.Table, textmeshpro_ObjectC, prefab_ObjectC);
 
     }
 
 
     async Task<List<OVRAnchor>> GetAnchors()
     {
+        
         var anchors = new List<OVRAnchor>();
         await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(anchors);
 
@@ -53,8 +68,9 @@ public class CheckRoomModel : MonoBehaviour
         await container.FetchChildrenAsync(anchors);
 
         return anchors;
+
     }
-    async Task CheckForAnchor(List<OVRAnchor> anchors, string anchorLabel, TMP_Text obj, GameObject prefab)
+    async Task Check3DAnchor(List<OVRAnchor> anchors, string anchorLabel, TMP_Text obj, GameObject prefab)
     {
 
         Debug.Log("Anchors table 2" + anchors.Count);
@@ -66,9 +82,12 @@ public class CheckRoomModel : MonoBehaviour
             if (roomAnchor.TryGetComponent(out OVRSemanticLabels label) && 
                 label.Labels.Contains(anchorLabel))
             {
-                string activeText = "Active";
-                var activeTextColor = Color.green;
-                float activeTextSize = 36;
+                startButton.SetActive(true);
+                disabledStartButton.SetActive(false);
+
+                string activeText = _activeText;
+                var activeTextColor = _activeTextColor;
+                float activeTextSize = _defaultTextSize;
 
                 // Get access to the bounding plane information of the anchor
                 roomAnchor.TryGetComponent(out OVRBounded2D bounds);
@@ -86,35 +105,34 @@ public class CheckRoomModel : MonoBehaviour
                 // creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
                 PrefabProperties prefabProps = prefab.GetComponent<PrefabProperties>();
 
-                float prefabHeight = prefabProps.objHeight;
-                float prefabWidth = prefabProps.objWidth;
+                var b = prefab.transform.Find("BoundaryBox");
+                
+                float height = b.localScale.y;
+                float width = b.localScale.z;
+                float depth = b.localScale.x;
 
-                // get the height of the meshRenderer for whatever prefab is being passed in
-                //float height = prefab.GetComponent<MeshRenderer>().bounds.size.y;
-                //float newHeight = prefab.GetComponent<Renderer>().bounds.size.y;
+                Debug.Log("Dimensions of the object are, Height: " + height 
+                    + ", Width: " + width + ", Depth: " + depth);
 
-                Debug.Log("Dimensions of the object are, Height: " + prefabHeight 
-                    + ", Width: " + prefabWidth);
-
-                if (prefabWidth > anchorWidth && prefabHeight > anchorHeight) {
-                    activeText = "The dimensions of the anchor are too small and need to be atleast " + prefabWidth.ToString("0.00") 
-                        + "med wide & " + prefabHeight.ToString("0.00")+ "med heigh/deep.";
-                    activeTextSize = 12;
-                    activeTextColor = Color.yellow;
+                if (width > anchorWidth && depth > anchorHeight) {
+                    activeText = "The dimensions of the anchor are too small and need to be atleast " + width.ToString("0.00") 
+                        + "m wide & " + depth.ToString("0.00")+ "m deep.";
+                    activeTextSize = _errorTextSize;
+                    activeTextColor = _errorTextColor;
                 } 
-                else if (prefabHeight > anchorHeight)
+                else if (depth > anchorHeight)
                 {
-                    activeText = "The " + anchorLabel + " anchor height " + anchorHeight.ToString("0.00") + "med is to small." +
-                        " The anchor needs to be at least " + prefabHeight.ToString("0.00") + "med.";
-                    activeTextSize = 12;
-                    activeTextColor = Color.yellow;
+                    activeText = "The " + anchorLabel + " anchor depth " + anchorHeight.ToString("0.00") + "m is to small." +
+                        " The anchor needs to be at least " + depth.ToString("0.00") + "m.";
+                    activeTextSize = _errorTextSize;
+                    activeTextColor = _errorTextColor;
                 }
-                else if (prefabWidth > anchorWidth)
+                else if (width > anchorWidth)
                 {
-                    activeText = "The " + anchorLabel + " anchor width " + anchorWidth.ToString("0.00") + "med is to small." +
-                        " The anchor needs to be at least " + prefabWidth.ToString("0.00") + "med.";
-                    activeTextSize = 12;
-                    activeTextColor = Color.yellow;
+                    activeText = "The " + anchorLabel + " anchor width " + anchorWidth.ToString("0.00") + "m is to small." +
+                        " The anchor needs to be at least " + width.ToString("0.00") + "m.";
+                    activeTextSize = _errorTextSize;
+                    activeTextColor = _errorTextColor;
                 }
                 obj.text = activeText;
                 obj.color = activeTextColor;
@@ -123,16 +141,107 @@ public class CheckRoomModel : MonoBehaviour
             } 
             else
             {
-                obj.text = MISSING_TEXT;
-                obj.color = Color.red;
+                obj.text = _missingText;
+                obj.color = _missingTextColor;
+                //DisableStartButton();
+                startButton.SetActive(false);
+                disabledStartButton.SetActive(true);
             }
 
         }
         await Task.WhenAll();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    async Task Check2DAnchor(List<OVRAnchor> anchors, string anchorLabel, TMP_Text obj, GameObject prefab)
     {
+
+        Debug.Log("Anchors table 2" + anchors.Count);
+
+        //
+        foreach (var roomAnchor in anchors)
+        {
+
+            if (roomAnchor.TryGetComponent(out OVRSemanticLabels label) &&
+                label.Labels.Contains(anchorLabel))
+            {
+                startButton.SetActive(true);
+                disabledStartButton.SetActive(false);
+
+                string activeText = _activeText;
+                var activeTextColor = _activeTextColor;
+                float activeTextSize = _defaultTextSize;
+
+                // Get access to the bounding plane information of the anchor
+                roomAnchor.TryGetComponent(out OVRBounded2D bounds);
+                var bbox = bounds.BoundingBox;
+
+                // Get the width and height of the 2d plane of the anchor
+                // if anchor object also has a 3d plane e.g table the 2d plane of the anchor
+                // refers to what would be the table top and the height dimenson refers to the depth of the table
+                float anchorHeight = bbox.height;
+                float anchorWidth = bbox.width;
+
+                Debug.Log("Dimensions of the anchor are, Height: " + anchorHeight
+                    + ", Width: " + anchorWidth);
+
+                // creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
+                PrefabProperties prefabProps = prefab.GetComponent<PrefabProperties>();
+
+                var b = prefab.transform.Find("BoundaryBox");
+
+                float height = b.localScale.y;
+                float width = b.localScale.z;
+                float depth = b.localScale.x;
+
+                Debug.Log("Dimensions of the object are, Height: " + height
+                    + ", Width: " + width + ", Depth: " + depth);
+
+                if (width > anchorWidth && height > anchorHeight)
+                {
+                    activeText = "The dimensions of the anchor are too small and need to be atleast " + width.ToString("0.00")
+                        + "m wide & " + height.ToString("0.00") + "m high.";
+                    activeTextSize = _errorTextSize;
+                    activeTextColor = _errorTextColor;
+                }
+                else if (height > anchorHeight)
+                {
+                    activeText = "The " + anchorLabel + " anchor height " + anchorHeight.ToString("0.00") + "m is to small." +
+                        " The anchor needs to be at least " + height.ToString("0.00") + "m.";
+                    activeTextSize = _errorTextSize;
+                    activeTextColor = _errorTextColor;
+                }
+                else if (width > anchorWidth)
+                {
+                    activeText = "The " + anchorLabel + " anchor width " + anchorWidth.ToString("0.00") + "m is to small." +
+                        " The anchor needs to be at least " + width.ToString("0.00") + "m.";
+                    activeTextSize = _errorTextSize;
+                    activeTextColor = _errorTextColor;
+                }
+                obj.text = activeText;
+                obj.color = activeTextColor;
+                obj.fontSize = activeTextSize;
+                return;
+            }
+            else
+            {
+                obj.text = _missingText;
+                obj.color = _missingTextColor;
+                startButton.SetActive(false);
+                disabledStartButton.SetActive(true);
+                //DisableStartButton();
+            }
+
+        }
+        await Task.WhenAll();
     }
+
+
+    //private void DisableStartButton()
+    //{
+    //    // v is false disable startbutton and enable disabledStartButton
+
+        
+    //}
+
 }

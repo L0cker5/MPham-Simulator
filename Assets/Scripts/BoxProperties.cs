@@ -29,4 +29,10 @@ public class BoxProperties : MonoBehaviour
             return strengthWMg;
         }
     }
+
+    private void Start()
+    {
+        Debug.Log("Random Box Meds Name: " + Name + " Length: " + Name.Length);
+    }
+
 }

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Medication
@@ -51,7 +49,7 @@ public class Medication
             } 
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of medication name");
+                throw new ArgumentOutOfRangeException("Invalid length of prescription name");
             }
             else { this._medicationName = value; }
              
@@ -64,7 +62,7 @@ public class Medication
 
         set 
         { 
-            if (value <=0 || value > 9999) 
+            if (value <=0 || value > 10000) 
             {
                 throw new ArgumentException("Strength out of range");
             }
@@ -100,7 +98,7 @@ public class Medication
             }
             else
             {
-                throw new ArgumentException("Invalid medication type enum value.");
+                throw new ArgumentException("Invalid prescription type enum value.");
             }
         }
     }
@@ -129,7 +127,7 @@ public class Medication
 
         set
         {
-            if (value <= 0 || value > 10)
+            if (value <= 0 || value > 100)
             {
                 throw new ArgumentException("Expected dose out of range");
             }
@@ -161,7 +159,7 @@ public class Medication
 
         set
         {
-            if (value <= 0 || value >= 1000)
+            if (value <= 0 || value > 100)
             {
                 throw new ArgumentException("Expected dose out of range");
             }
@@ -206,9 +204,9 @@ public class Medication
 
     public string PrintMedicationToScript()
     {
-        string print = (this.MedicationName + " " + this.Strength + " " + this.StrengthUnit + " " + this.MedicationType + "\n"
-            + this.Dose + " " + this.DosingFrequency + "\n"
-            + "x " + this.Quantity);
+        string print = (MedicationName + " " + Strength + " " + StrengthUnit + " " + MedicationType + "\n"
+            + Dose + " " + DosingFrequency + "\n"
+            + "x " + Quantity);
         return print;
     }
 }

@@ -41,12 +41,12 @@ PrefabInstance:
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: quantity
-      value: "\u200B"
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: strength
-      value: "\u200B"
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: strengthUnit
-      value: mcg
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: medicationType
-      value: tablet
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 989407789011191312, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}

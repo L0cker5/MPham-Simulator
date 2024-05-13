@@ -8,10 +8,15 @@ public class LabelProperties : MonoBehaviour
     private TMP_Text patientNameText, todaysDateText, 
     medicationText, frequencyText;
 
-    public string patientName, todaysDate, medicationName, quantity,
-    strengthUnit, medicationType, doseage, frequency;
+    public string patientName, todaysDate, medicationName,
+    doseage, frequency;
+
+    public StrengthUnit strengthUnit;
+    public MedicationType medicationType;
 
     public float strength;
+
+    public int quantity;
 
     private bool grabInteraction;
 
@@ -47,27 +52,27 @@ public class LabelProperties : MonoBehaviour
         set { medicationName = value; }
     }
 
-    public string Quantity
+    public int Quantity
     {
         get { return quantity; }
 
         set { quantity = value; }
     }
-        public float Strength
+    public float Strength
     {
         get { return strength; }
 
         set { strength = value; }
     }
 
-    public string StrengthUnit
+    public StrengthUnit StrengthUnit
     {
         get { return strengthUnit; }
 
         set { strengthUnit = value; }
     }
 
-    public string MedicationType
+    public MedicationType MedicationType
     {
         get { return medicationType; }
 
@@ -92,10 +97,10 @@ public class LabelProperties : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        patientNameText.text = patientName;
-        todaysDateText.text = todaysDate;
-        medicationText.text = quantity + " " + medicationName + " " + strength + " " + strengthUnit + " " + medicationType;
-        frequencyText.text = "Take " + doseage.ToUpper() + " " + frequency;
+        patientNameText.text = PatientName;
+        todaysDateText.text = TodaysDate;
+        medicationText.text = Quantity + " " + MedicationName + " " + Strength + " " + StrengthUnit + " " + MedicationType;
+        frequencyText.text = "Take " + Dosage.ToUpper() + " " + Frequency;
     }
 
     // Update is called once per frame

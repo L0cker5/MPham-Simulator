@@ -886,7 +886,7 @@ PrefabInstance:
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd,
         type: 3}
       propertyPath: PrefabOverrides.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd,
         type: 3}
