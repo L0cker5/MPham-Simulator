@@ -1141,16 +1141,19 @@ MonoBehaviour:
   todaysDateText: {fileID: 8879761860663681659}
   medicationText: {fileID: 3565480433581282665}
   frequencyText: {fileID: 486484197401467467}
+  bnfText: {fileID: 6488304322816788221}
   patientName: 
   todaysDate: 
   medicationName: 
   doseage: 
   frequency: 
+  bnfLabel: 
   strengthUnit: 0
   medicationType: 0
   strength: 0
   quantity: 0
   _interactable: {fileID: 0}
+  prescription: {fileID: 0}
 --- !u!1 &3702479583548316862
 GameObject:
   m_ObjectHideFlags: 0
