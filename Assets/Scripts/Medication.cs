@@ -6,9 +6,7 @@ public class Medication
 
     private string _medicationName;
     private float _strength;
-    //private string _strengthUnit;
     private StrengthUnit _strengthUnit;
-    //private string _medicationType;
     private MedicationType _medicationType;
     private string _dose;
     private int _expectedDose;

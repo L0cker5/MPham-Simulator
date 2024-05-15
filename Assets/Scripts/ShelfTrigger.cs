@@ -9,7 +9,6 @@ public class ShelfTrigger : MonoBehaviour
 
     public GameObject meds;
 
-    //string boxMedicationName;
     public float boxStrength, labelStrength;
     
     public int labelQuantity;
@@ -19,12 +18,6 @@ public class ShelfTrigger : MonoBehaviour
 
     public StrengthUnit labelStrengthUnit;
     public MedicationType labelMedicationType;
-    //string test = "test";
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -52,10 +45,10 @@ public class ShelfTrigger : MonoBehaviour
                 labelDoseage = labelProperties.Dosage;
                 labelFrequency = labelProperties.Frequency;
 
-                Debug.Log("Box Trigger Name: " + boxMedicationName + " Strength " + boxStrength);
-                Debug.Log("Label Trigger Patient Name: " + labelPatientName + " Date: " + labelTodaysDate +
-                " " + labelQuantity + " " + labelMedicationName + " " + labelStrength + " " + labelStrengthUnit
-                + " " + labelMedicationType + " Take " + labelDoseage + " " + labelFrequency);
+                //Debug.Log("Box Trigger Name: " + boxMedicationName + " Strength " + boxStrength);
+                //Debug.Log("Label Trigger Patient Name: " + labelPatientName + " Date: " + labelTodaysDate +
+                //" " + labelQuantity + " " + labelMedicationName + " " + labelStrength + " " + labelStrengthUnit
+                //+ " " + labelMedicationType + " Take " + labelDoseage + " " + labelFrequency);
             }
 
         }
@@ -82,10 +75,10 @@ public class ShelfTrigger : MonoBehaviour
                 labelDoseage = null;
                 labelFrequency = null;
 
-                Debug.Log("Box Trigger Name: " + boxMedicationName + " Strength " + boxStrength);
-                Debug.Log("Label Trigger Patient Name: " + labelPatientName + " Date: " + labelTodaysDate +
-                " " + labelQuantity + " " + labelMedicationName + " " + labelStrength + " " + labelStrengthUnit
-                + " " + labelMedicationType + " Take " + labelDoseage + " " + labelFrequency);
+                //Debug.Log("Box Trigger Name: " + boxMedicationName + " Strength " + boxStrength);
+                //Debug.Log("Label Trigger Patient Name: " + labelPatientName + " Date: " + labelTodaysDate +
+                //" " + labelQuantity + " " + labelMedicationName + " " + labelStrength + " " + labelStrengthUnit
+                //+ " " + labelMedicationType + " Take " + labelDoseage + " " + labelFrequency);
             }
 
         }

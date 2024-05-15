@@ -1,8 +1,8 @@
 using System;
-using System.Net;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
-public class Doctor
+public class Doctor 
 {
     
     private string _name;
@@ -31,11 +31,11 @@ public class Doctor
         {
             if (value == null)
             {
-                throw new ArgumentNullException("Doctor name cannot be null");
+                throw new ArgumentException("Doctor name cannot be null");
             }
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of doctor name");
+                throw new ArgumentException("Invalid length of doctor name");
             }
             else { this._name = value; }
         }

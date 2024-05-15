@@ -1,5 +1,4 @@
 using Oculus.Interaction.HandGrab;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -34,11 +33,10 @@ public class LabelProperties : MonoBehaviour
     {
         CheckForBnf();
         
-
-        patientNameText.text = PatientName;
-        todaysDateText.text = TodaysDate;
-        medicationText.text = Quantity + " " + MedicationName + " " + Strength + " " + StrengthUnit + " " + MedicationType;
-        frequencyText.text = "Take " + Dosage.ToUpper() + " " + Frequency;
+        //patientNameText.text = PatientName;
+        //todaysDateText.text = TodaysDate;
+        //medicationText.text = Quantity + " " + MedicationName + " " + Strength + " " + StrengthUnit + " " + MedicationType;
+        //frequencyText.text = "Take " + Dosage.ToUpper() + " " + Frequency;
 
     }
 

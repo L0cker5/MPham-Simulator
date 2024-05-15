@@ -1,7 +1,6 @@
 using System;
-using UnityEngine;
 
-public class BnfLabel : MonoBehaviour
+public class BnfLabel
 {
 
     private int _number;

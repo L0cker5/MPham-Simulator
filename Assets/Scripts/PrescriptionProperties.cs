@@ -8,11 +8,9 @@ public class PrescriptionProperties : MonoBehaviour
     [SerializeField]
     private TMP_Text tmpPatientAge, tmpPatientDob, tmpPatientDetails, tmpMedicationInfo, tmpDoctorDetails, tmpDoctorSignature, tmpDoctorDate;
 
-    //private String patientAge, patientDob, patientDetails, medicationInfo, doctorDetails, doctorSignature, doctorDate;
-
-    private List<Medication> medicationData;
-    private List<Patient> patientData;
-    private List<Doctor> doctorData;
+    private List<Medication> _medicationData;
+    private List<Patient> _patientData;
+    private List<Doctor> _doctorData;
 
     public Medication prescription = new Medication();
     public Patient patient = new Patient();
@@ -23,14 +21,14 @@ public class PrescriptionProperties : MonoBehaviour
     void Awake()
     {
         //get the lists of prescription, patient & doctor data
-        medicationData = ReadCSV.readMedicationData();
-        patientData = ReadCSV.readPatientData();
-        doctorData = ReadCSV.readDoctorData();
+        _medicationData = ReadCSV.readMedicationData();
+        _patientData = ReadCSV.readPatientData();
+        _doctorData = ReadCSV.readDoctorData();
 
         //call the methods to get a random prescription, patient & doctor for the lists
-        prescription = getRandomMedication(medicationData);
-        patient = getRandomPatient(patientData);
-        doctor = getRandomDoctor(doctorData);
+        prescription = getRandomMedication(_medicationData);
+        patient = getRandomPatient(_patientData);
+        doctor = getRandomDoctor(_doctorData);
 
         AddInfoToScript();
     }
@@ -160,15 +158,8 @@ public class PrescriptionProperties : MonoBehaviour
             int mIndex = rand.Next(mData.Count);
             //Debug.Log($"Medication {mIndex}");
             Medication m = mData[mIndex];
-            //m.PrintMedicationToScript();
 
             return m;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
