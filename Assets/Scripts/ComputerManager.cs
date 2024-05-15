@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
@@ -14,18 +13,17 @@ public class ComputerManager : MonoBehaviour
     public TMP_Text medicationName, strengthUnit, medicationType, errorPatientName, errorQuantity, 
         errorStrength, errorDose, errorFrequency;
 
-    private bool nameError = true;
-    private bool quantityError = true;
-    private bool strengthError = true;
-    private bool doseError = true;
-    private bool frequencyError = true;
+    private bool _nameError = true;
+    private bool _quantityError = true;
+    private bool _strengthError = true;
+    private bool _doseError = true;
+    private bool _frequencyError = true;
 
     private float _strength;
 
     private int _quantity;
 
-    private DateTime date;
-    //TMP_InputField inputField;
+    private DateTime _date;
 
     [SerializeField]
     GameObject label;
@@ -59,32 +57,19 @@ public class ComputerManager : MonoBehaviour
     {
         ResetErrorMessages();
 
+        _nameError = CheckName(patientName.text);
+        _quantityError = CheckQuantity(quantity.text);
+        _strengthError = CheckStrength(strength.text);
+        _doseError = CheckDose(dose.text);
+        _frequencyError = CheckFrequency(frequency.text);
 
-    //    private bool _checkMedName = true;
-    //private bool quantityError = true;
-    //private bool _checkStrength = true;
-    //private bool doseError = true;
-    //private bool frequencyError = true;
-
-        //errorDose.enabled = false;
-        //errorFrequency.enabled = false;
-        //errorPatientName.enabled = false;
-        //errorQuantity.enabled = false;
-        //errorStrength.enabled = false;
-
-        nameError = CheckName(patientName.text);
-        quantityError = CheckQuantity(quantity.text);
-        strengthError = CheckStrength(strength.text);
-        doseError = CheckDose(dose.text);
-        frequencyError = CheckFrequency(frequency.text);
-
-        if (nameError == false || quantityError == false || strengthError == false || doseError == false || frequencyError == false)
+        if (_nameError == false || _quantityError == false || _strengthError == false || _doseError == false || _frequencyError == false)
         {
         
         }
         else
         {
-            date = DateTime.Now;
+            _date = DateTime.Now;
         
             Vector3 position = spawnPoint.position;
             Quaternion rotation = spawnPoint.rotation;
@@ -96,7 +81,7 @@ public class ComputerManager : MonoBehaviour
             LabelProperties labelProperties = label.GetComponent<LabelProperties>();
            
             labelProperties.PatientName = patientName.text.Trim();
-            labelProperties.TodaysDate = date.ToString("dd-MM-yyyy");
+            labelProperties.TodaysDate = _date.ToString("dd-MM-yyyy");
             labelProperties.Quantity = _quantity;
             labelProperties.MedicationName = medicationName.text.Trim();
             labelProperties.Strength = _strength;
@@ -115,44 +100,13 @@ public class ComputerManager : MonoBehaviour
 
     }
 
-    //private StrengthUnit StrengthUnitEnum(string text)
-    //{
-        
-    //    if (Enum.TryParse<StrengthUnit>(text, true, out StrengthUnit unit)) {  return unit; }
-
-    //    if (Enum.TryParse<StrengthUnit>(text, true, out StrengthUnit unit)) { return unit; }
-        //bool 
-
-        //switch (text)
-        //{
-        //    case "mL":
-        //        return StrengthUnit.mL;
-        //    case "kg":
-        //        return StrengthUnit.kg;
-        //    case "g":
-        //        return StrengthUnit.g;
-        //    case "mg":
-        //        return StrengthUnit.mg;
-        //    case "mcg":
-        //        return StrengthUnit.mcg;
-        //    case "ng":
-        //        return StrengthUnit.ng;
-        //    case "L":
-        //        return StrengthUnit.L;
-
-        //    default:
-        //        break;
-        //}
-    //    return StrengthUnit.mg;
-    //}
-
     private void ResetErrorMessages()
     {
-        nameError = true;
-        quantityError = true;
-        strengthError = true;
-        doseError = true;
-        frequencyError = true;
+        _nameError = true;
+        _quantityError = true;
+        _strengthError = true;
+        _doseError = true;
+        _frequencyError = true;
 
         errorDose.enabled = false;
         errorFrequency.enabled = false;
@@ -179,10 +133,6 @@ public class ComputerManager : MonoBehaviour
     private bool CheckDose(string d)
     {
         Regex regex = new Regex(@"^[\p{L}]+$");
-        //Regex regex = new Regex("/^[a-zA-Z&._-]+$/");
-        //Regex regex = new Regex(@"^\d$");
-        //Regex regex = new Regex([1 - 9] | [1 - 9][0 - 9] | [1 - 9][0 - 9][0 - 9] | 1000)
-        //string value = d.Trim();
 
         Debug.Log("String Length: " + d.Length + " : " + d);
 
@@ -206,7 +156,6 @@ public class ComputerManager : MonoBehaviour
 
     private bool CheckStrength(string s)
     {
-        //Regex regex = new Regex([1 - 9] | [1 - 9][0 - 9] | [1 - 9][0 - 9][0 - 9] | 1000)
         bool successfullyParsed = float.TryParse(s, out _strength);
 
         if (!successfullyParsed)
@@ -264,28 +213,5 @@ public class ComputerManager : MonoBehaviour
             return true;
         }
     }
-
-    //public void PrintLabel()
-    //{
-
-    //    date = DateTime.Now;
-
-    //    Vector3 position = spawnPoint.position;
-    //    Quaternion rotation = spawnPoint.rotation;
-    //    Debug.Log("Label Printed");
-    //    LabelProperties labelProperties = label.GetComponent<LabelProperties>();
-    //    labelProperties.PatientName = patientName.text;
-    //    labelProperties.TodaysDate = date.ToString("dd-MM-yyyy");
-    //    labelProperties.Quantity = quantity.text;
-    //    labelProperties.MedicationName = medicationName.text;
-    //    labelProperties.Strength = strength.text;
-    //    labelProperties.StrengthUnit = strengthUnit.text;
-    //    labelProperties.MedicationType = medicationType.text;
-    //    labelProperties.Dosage = dose.text;
-    //    labelProperties.Frequency = frequency.text;
-    //    Instantiate(label, position, rotation);
-    //    Debug.Log("Label Printed");
-
-    //}
 
 }

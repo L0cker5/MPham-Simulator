@@ -262,9 +262,58 @@ public class ReadCSV : MonoBehaviour
         Debug.Log("File doctor length after for in ReadCSV " + doctorsFromFile.Count);
         return doctorsFromFile;
     }
-    // Update is called once per frame
-    void Update()
-    {
 
+    public static List<BnfLabel> readBnfData()
+    {
+        List<BnfLabel> bnfFromFile = new List<BnfLabel>();
+        string file = "bnflabels";
+
+        TextAsset bnfData = Resources.Load<TextAsset>(file);
+
+        if (bnfData == null)
+        {
+            Debug.Log("BNF file not read");
+            throw new FileNotFoundException(file + " not read");
+        }
+        else
+        {
+            Debug.Log("File read");
+            try
+            {
+                string[] data = bnfData.text.Split(new char[] { '\n' });
+
+
+                if (data.Length > 0)
+                {
+                    //read the data skipping the first header line
+                    for (int i = 1; i < data.Length - 1; i++)
+                    {
+                        string[] row = data[i].Split(new char[] { ',' });
+
+                        // if the first field is empty skip the line
+                        if (row[0] != "")
+                        {
+                            int num = int.Parse(row[0]);
+
+                            BnfLabel b = new BnfLabel(num, row[1].Trim());
+
+                            bnfFromFile.Add(b);
+                        }
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("File is empty");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Exception" + e);
+                Console.WriteLine("Exception" + e);
+            }
+        }
+        Debug.Log("File bnf length after for in ReadCSV " + bnfFromFile.Count);
+        return bnfFromFile;
     }
+
 }

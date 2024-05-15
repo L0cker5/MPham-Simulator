@@ -59,17 +59,17 @@ public class SimulatorManager : MonoBehaviour
         }
     }
 
-    public void ScriptOutOfDate() //true(1) = is out of date
+    public void ScriptOutOfDate() //true(1) = is out of _date
     {
         if (pProps.prescription.IsOutOfDate)
         {
-            displayText.text = "Correct the script is out of date";
+            displayText.text = "Correct the script is out of _date";
             displayText.color = Color.green;
             displayText.enabled = true;
         }
         else
         {
-            displayText.text = "No sorry this script is in date";
+            displayText.text = "No sorry this script is in _date";
             displayText.enabled = true;
         }
     }
@@ -99,7 +99,7 @@ public class SimulatorManager : MonoBehaviour
         }
     }
 
-    // Check is script signed then if is in date
+    // Check is script signed then if is in _date
     private bool CheckSignedAndDate()
     {
         if (!pProps.prescription.IsSigned) //==false
@@ -110,7 +110,7 @@ public class SimulatorManager : MonoBehaviour
         }
         else if (pProps.prescription.IsOutOfDate) //== true
         {
-            displayText.text = "The Prescription is out of date and should not be dispensed.";
+            displayText.text = "The Prescription is out of _date and should not be dispensed.";
             displayText.enabled = true;
             return false;
         }
