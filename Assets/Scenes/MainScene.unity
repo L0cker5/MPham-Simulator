@@ -804,7 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b0188b0e9b5824fa9a1f923f78d12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tablePrefab: {fileID: 3432538550366127346, guid: 39e60ff1771a987469b55e7bc0b66b2e,
+  tablePrefab: {fileID: 8896696079865340540, guid: 30a9dc79bcb7eb04c9a00d0175f305b0,
     type: 3}
   UpdateFrequencySeconds: 5
 --- !u!114 &1198363706

@@ -1,6 +1,9 @@
 using Oculus.Interaction.HandGrab;
+<<<<<<< HEAD
 using System.Collections.Generic;
 using System.Linq;
+=======
+>>>>>>> parent of 7e62cb4 (Merge branch 'finalGameObjectModels')
 using TMPro;
 using UnityEngine;
 
@@ -8,12 +11,10 @@ public class LabelProperties : MonoBehaviour
 {
     [SerializeField] 
     private TMP_Text patientNameText, todaysDateText, 
-    medicationText, frequencyText, bnfText;
-
-    private List<BnfLabel> bnfData;
+    medicationText, frequencyText;
 
     public string patientName, todaysDate, medicationName,
-    doseage, frequency, bnfLabel;
+    doseage, frequency;
 
     public StrengthUnit strengthUnit;
     public MedicationType medicationType;
@@ -22,11 +23,12 @@ public class LabelProperties : MonoBehaviour
 
     public int quantity;
 
-    //private bool grabInteraction;
+    private bool grabInteraction;
 
     [SerializeField]
     private HandGrabInteractable _interactable;
 
+<<<<<<< HEAD
     public GameObject prescription;
 
     void Awake()
@@ -97,6 +99,15 @@ public class LabelProperties : MonoBehaviour
         Debug.Log("BNF Labels: " +  bnfLabels + " Length " + bnfLabels.Length);
         
     }
+=======
+    //public LabelProperties(string name, string freq)
+    //{
+    //    //this._medicationName = name;
+    //    //this.frequency = freq;
+    //    _medicationName = name;
+    //    frequency = freq;
+    //}
+>>>>>>> parent of 7e62cb4 (Merge branch 'finalGameObjectModels')
 
     public string PatientName
     {
@@ -160,12 +171,34 @@ public class LabelProperties : MonoBehaviour
         set { frequency = value;}
     }
 
-    public string BnfLabel
-    {
-        get { return bnfLabel; }
-        // restrict changes to the data 
-        set { bnfLabel = value; }
 
+    // Start is called before the first frame update
+    void Awake()
+    {
+        patientNameText.text = PatientName;
+        todaysDateText.text = TodaysDate;
+        medicationText.text = Quantity + " " + MedicationName + " " + Strength + " " + StrengthUnit + " " + MedicationType;
+        frequencyText.text = "Take " + Dosage.ToUpper() + " " + Frequency;
     }
 
+    // Update is called once per frame
+    void Start()
+    {
+        //GrabInteractable _interactable = transform.GetComponent<GrabInteractable>();
+
+        //var grab = _interactable.Interactors.FirstOrDefault<HandGrabInteractor>();
+
+        ////grabInteraction = _interactable.ResetGrabOnGrabsUpdated;
+        
+        ////Debug.Log("Grab " + grab);
+
+        //if (grab == null) 
+        //{
+        //    Debug.Log("Grab released");
+        //} 
+        //else if (grab != null)
+        //{
+        //    Debug.Log("Grab grabed");
+        //}
+    }
 }

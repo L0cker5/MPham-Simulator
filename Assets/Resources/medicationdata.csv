@@ -1,6 +1,6 @@
 ﻿medication_name,strength,strength_unit,medication_type,dose,expected_dose,dosing_frequency,quantity,bnf_labels,is_out_of_date,is_signed
-Phenoxymethylpenicillin,250,mg,Tablet,500 mg,2,every 6 hours,40,2;22,0,1
-Phenoxymethylpenicillin,250,mg,Tablet,2 tablets,2,every 6 hours,40,2;22,0,1
-Phenoxymethylpenicillin,250,mg,Tablet,2 tablets,2,every 6 hours,40,2;22,0,0
+Phenoxymethylpenicillin,250,mg,Tablet,500 mg,2,every 6 hours,40,2;20,0,1
+Phenoxymethylpenicillin,250,mg,Tablet,2 tablets,2,every 6 hours,40,2;20,0,1
+Phenoxymethylpenicillin,250,mg,Tablet,2 tablets,2,every 6 hours,40,2;20,0,0
 Simvastatin,40,mg,Tablet,i,1,nocte,28,,0,1
 Digoxin,62.5,mcg,Tablet,i,1,od,28,,0,1
