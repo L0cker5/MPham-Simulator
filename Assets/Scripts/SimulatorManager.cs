@@ -17,7 +17,7 @@ public class SimulatorManager : MonoBehaviour
 
     private List<string> errorsList = new();
 
-    private bool matchBoxAndLabel = true;
+    //private bool matchBoxAndLabel = true;
     private bool _checkMedName = true; 
     private bool _checkStrength = true;
     private bool _checkPatientName = true;

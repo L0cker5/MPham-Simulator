@@ -13,8 +13,8 @@ public class CheckRoomModel : MonoBehaviour
     [SerializeField]
     private GameObject disabledStartButton;
 
-    private bool startButtonActive = true;
-    private bool disabledButtonActive = false;
+    //private bool startButtonActive = true;
+    //private bool disabledButtonActive = false;
 
     // UI text GameObjects and links to anchor prefabs GameObjects
     public TMP_Text textmeshpro_ObjectA;
