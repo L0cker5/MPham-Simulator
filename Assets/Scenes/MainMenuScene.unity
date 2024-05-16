@@ -314,13 +314,13 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab_ObjectA
       value: 
-      objectReference: {fileID: 2664427656808229556, guid: f98ecdb7168fd2c4e899521528ed27ef,
+      objectReference: {fileID: 2664427656808229556, guid: 47d3b15ddde955549bac7cd92e48d978,
         type: 3}
     - target: {fileID: 8628333823343118212, guid: eb71ff0f5d4ca8b419c8909184313a26,
         type: 3}
       propertyPath: prefab_ObjectB
       value: 
-      objectReference: {fileID: 8896696079865340540, guid: 421d2f4a32da45743888cfdabe20ee0e,
+      objectReference: {fileID: 8896696079865340540, guid: eabc78efd6b1a2f48b07d4b2f909ded8,
         type: 3}
     - target: {fileID: 8628333823343118212, guid: eb71ff0f5d4ca8b419c8909184313a26,
         type: 3}
