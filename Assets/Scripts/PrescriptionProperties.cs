@@ -61,8 +61,10 @@ public class PrescriptionProperties : MonoBehaviour
         tmpPatientDetails.text = patient.PrintPatientToScript();
         
         DateTime patientDob = patient.DateOfBirth;
+        Debug.Log("Patient dob: " + patientDob);
         tmpPatientDob.text = patientDob.ToString("dd-MM-yyyy");
-        
+
+        Debug.Log("Patient dob: " + patientDob);
         DateTime todaysDate = DateTime.Today;
         int age = todaysDate.Year - patientDob.Year;
         tmpPatientAge.text = age.ToString();

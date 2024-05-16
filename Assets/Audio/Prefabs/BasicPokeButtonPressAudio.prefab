@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4658904325700070051}
   - component: {fileID: -1653022013273449393}
-  - component: {fileID: 7410389675181900697}
+  - component: {fileID: 6882663776038869579}
   m_Layer: 0
   m_Name: BasicPokeButtonPressAudio
   m_TagString: Untagged
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7410389675181900697
+--- !u!114 &6882663776038869579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,13 +138,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4674537905600659506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eba90636ee550e42b3b684bc5c42dfb, type: 3}
+  m_Script: {fileID: 11500000, guid: 925ef87c5bafc37469a2f7ec825dee4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 0}
   _audioClips:
   - {fileID: 8300000, guid: 209dbacfbf83f004ca717375ae07a5de, type: 3}
-  _volume: 0.5
+  _volume: 0.7
   _volumeRandomization:
     _useRandomRange: 0
     _min: 0

@@ -35,7 +35,7 @@ public class Doctor
             }
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of doctor name");
+                throw new ArgumentException("Invalid length of doctor name");
             }
             else { this._name = value; }
         }
@@ -51,7 +51,7 @@ public class Doctor
             }
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of doctor signature");
+                throw new ArgumentException("Invalid length of doctor signature");
             }
             else { this._signature = value; }
         }
@@ -67,7 +67,7 @@ public class Doctor
             }
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of Health Centre");
+                throw new ArgumentException("Invalid length of Health Centre");
             }
             else { this._healthCentre = value; }
         }
@@ -83,7 +83,7 @@ public class Doctor
             }
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of Address Line One");
+                throw new ArgumentException("Invalid length of Address Line One");
             }
             else { this._addressLineOne = value; }
         }
@@ -99,7 +99,7 @@ public class Doctor
             }
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of city");
+                throw new ArgumentException("Invalid length of city");
             }
             else { this._city = value; }
         }
