@@ -11,7 +11,6 @@ public class ReadCSV : MonoBehaviour
         List<Medication> medicationsFromFile = new List<Medication>();
         string file = "medicationdata";
 
-
         TextAsset medicationData = Resources.Load<TextAsset>(file);
 
         if (medicationData == null)

@@ -29,7 +29,7 @@ public class Patient
             } 
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of patient name");
+                throw new ArgumentException("Invalid length of patient name");
             }
             else { this._name = value; }
         }
@@ -46,7 +46,7 @@ public class Patient
             }
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of patient address");
+                throw new ArgumentException("Invalid length of patient address");
             }
             else { this._address = value; }
         }
@@ -63,7 +63,7 @@ public class Patient
             }
             else if (value.Length <= 0 || value.Length > 50)
             {
-                throw new ArgumentOutOfRangeException("Invalid length of patient city");
+                throw new ArgumentException("Invalid length of patient city");
             }
             else { this._city = value; }
         }
