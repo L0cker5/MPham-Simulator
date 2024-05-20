@@ -255,10 +255,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 566785497}
     m_Modifications:
+    - target: {fileID: 2061150750893768252, guid: eb71ff0f5d4ca8b419c8909184313a26,
+        type: 3}
+      propertyPath: m_text
+      value: 'Other:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980160840456675601, guid: eb71ff0f5d4ca8b419c8909184313a26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6384259711490737848, guid: eb71ff0f5d4ca8b419c8909184313a26,
         type: 3}
       propertyPath: m_Name
       value: Menu UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521736191057746462, guid: eb71ff0f5d4ca8b419c8909184313a26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7879523000732975509, guid: eb71ff0f5d4ca8b419c8909184313a26,
         type: 3}
@@ -314,7 +329,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab_ObjectA
       value: 
-      objectReference: {fileID: 2664427656808229556, guid: 47d3b15ddde955549bac7cd92e48d978,
+      objectReference: {fileID: 3432538550366127346, guid: 39e60ff1771a987469b55e7bc0b66b2e,
         type: 3}
     - target: {fileID: 8628333823343118212, guid: eb71ff0f5d4ca8b419c8909184313a26,
         type: 3}
@@ -326,7 +341,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab_ObjectC
       value: 
-      objectReference: {fileID: 3432538550366127346, guid: 39e60ff1771a987469b55e7bc0b66b2e,
+      objectReference: {fileID: 2664427656808229556, guid: 47d3b15ddde955549bac7cd92e48d978,
         type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

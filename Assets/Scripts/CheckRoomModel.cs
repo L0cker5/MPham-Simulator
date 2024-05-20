@@ -50,7 +50,6 @@ public class CheckRoomModel : MonoBehaviour
 
     }
 
-
     async Task<List<OVRAnchor>> GetAnchors()
     {
         
