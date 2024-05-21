@@ -2,51 +2,47 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/// <summary>
+/// Attached to each toogle in a flat UI canvas used to select the Medication name, 
+/// strength unit and medication type when printing a prescription label
+/// </summary>
 public class GetActiveToggle : MonoBehaviour
 {
     [SerializeField]
-    private Toggle toggle;
+    private Toggle _toggle;
 
     [SerializeField]
-    private TMP_Text toggleText;
+    private TMP_Text _toggleText;
 
-    private readonly string medicationNameTag = "Medication Name Toggle";
-    private readonly string strengthUnitTag = "Strength Unit Toggle";
-    private readonly string medicationTypeTag = "Medication Type Toggle";
+    private readonly string _medicationNameTag = "Medication Name Toggle";
+    private readonly string _strengthUnitTag = "Strength Unit Toggle";
+    private readonly string _medicationTypeTag = "Medication Type Toggle";
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// When a _toggle is changed for each of the three UI Canvas's it checks that the bool value of the toggel is set to ON
+    /// and compares the tag attached to the _toggle setting the text value of the selected _toggle as the value stored on
+    /// the prescription label and displayed when printed
+    /// </summary>
     public void ToggleChanged()
     {
         
-        if (toggle.isOn && toggle.CompareTag(medicationNameTag)) 
+        if (_toggle.isOn && _toggle.CompareTag(_medicationNameTag)) 
         { 
-        Debug.Log("Toggle Tag " + toggleText.text + " active");
+        Debug.Log("Toggle Tag " + _toggleText.text + " active");
         
-        ComputerManager.instance.medicationName = toggleText;
+        ComputerManager.instance.medicationName = _toggleText;
         }
-        else if (toggle.isOn && toggle.CompareTag(strengthUnitTag))
+        else if (_toggle.isOn && _toggle.CompareTag(_strengthUnitTag))
         {
-            Debug.Log("Toggle Tag " + toggleText.text + " active");
+            Debug.Log("Toggle Tag " + _toggleText.text + " active");
 
-            ComputerManager.instance.strengthUnit = toggleText;
+            ComputerManager.instance.strengthUnit = _toggleText;
         }
-        else if (toggle.isOn && toggle.CompareTag(medicationTypeTag))
+        else if (_toggle.isOn && _toggle.CompareTag(_medicationTypeTag))
         {
-            Debug.Log("Toggle Tag " + toggleText.text + " active");
+            Debug.Log("Toggle Tag " + _toggleText.text + " active");
 
-            ComputerManager.instance.medicationType = toggleText;
+            ComputerManager.instance.medicationType = _toggleText;
         }
     }
 }

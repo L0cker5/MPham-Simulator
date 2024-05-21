@@ -1603,8 +1603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4445978554667e44e9442c7b3e462557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 5110920478685433376}
-  disabledStartButton: {fileID: 6110204928261953654}
+  _startButton: {fileID: 5110920478685433376}
+  _disabledStartButton: {fileID: 6110204928261953654}
   textmeshpro_ObjectA: {fileID: 8412189927558564737}
   prefab_ObjectA: {fileID: 2930191464888824168, guid: 7fe7a12ad3178674ea0334e4bf9f73fb,
     type: 3}
@@ -2467,7 +2467,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1463042013549575296}
+      objectReference: {fileID: 0}
     - target: {fileID: 1627844292566684720, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}
       propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -2663,18 +2663,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b495da649c3fed34badc18d9151da09a, type: 3}
---- !u!114 &1463042013549575296 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4300845483327139243, guid: b495da649c3fed34badc18d9151da09a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3450435556852797739}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eba90636ee550e42b3b684bc5c42dfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &4665927250257305778 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8008205836787675545, guid: b495da649c3fed34badc18d9151da09a,

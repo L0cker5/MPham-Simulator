@@ -2,13 +2,16 @@ using System;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+
+/// <summary>
+/// Connected to the inputfields and scrollable lists to be completed on the comupter screen so 
+/// a prescription label can be printed 
+/// </summary>
 public class ComputerManager : MonoBehaviour
 {
     public static ComputerManager instance;
 
-    //[SerializeField] 
-    public TMP_InputField patientName, quantity, strength,
-        dose, frequency; 
+    public TMP_InputField patientName, quantity, strength, dose, frequency; 
 
     public TMP_Text medicationName, strengthUnit, medicationType, errorPatientName, errorQuantity, 
         errorStrength, errorDose, errorFrequency;
@@ -26,7 +29,7 @@ public class ComputerManager : MonoBehaviour
     private DateTime _date;
 
     [SerializeField]
-    GameObject label;
+    private GameObject label;
     
     [SerializeField] 
     private Transform spawnPoint;
@@ -47,12 +50,11 @@ public class ComputerManager : MonoBehaviour
         //Debug.Log("Error patient Name: " + patientName.text.Length);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    /// <summary>
+    /// Checks to ensure none of the inputfields have been left blank or have errors, if all come 
+    /// back true the label is printed with the details. if errors are returned the corisponding 
+    /// error messages are desplaed to the user for correction
+    /// </summary>
     public void PrintLabel()
     {
         ResetErrorMessages();
@@ -100,6 +102,9 @@ public class ComputerManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Resets error booleans to true and clears all error messages.
+    /// </summary>
     private void ResetErrorMessages()
     {
         _nameError = true;
@@ -114,8 +119,13 @@ public class ComputerManager : MonoBehaviour
         errorQuantity.enabled = false;
         errorStrength.enabled = false;
 
-    }   
+    }
 
+    /// <summary>
+    /// Returns false if input field is empty else returns true
+    /// </summary>
+    /// <param name="f">text input from the frequency inputfield</param>
+    /// <returns>a boolean true or false</returns>
     private bool CheckFrequency(string f)
     {
         if (f.Length <= 0)
@@ -130,6 +140,11 @@ public class ComputerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns false if input field is empty or contains numbers else returns true
+    /// </summary>
+    /// <param name="d">text input from the dose inputfield</param>
+    /// <returns>a boolean true or false</returns>
     private bool CheckDose(string d)
     {
         Regex regex = new Regex(@"^[\p{L}]+$");
@@ -154,6 +169,11 @@ public class ComputerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns false if input field is empty or not a number else returns true
+    /// </summary>
+    /// <param name="s">text input from the strength inputfield</param>
+    /// <returns>a boolean true or false</returns>
     private bool CheckStrength(string s)
     {
         bool successfullyParsed = float.TryParse(s, out _strength);
@@ -176,6 +196,11 @@ public class ComputerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns false if input field is empty else returns true
+    /// </summary>
+    /// <param name="p">text input from the name inputfield</param>
+    /// <returns>a boolean true or false</returns>
     private bool CheckName(string p)
     {
         if (p.Length <= 0)
@@ -192,6 +217,11 @@ public class ComputerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns false if input field is empty or not a number else returns true
+    /// </summary>
+    /// <param name="q">text input from the name inputfield</param>
+    /// <returns>a boolean true or false</returns>
     private bool CheckQuantity(string q)
     {
         bool successfullyParsed = int.TryParse(q, out _quantity);

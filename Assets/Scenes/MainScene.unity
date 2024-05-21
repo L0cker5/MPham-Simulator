@@ -860,7 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16f6da45fa97294eb9a7d57e9470425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tablePrefab: {fileID: 2664427656808229556, guid: 47d3b15ddde955549bac7cd92e48d978,
+  tableTwoPrefab: {fileID: 2664427656808229556, guid: 47d3b15ddde955549bac7cd92e48d978,
     type: 3}
   UpdateFrequencySeconds: 5
 --- !u!1001 &1752034787
@@ -875,13 +875,13 @@ PrefabInstance:
         type: 3}
       propertyPath: PlanePrefab
       value: 
-      objectReference: {fileID: 102490448831091297, guid: 0991abd14e067fc4b84e9f1e4696850a,
+      objectReference: {fileID: 102490448831091297, guid: b788b840e7bd5eb4884760ccd56000a0,
         type: 3}
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd,
         type: 3}
       propertyPath: VolumePrefab
       value: 
-      objectReference: {fileID: 8013016026686888416, guid: 7e5521846a921084c9d643f68d321485,
+      objectReference: {fileID: 8013016026686888416, guid: de714f44a9960274f80f1ec42acee678,
         type: 3}
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd,
         type: 3}

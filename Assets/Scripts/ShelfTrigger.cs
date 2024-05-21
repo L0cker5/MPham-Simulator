@@ -1,15 +1,17 @@
 using UnityEngine;
 
+/// <summary>
+/// Detects when a medication box enters the trigger and reads its values 
+/// </summary>
 public class ShelfTrigger : MonoBehaviour
 {
-    private readonly string box = "Box";
-    private readonly string prescriptionMedication = "PrescriptionMedication";
+    private readonly string _box = "Box";
+    private readonly string _prescriptionMedication = "PrescriptionMedication";
 
     public bool shelftriggered = false;
 
     public GameObject meds;
 
-    //string boxMedicationName;
     public float boxStrength, labelStrength;
     
     public int labelQuantity;
@@ -19,21 +21,20 @@ public class ShelfTrigger : MonoBehaviour
 
     public StrengthUnit labelStrengthUnit;
     public MedicationType labelMedicationType;
-    //string test = "test";
 
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
-
+    /// <summary>
+    /// When a GameObject enters the trigger area checks if it has the tag "box" if it does gets the Box Properties and checks 
+    /// that the tag is "PrescriptionMedication", if the tags match it reads and stores the data from the box and label. 
+    /// </summary>
+    /// <param name="other">the object in the trigger area</param>
     private void OnTriggerStay(Collider other)
     {
         
-        if (other.gameObject.CompareTag(box))
+        if (other.gameObject.CompareTag(_box))
         {
             BoxProperties boxProperties = other.GetComponentInParent<BoxProperties>();
 
-            if (boxProperties.CompareTag(prescriptionMedication))
+            if (boxProperties.CompareTag(_prescriptionMedication))
             {
                 shelftriggered = true;
 
@@ -51,24 +52,24 @@ public class ShelfTrigger : MonoBehaviour
                 labelMedicationType = labelProperties.MedicationType;
                 labelDoseage = labelProperties.Dosage;
                 labelFrequency = labelProperties.Frequency;
-
-                Debug.Log("Box Trigger Name: " + boxMedicationName + " Strength " + boxStrength);
-                Debug.Log("Label Trigger Patient Name: " + labelPatientName + " Date: " + labelTodaysDate +
-                " " + labelQuantity + " " + labelMedicationName + " " + labelStrength + " " + labelStrengthUnit
-                + " " + labelMedicationType + " Take " + labelDoseage + " " + labelFrequency);
             }
 
         }
 
     }
 
+    /// <summary>
+    /// When a GameObjects leaves the trigger area checks that it is tags match "box" and "PrescriptionMedication" 
+    /// then resets the variables for the stored prescription information to default values.
+    /// </summary>
+    /// <param name="other">the object exiting the trigger area</param>
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag(box))
+        if (other.gameObject.CompareTag(_box))
         {
             BoxProperties boxProperties = other.GetComponentInParent<BoxProperties>();
 
-            if (boxProperties.CompareTag(prescriptionMedication))
+            if (boxProperties.CompareTag(_prescriptionMedication))
             {
                 shelftriggered = false;
 

@@ -4,33 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Used to instantiate the set GameObject prefab at the loaction of a specified type of room anchor
+/// </summary>
 public class InstantiateTableTwoPrefab : MonoBehaviour
 {
-    // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
     [SerializeField, Tooltip("Prefab to be placed into the scene, or object in the scene to be moved around.")]
-    public GameObject tablePrefab;
+    public GameObject tableTwoPrefab;
+    
     private OVRAnchor table;
-
 
     public float UpdateFrequencySeconds = 5;
 
-    List<(GameObject, OVRLocatable)> _tableObjects = new List<(GameObject, OVRLocatable)>();
+    List<(GameObject, OVRLocatable)> _tableTwoObjects = new List<(GameObject, OVRLocatable)>();
 
-    // List of Room Anchors https://developer.oculus.com/documentation/unity/unity-scene-ovranchor/
     void Awake()
     {
         SpawnStart();
         StartCoroutine(UpdateAnchorsPeriodically());
     }
 
-
-    // Start is called before the first frame update
+    // Asynchronously fetches and initializes lists of room and table anchors
     async void SpawnStart()
     {
-        // fetch all rooms, with a SceneCapture fallback
+        // fetch room, with a SceneCapture fallback
         var rooms = new List<OVRAnchor>();
+        
         var secondTableAnchors = new List<OVRAnchor>();
-        //var wallArtAnchors = new List<OVRAnchor>();
+
+        // Fetch room anchors. If none are found, request a scene capture and fetch again.
         await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(rooms);
         if (rooms.Count == 0)
         {
@@ -52,7 +54,7 @@ public class InstantiateTableTwoPrefab : MonoBehaviour
 
             foreach (var anchor in anchors)
             {
-
+                // if the anchor has the semantic classification "Table" add it to the list of secondTableAnchors
                 if (anchor.TryGetComponent(out OVRSemanticLabels labels) &&
                     labels.Labels.Contains(OVRSceneManager.Classification.Table))
                 {
@@ -64,12 +66,19 @@ public class InstantiateTableTwoPrefab : MonoBehaviour
             // get the second anchor in the list
             table = secondTableAnchors[1];
 
-            await SpawnOnTable(tablePrefab, roomObject, table);
+            await SpawnOnTable(tableTwoPrefab, roomObject, table);
         }).ToList();
         await Task.WhenAll(tasks);
 
     }
 
+    /// <summary>
+    /// Asynchronously spawns a prefab on a specified table anchor within a room.
+    /// </summary>
+    /// <param name="prefab">the prefab to be spawned</param>
+    /// <param name="roomGameObject">parent gameobject to hold the prefab when instantiated</param>
+    /// <param name="table">the anchor where the prefab is to be instantiated</param>
+    /// <returns></returns>
     async Task SpawnOnTable(GameObject prefab, GameObject roomGameObject, OVRAnchor table)
     {
 
@@ -78,7 +87,7 @@ public class InstantiateTableTwoPrefab : MonoBehaviour
                 return;
             await locatable.SetEnabledAsync(true);
 
-            // get semantic classification for object _name
+            // get semantic classification for object
             var label = "other";
             table.TryGetComponent(out OVRSemanticLabels labels);
             label = labels.Labels;
@@ -91,15 +100,18 @@ public class InstantiateTableTwoPrefab : MonoBehaviour
 
             Instantiate(prefab, gameObject.transform);
 
-            _tableObjects.Add((gameObject, locatable));
+            _tableTwoObjects.Add((gameObject, locatable));
 
     }
 
+    /// <summary>
+    /// Coroutine that periodically updates the positions of the anchors.
+    /// </summary>
     IEnumerator UpdateAnchorsPeriodically()
     {
         while (true)
         {
-            foreach (var (gameObject, locatable) in _tableObjects)
+            foreach (var (gameObject, locatable) in _tableTwoObjects)
             {
                 var helper = new InstantiateHelper(gameObject);
                 helper.SetTableTwoLocation(locatable);

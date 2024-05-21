@@ -1,3 +1,6 @@
+/// <summary>
+/// Types of _medication
+/// </summary>
 public enum MedicationType
 {
     Topical,

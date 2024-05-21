@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// Used to read in data from bnflabels.csv, dummydoctordata.csv, dummypatientdata.csv & medicationdata.csv
+/// </summary>
 public class ReadCSV : MonoBehaviour
 {
 
+    /// <summary>
+    /// Reads in data from medicationdata.csv and stores it as a list of Medication objects 
+    /// </summary>
+    /// <returns>List of Medications</returns>
+    /// <exception cref="FileNotFoundException"></exception>
     public static List<Medication> readMedicationData()
     {
         List<Medication> medicationsFromFile = new List<Medication>();
         string file = "medicationdata";
-
 
         TextAsset medicationData = Resources.Load<TextAsset>(file);
 
@@ -39,9 +46,6 @@ public class ReadCSV : MonoBehaviour
                         // if the first field is empty skip the line
                         if (row[0] != "")
                         {
-
-                            //Do i need a try catch around this???????????************************
-
                             float st = float.Parse(row[1]);
 
                             StrengthUnit sU;
@@ -85,25 +89,17 @@ public class ReadCSV : MonoBehaviour
                                 throw new ArgumentException("Cannot be a value other than 0 or 1");
                             }
 
-                            //string nullName = "";
-
                             Medication m = new Medication(row[0].Trim(), st, sU, mT, row[4].Trim(),
                                 ed, row[6].Trim(), qt, row[8].Trim(), dateBool, signedBool);
 
                             medicationsFromFile.Add(m);
                         }
-
                     }
-
                 }
                 else
                 {
-
                     throw new ArgumentException("File is empty");
-
                 }
-
-
             }
             catch (Exception e)
             {
@@ -117,6 +113,11 @@ public class ReadCSV : MonoBehaviour
         return medicationsFromFile;
     }
 
+    /// <summary>
+    /// Reads in data from dummypatientdata.csv and stores it as a list of Patient objects 
+    /// </summary>
+    /// <returns>A list of Patients</returns>
+    /// <exception cref="FileNotFoundException"></exception>
     public static List<Patient> readPatientData()
     {
         List<Patient> patientsFromFile = new List<Patient>();
@@ -149,9 +150,6 @@ public class ReadCSV : MonoBehaviour
                         // if the first field is empty skip the line
                         if (row[0] != "")
                         {
-
-                            //Do i need a try catch around this???????????************************
-
                             //if there is no data in the row it will leave it blank
                             DateTime dateTime;
 
@@ -184,12 +182,16 @@ public class ReadCSV : MonoBehaviour
                 Console.WriteLine("Exception" + e);
             }
         }
-
         Debug.Log("File patient length after for in ReadCSV " + patientsFromFile.Count);
 
         return patientsFromFile;
     }
 
+    /// <summary>
+    /// Checks if the date entered is a valid date
+    /// </summary>
+    /// <param name="dateTime">the date to be checked</param>
+    /// <returns>true of false</returns>
     private static bool IsValidDate(string dateTime)
     {
         DateTime temp;
@@ -197,6 +199,11 @@ public class ReadCSV : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Reads in data from dummydoctordata.csv and stores it as a list of Doctor objects 
+    /// </summary>
+    /// <returns>A List of Doctors</returns>
+    /// <exception cref="FileNotFoundException"></exception>
     public static List<Doctor> readDoctorData()
     {
         List<Doctor> doctorsFromFile = new List<Doctor>();
@@ -228,20 +235,6 @@ public class ReadCSV : MonoBehaviour
                         // if the first field is empty skip the line
                         if (row[0] != "")
                         {
-
-                            //Do i need a try catch around this???????????************************
-
-                            //Doctor d = new Doctor();
-                            //if there is no data in the row it will leave it blank
-
-                            //d.name = row[0];
-                            //d.signature = row[1];
-                            //d.healthCentre = row[2];
-                            //d.addressLineOne = row[3];
-                            //d.town = row[4];
-                            //d.postcode = row[5];
-                            //string wrongPostcode = "BT2 03RU";
-
                             Doctor d = new Doctor(row[0].Trim(), row[1].Trim(), row[2].Trim(), row[3].Trim(), row[4].Trim(), row[5].Trim());
 
                             doctorsFromFile.Add(d);
@@ -263,6 +256,11 @@ public class ReadCSV : MonoBehaviour
         return doctorsFromFile;
     }
 
+    /// <summary>
+    /// Reads in data from bnflabels.csv and stores it as a list of BNF Label objects 
+    /// </summary>
+    /// <returns>List of BNF Labels</returns>
+    /// <exception cref="FileNotFoundException"></exception>
     public static List<BnfLabel> readBnfData()
     {
         List<BnfLabel> bnfFromFile = new List<BnfLabel>();

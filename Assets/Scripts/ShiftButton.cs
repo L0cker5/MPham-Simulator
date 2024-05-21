@@ -1,32 +1,21 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Activated when the shift key is pressed on the keyboard
+/// </summary>
 public class ShiftButton : MonoBehaviour
 {
-
-    public static ShiftButton instance;
-
-    public bool shifted = false;
     
     public event Action OnActonEvent;
     
-    
-    private void Awake()
-    {
-
-        //Debug.Log("Shifted in Shift Button Awake = " + shifted);
-
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
-
+    /// <summary>
+    /// When shift button is pressed ONActionEven is invoked changing the character 
+    /// displayed on the keyboard to upper or lower case or special character. 
+    /// </summary>
     public void TypeShiftKey()
     {
         OnActonEvent?.Invoke();
-
-        //Debug.Log("Shifted in Shift Button TypeShiftKey = " + shifted);
     }
 
 

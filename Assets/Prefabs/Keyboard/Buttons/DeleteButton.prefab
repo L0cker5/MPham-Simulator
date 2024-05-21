@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2749276491380130307}
   - component: {fileID: 2480028997245843810}
-  - component: {fileID: 2889331742773965683}
+  - component: {fileID: 4540706874470081129}
   m_Layer: 0
   m_Name: BasicPokeButtonReleaseAudio
   m_TagString: Untagged
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2889331742773965683
+--- !u!114 &4540706874470081129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,13 +138,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 267521065378907280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eba90636ee550e42b3b684bc5c42dfb, type: 3}
+  m_Script: {fileID: 11500000, guid: 925ef87c5bafc37469a2f7ec825dee4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 0}
   _audioClips:
   - {fileID: 8300000, guid: ef6e5349a8d93bd4f91a54642896df8e, type: 3}
-  _volume: 0.5
+  _volume: 0.7
   _volumeRandomization:
     _useRandomRange: 0
     _min: 0
@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3541867018913821604}
   - component: {fileID: 1024851415365622473}
-  - component: {fileID: 4046823983235873482}
+  - component: {fileID: 8356248754475208864}
   m_Layer: 0
   m_Name: BasicPokeButtonPressAudio
   m_TagString: Untagged
@@ -392,7 +392,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4046823983235873482
+--- !u!114 &8356248754475208864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -401,13 +401,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 605966223094575248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eba90636ee550e42b3b684bc5c42dfb, type: 3}
+  m_Script: {fileID: 11500000, guid: 925ef87c5bafc37469a2f7ec825dee4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 0}
   _audioClips:
   - {fileID: 8300000, guid: 209dbacfbf83f004ca717375ae07a5de, type: 3}
-  _volume: 0.5
+  _volume: 0.7
   _volumeRandomization:
     _useRandomRange: 0
     _min: 0
@@ -1073,7 +1073,7 @@ MonoBehaviour:
   _whenRelease:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2889331742773965683}
+      - m_Target: {fileID: 4540706874470081129}
         m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Oculus.Interaction.OVR.Samples
         m_MethodName: PlayAudio
         m_Mode: 1
@@ -1094,8 +1094,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4046823983235873482}
-        m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Assembly-CSharp
+      - m_Target: {fileID: 8356248754475208864}
+        m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Oculus.Interaction.OVR.Samples
         m_MethodName: PlayAudio
         m_Mode: 1
         m_Arguments:
