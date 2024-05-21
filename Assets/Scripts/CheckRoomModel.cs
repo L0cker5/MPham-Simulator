@@ -1,17 +1,22 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Checks the current room model against the GameObject prefabs to be loaded 
+/// into the scene to ensure that that virtual size of the anchor is big enough 
+/// for the GameObject to occupy the space.e.g.loading the ComputerAndPrinter 
+/// prefab onto a table that is too small.
+/// </summary>
 public class CheckRoomModel : MonoBehaviour
 {
     [SerializeField]
-    private GameObject startButton;
+    private GameObject _startButton;
 
     [SerializeField]
-    private GameObject disabledStartButton;
+    private GameObject _disabledStartButton;
 
     //private bool startButtonActive = true;
     //private bool disabledButtonActive = false;
@@ -50,6 +55,11 @@ public class CheckRoomModel : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// Creates a list of all the anchors stored in the room model
+    /// </summary>
+    /// <returns> A list of room anchors</returns>
     async Task<List<OVRAnchor>> GetAnchors()
     {
         
@@ -69,6 +79,18 @@ public class CheckRoomModel : MonoBehaviour
         return anchors;
 
     }
+    /// <summary>
+    /// Checks the dimesions width and depth of the prefabs BoundingBox against the dimensions 
+    /// of the specificed anchor type to ensure it can be loaded into the scene, if the 
+    /// dimensions of the prefab are smaller "Active" is displayed. If there is no anchors in 
+    /// the room model of the specified type "Missing" is displayed. If the dimensions of the 
+    /// prefab are bigger that the anchor a corrisponding error message is displayed 
+    /// </summary>
+    /// <param name="anchors">List of anchors</param>
+    /// <param name="anchorLabel">Semantic Classification of a anchor</param>
+    /// <param name="obj">Text Mesh Pro textfield the relevent text is to be displaed in</param>
+    /// <param name="prefab">The prefab GameObject to be compared with the anchors dimensions</param>
+    /// <returns></returns>
     async Task Check3DAnchor(List<OVRAnchor> anchors, string anchorLabel, TMP_Text obj, GameObject prefab)
     {
 
@@ -81,8 +103,8 @@ public class CheckRoomModel : MonoBehaviour
             if (roomAnchor.TryGetComponent(out OVRSemanticLabels label) && 
                 label.Labels.Contains(anchorLabel))
             {
-                startButton.SetActive(true);
-                disabledStartButton.SetActive(false);
+                _startButton.SetActive(true);
+                _disabledStartButton.SetActive(false);
 
                 string activeText = _activeText;
                 var activeTextColor = _activeTextColor;
@@ -98,20 +120,20 @@ public class CheckRoomModel : MonoBehaviour
                 float anchorHeight = bbox.height;
                 float anchorWidth = bbox.width;
 
-                Debug.Log("Dimensions of the anchor are, Height: " + anchorHeight
-                    + ", Width: " + anchorWidth);
+                //Debug.Log("Dimensions of the anchor are, Height: " + anchorHeight
+                //    + ", Width: " + anchorWidth);
 
                 // creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
-                PrefabProperties prefabProps = prefab.GetComponent<PrefabProperties>();
+                //PrefabProperties prefabProps = prefab.GetComponent<PrefabProperties>();
 
                 var b = prefab.transform.Find("BoundaryBox");
                 
-                float height = b.localScale.y;
+                //float height = b.localScale.y;
                 float width = b.localScale.z;
                 float depth = b.localScale.x;
 
-                Debug.Log("Dimensions of the object are, Height: " + height 
-                    + ", Width: " + width + ", Depth: " + depth);
+                //Debug.Log("Dimensions of the object are, Height: " + height 
+                //    + ", Width: " + width + ", Depth: " + depth);
 
                 if (width > anchorWidth && depth > anchorHeight) {
                     activeText = "The dimensions of the anchor are too small and need to be atleast " + width.ToString("0.00") 
@@ -143,15 +165,26 @@ public class CheckRoomModel : MonoBehaviour
                 obj.text = _missingText;
                 obj.color = _missingTextColor;
                 //DisableStartButton();
-                startButton.SetActive(false);
-                disabledStartButton.SetActive(true);
+                _startButton.SetActive(false);
+                _disabledStartButton.SetActive(true);
             }
 
         }
         await Task.WhenAll();
     }
 
-
+    /// <summary>
+    /// checks the dimesions width and height of the prefabs BoundingBox against the dimensions 
+    /// of the specificed anchor type to ensure it can be loaded into the scene, if the dimensions 
+    /// of the prefab are smaller "Active" is displayed. If there is no anchors in the room model 
+    /// of the specified type "Missing" is displayed. If the dimensions of the prefab are bigger 
+    /// that the anchor a corrisponding error message is displayed 
+    /// </summary>
+    /// <param name="anchors">List of anchors</param>
+    /// <param name="anchorLabel">Semantic Classification of a anchor</param>
+    /// <param name="obj">Text Mesh Pro textfield the relevent text is to be displaed in</param>
+    /// <param name="prefab">The prefab GameObject to be compared with the anchors dimensions</param>
+    /// <returns></returns>
     async Task Check2DAnchor(List<OVRAnchor> anchors, string anchorLabel, TMP_Text obj, GameObject prefab)
     {
 
@@ -164,8 +197,8 @@ public class CheckRoomModel : MonoBehaviour
             if (roomAnchor.TryGetComponent(out OVRSemanticLabels label) &&
                 label.Labels.Contains(anchorLabel))
             {
-                startButton.SetActive(true);
-                disabledStartButton.SetActive(false);
+                _startButton.SetActive(true);
+                _disabledStartButton.SetActive(false);
 
                 string activeText = _activeText;
                 var activeTextColor = _activeTextColor;
@@ -181,11 +214,11 @@ public class CheckRoomModel : MonoBehaviour
                 float anchorHeight = bbox.height;
                 float anchorWidth = bbox.width;
 
-                Debug.Log("Dimensions of the anchor are, Height: " + anchorHeight
-                    + ", Width: " + anchorWidth);
+                //Debug.Log("Dimensions of the anchor are, Height: " + anchorHeight
+                //    + ", Width: " + anchorWidth);
 
-                // creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
-                PrefabProperties prefabProps = prefab.GetComponent<PrefabProperties>();
+                // Gets access to the prefab properties script and access the TestProps script attached to the prefab (GameObject)
+                //PrefabProperties prefabProps = prefab.GetComponent<PrefabProperties>();
 
                 var b = prefab.transform.Find("BoundaryBox");
 
@@ -193,8 +226,8 @@ public class CheckRoomModel : MonoBehaviour
                 float width = b.localScale.z;
                 float depth = b.localScale.x;
 
-                Debug.Log("Dimensions of the object are, Height: " + height
-                    + ", Width: " + width + ", Depth: " + depth);
+                //Debug.Log("Dimensions of the object are, Height: " + height
+                //    + ", Width: " + width + ", Depth: " + depth);
 
                 if (width > anchorWidth && height > anchorHeight)
                 {
@@ -226,21 +259,11 @@ public class CheckRoomModel : MonoBehaviour
             {
                 obj.text = _missingText;
                 obj.color = _missingTextColor;
-                startButton.SetActive(false);
-                disabledStartButton.SetActive(true);
-                //DisableStartButton();
+                _startButton.SetActive(false);
+                _disabledStartButton.SetActive(true);
             }
 
         }
         await Task.WhenAll();
     }
-
-
-    //private void DisableStartButton()
-    //{
-    //    // v is false disable startbutton and enable disabledStartButton
-
-        
-    //}
-
 }

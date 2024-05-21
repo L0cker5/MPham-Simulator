@@ -628,7 +628,7 @@ MonoBehaviour:
   _whenRelease:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2733673331778269016}
         m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Oculus.Interaction.OVR.Samples
         m_MethodName: PlayAudio
         m_Mode: 1
@@ -649,7 +649,7 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 219373727117907613}
         m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Oculus.Interaction.OVR.Samples
         m_MethodName: PlayAudio
         m_Mode: 1

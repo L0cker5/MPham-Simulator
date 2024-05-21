@@ -2,9 +2,11 @@ using System;
 using System.Net;
 using System.Text.RegularExpressions;
 
+/// <summary>
+/// Represents a doctors details for use on the prescription
+/// </summary>
 public class Doctor
 {
-    
     private string _name;
     private string _signature;
     private string _healthCentre;
@@ -12,8 +14,21 @@ public class Doctor
     private string _city;
     private string _postcode;
 
+
+    /// <summary>
+    /// Initializes a new instance of the Doctor class.
+    /// </summary>
     public Doctor() { }
 
+    /// <summary>
+    /// Initializes a new instance of the Doctor class with specified parameters.
+    /// </summary>
+    /// <param name="name">The Doctors name</param>
+    /// <param name="signature">The Doctors signature</param>
+    /// <param name="healthCentre">The name of the health center the doctor works</param>
+    /// <param name="addressLineOne">The address line of the health center the doctor works</param>
+    /// <param name="city">The city of the health center the doctor works</param>
+    /// <param name="postcode">The postcode of the health center the doctor works</param>
     public Doctor(String name, String signature, String healthCentre, String addressLineOne,  String city, String postcode) 
     {
         this.Name = name;
@@ -24,6 +39,7 @@ public class Doctor
         this.Postcode = postcode;
     }
 
+    // Must not be null, must be between 1 and 50 characters.
     public string Name
     {
         get { return _name; }
@@ -40,6 +56,8 @@ public class Doctor
             else { this._name = value; }
         }
     }
+
+    // Must not be null, must be between 1 and 50 characters.
     public string Signature
     { 
         get { return _signature; }
@@ -56,6 +74,8 @@ public class Doctor
             else { this._signature = value; }
         }
     }
+
+    // Must not be null, must be between 1 and 50 characters.
     public string HealthCentre
     {
         get { return _healthCentre; }
@@ -72,6 +92,8 @@ public class Doctor
             else { this._healthCentre = value; }
         }
     }
+
+    // Must not be null, must be between 1 and 50 characters.
     public string AddressLineOne
     {
         get { return _addressLineOne; }
@@ -88,6 +110,8 @@ public class Doctor
             else { this._addressLineOne = value; }
         }
     }
+
+    // Must not be null, must be between 1 and 50 characters.
     public string City
     {
         get { return _city; }
@@ -104,6 +128,8 @@ public class Doctor
             else { this._city = value; }
         }
     }
+
+    // Must not be null, and match the set regex pattern.
     public string Postcode
     {
         get { return _postcode; }
@@ -126,6 +152,7 @@ public class Doctor
         }
     }
 
+    // Returns a formatted string representation of the doctors name and address details.
     public string PrintDoctorToScript()
     {
         string print = Name + "\n" + HealthCentre + "\n" + AddressLineOne + "\n" + City + "\n" + Postcode;

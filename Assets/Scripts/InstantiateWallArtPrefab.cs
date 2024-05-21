@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
-using static OVRPlugin;
-using UnityEngine.UIElements;
 
+/// <summary>
+/// Used to instantiate the set GameObject prefab at the loaction of a specified type of room anchor
+/// </summary>
 public class InstantiateWallArtPrefab : MonoBehaviour
 {
-    // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
-    [SerializeField, Tooltip("Prefab to be placed into the scene, or object in the scene to be moved around.")]
+    [SerializeField, Tooltip("Prefab to be placed into the scene.")]
     public GameObject wallArtPrefab;
 
     private OVRAnchor wallArt;
@@ -18,7 +18,6 @@ public class InstantiateWallArtPrefab : MonoBehaviour
 
         List<(GameObject, OVRLocatable)> _wallArtObjects = new List<(GameObject, OVRLocatable)>();
 
-    // List of Room Anchors https://developer.oculus.com/documentation/unity/unity-scene-ovranchor/
     void Start()
     {
         SpawnStart();
@@ -26,14 +25,15 @@ public class InstantiateWallArtPrefab : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
+    // Asynchronously fetches and initializes lists of room and table anchors
     async void SpawnStart()
     {
-        // fetch all rooms, with a SceneCapture fallback
+        // fetch room, with a SceneCapture fallback
         var rooms = new List<OVRAnchor>();
-        //var tableAnchors = new List<OVRAnchor>();
+
         var wallArtAnchors = new List<OVRAnchor>();
-        
+
+        // Fetch room anchors. If none are found, request a scene capture and fetch again.
         await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(rooms);
         if (rooms.Count == 0)
         {
@@ -43,6 +43,7 @@ public class InstantiateWallArtPrefab : MonoBehaviour
 
             await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(rooms);
         }
+
         // fetch room elements, create objects for them
         var tasks = rooms.Select(async room =>
         {
@@ -55,7 +56,7 @@ public class InstantiateWallArtPrefab : MonoBehaviour
 
             foreach (var anchor in anchors)
             {
-
+                // if the anchor has the semantic classification "WallArt" add it to the list of wallArtAnchors
                 if (anchor.TryGetComponent(out OVRSemanticLabels labels) &&
                     labels.Labels.Contains(OVRSceneManager.Classification.WallArt))
                 {
@@ -73,23 +74,22 @@ public class InstantiateWallArtPrefab : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Asynchronously spawns a prefab on a specified wall art anchor within a room.
+    /// </summary>
+    /// <param name="prefab">the prefab to be spawned</param>
+    /// <param name="roomGameObject">parent gameobject to hold the prefab when instantiated</param>
+    /// <param name="table">the anchor where the prefab is to be instantiated</param>
+    /// <returns></returns>
     async Task SpawnOnWallArt(GameObject prefab, GameObject roomGameObject, OVRAnchor wallArt)
     {
-        // creates an instance "test" from the TestProps script and access the TestProps script attached to the prefab (GameObject)
-        //TestProps test = wallArtPrefab.GetComponent<TestProps>();
-
-        //float objectDepth = 0;
-        // assigns the value of test.objHeight to the variable objectHeight
-        //objectDepth = test.objDepth;
-        // get half of the height
-        //float halfDepth = objectDepth / 2.0f;
 
         // enable locatable/tracking by checking for the presence of an OVRLocatable component.
         if (!wallArt.TryGetComponent(out OVRLocatable locatable))
                 return;
             await locatable.SetEnabledAsync(true);
 
-            // get semantic classification for object _name
+            // get semantic classification for object
             var label = "other";
             wallArt.TryGetComponent(out OVRSemanticLabels labels);
             label = labels.Labels;
@@ -99,17 +99,16 @@ public class InstantiateWallArtPrefab : MonoBehaviour
             gameObject.transform.SetParent(roomGameObject.transform);
             var helper = new InstantiateHelper(gameObject);
             helper.SetWallArtLocation(locatable);
-        
-            //var position = gameObject.transform.position + (Vector3.left * halfDepth);
-
-            //gameObject.transform.SetPositionAndRotation(position, Quaternion.identity);
-        
+            
             Instantiate(prefab, gameObject.transform);
 
             _wallArtObjects.Add((gameObject, locatable));
 
     }
 
+    /// <summary>
+    /// Coroutine that periodically updates the positions of the anchors.
+    /// </summary>
     IEnumerator UpdateAnchorsPeriodically()
     {
         while (true)

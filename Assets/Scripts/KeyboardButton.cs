@@ -1,18 +1,26 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Sets the upper and lower case charaters on the keyboard for each key. Checks if the shift
+/// button has been pressed to facilitate the change from upper to lower case.
+/// </summary>
 public class KeyboardButton : MonoBehaviour
 {
+    // lower case character
     public string character;
+    // upper case character
     public string shiftCharacter;
 
+    // the text field on the button to display the character
     public TextMeshProUGUI keyLabel;
     
-    //public int caretPos = 0;
-
+    // the Shift key for the keyboard
     public GameObject shiftKey;
 
+    // bool to check if the shift key has been pressed
     public bool isShifted = false;
+
 
     public void Awake()
     {
@@ -35,6 +43,10 @@ public class KeyboardButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// If the key is a number when the shift button is pressed display the corrisponding special character
+    /// </summary>
+    /// <returns>string</returns>
     private string GetShiftCharacter()
     {
         switch (keyLabel.text)
@@ -65,6 +77,10 @@ public class KeyboardButton : MonoBehaviour
         return string.Empty;
     }
 
+
+    /// <summary>
+    /// OnActionEvent called when the shift button is pressed
+    /// </summary>
     private void ShiftButton_OnActonEvent()
     {
         isShifted = !isShifted;
@@ -81,6 +97,10 @@ public class KeyboardButton : MonoBehaviour
         Debug.Log("Shifted in Button OnActionEvent = " + isShifted);
     }
 
+    /// <summary>
+    /// When the key is pressed checks if isShifted is true or false and adds the relevent text to the 
+    /// inputfield and moves the caret one positon
+    /// </summary>
     public void TypeKey()
     {
         

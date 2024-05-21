@@ -2,6 +2,11 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Helper class for the instantiateprefab classes
+/// Provides functionality for positioning objects in the Unity scene based on the real-world environment captured by an OVRLocatable object, 
+/// and also includes utilities for scene capture and permission management.
+/// </summary>
 public class InstantiateHelper
 {
     public GameObject AnchorGameObject { get; }
@@ -11,6 +16,12 @@ public class InstantiateHelper
         AnchorGameObject = gameObject;
     }
 
+    /// <summary>
+    /// Takes and anchors OVRLocatable components, accesses its positon and rotaion based on the cameras positon and rotaion. The position 
+    /// and rotation are adjusted for the specific gameObject to be instantated and stores these updated values in the AnchorGameObject to be used.   
+    /// </summary>
+    /// <param name="locatable">The anchor with which the positon and rotation properaties are to be taken</param>
+    /// <param name="camera"></param>
     public void SetTableLocation(OVRLocatable locatable, Camera camera = null)
     {
         if (!locatable.TryGetSceneAnchorPose(out var pose))
@@ -18,7 +29,7 @@ public class InstantiateHelper
 
         var projectionCamera = camera == null ? Camera.main : camera;
         var position = pose.ComputeWorldPosition(projectionCamera);
-        //var camRotation = pose.ComputeWorldRotation(projectionCamera);
+
         Quaternion rotation = (Quaternion)pose.ComputeWorldRotation(projectionCamera);
 
         // converts a Vector3 representation of the Quaternion using EulerAngles
@@ -35,6 +46,12 @@ public class InstantiateHelper
                 position.Value, rotation);
     }
 
+    /// <summary>
+    /// Takes and anchors OVRLocatable components, accesses its positon and rotaion based on the cameras positon and rotaion. The position 
+    /// and rotation are adjusted for the specific gameObject to be instantated and stores these updated values in the AnchorGameObject to be used.   
+    /// </summary>
+    /// <param name="locatable">The anchor with which the positon and rotation properaties are to be taken</param>
+    /// <param name="camera"></param>
     public void SetTableTwoLocation(OVRLocatable locatable, Camera camera = null)
     {
         if (!locatable.TryGetSceneAnchorPose(out var pose))
@@ -58,6 +75,13 @@ public class InstantiateHelper
             AnchorGameObject.transform.SetPositionAndRotation(
                 position.Value, rotation);
     }
+
+    /// <summary>
+    /// Takes and anchors OVRLocatable components, accesses its positon and rotaion based on the cameras positon and rotaion. The position 
+    /// and rotation are adjusted for the specific gameObject to be instantated and stores these updated values in the AnchorGameObject to be used.   
+    /// </summary>
+    /// <param name="locatable">The anchor with which the positon and rotation properaties are to be taken</param>
+    /// <param name="camera"></param>
     public void SetWallArtLocation(OVRLocatable locatable, Camera camera = null)
     {
         if (!locatable.TryGetSceneAnchorPose(out var pose))
@@ -110,8 +134,7 @@ public class InstantiateHelper
     private static bool SceneCaptureRunning = false; // single instance
 
     /// <summary>
-    /// A wrapper function for requesting the Android
-    /// permission for scene data.
+    /// For requesting permission for scene data.
     /// </summary>
     public static void RequestScenePermission()
     {

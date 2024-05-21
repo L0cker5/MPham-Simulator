@@ -1,14 +1,16 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Represents a _medication with properties including name, strength, type, dose, frequency, and more.
+/// It includes validation for these properties to ensure they fall within acceptable ranges and constraints.
+/// </summary>
 public class Medication
 {
 
     private string _medicationName;
     private float _strength;
-    //private string _strengthUnit;
     private StrengthUnit _strengthUnit;
-    //private string _medicationType;
     private MedicationType _medicationType;
     private string _dose;
     private int _expectedDose;
@@ -18,8 +20,26 @@ public class Medication
     private bool _isOutOfDate;
     private bool _isSigned;
 
+
+    /// <summary>
+    /// Initializes a new instance of the Medication class.
+    /// </summary>
     public Medication() { }
 
+    /// <summary>
+    /// Initializes a new instance of the Medication class with specified parameters.
+    /// </summary>
+    /// <param name="medication">The name of the _medication.</param>
+    /// <param name="strength">The strength of the _medication.</param>
+    /// <param name="strengthUnit">The unit of the strength.</param>
+    /// <param name="medicationType">The type of the _medication.</param>
+    /// <param name="dose">The dose of the _medication.</param>
+    /// <param name="expectedDose">The expected dose of the _medication.</param>
+    /// <param name="dosingFrequency">The dosing frequency.</param>
+    /// <param name="quantity">The quantity of the _medication.</param>
+    /// <param name="bnfLabels">The BNF labels for the _medication.</param>
+    /// <param name="isOutOfDate">Indicates if the _medication is out of date.</param>
+    /// <param name="isSigned">Indicates if the _medication is signed.</param>
     public Medication(String medication, float strength, StrengthUnit strengthUnit, MedicationType medicationType, String dose,
     int expectedDose, String dosingFrequency, int quantity, string bnfLabels, bool isOutOfDate, bool isSigned)
     {
@@ -37,6 +57,8 @@ public class Medication
         this.IsSigned = isSigned;
     }
 
+
+    //Must be non-null, between 1 and 50 characters.
     public string MedicationName
     {
         get { return _medicationName; }
@@ -56,6 +78,7 @@ public class Medication
         }
     }
 
+    //Must be between 1 and 10000.
     public float Strength
     {
         get { return _strength; }
@@ -70,6 +93,7 @@ public class Medication
         }
     }
 
+    //gets or sets the current StrengthUnit emun.
     public StrengthUnit StrengthUnit
     {
         get { return _strengthUnit; }
@@ -86,6 +110,8 @@ public class Medication
             }
         }
     }
+
+    //gets or sets the current MedicationType emun.
     public MedicationType MedicationType
     {
         get { return _medicationType; }
@@ -103,6 +129,7 @@ public class Medication
         }
     }
 
+    //Must be non-null, between 1 and 50 characters.
     public string Dose
     {
         get { return _dose; }
@@ -121,6 +148,7 @@ public class Medication
         }
     }
 
+    //Must be between 1 and 100.
     public int ExpectedDose
     {
         get { return _expectedDose; }
@@ -135,6 +163,7 @@ public class Medication
         }
     }
 
+    //Must be non-null, between 1 and 50 characters.
     public string DosingFrequency
     {
         get { return _dosingFrequency; }
@@ -153,6 +182,7 @@ public class Medication
         }
     }
 
+    //Must be between 1 and 100.
     public int Quantity
     {
         get { return _quantity; }
@@ -167,6 +197,7 @@ public class Medication
         }
     }
 
+    //Must be between 1 and 50 characters and can be null.
     public string BnfLabels
     {
         get { return _bnfLabels; }
@@ -181,6 +212,7 @@ public class Medication
         }
     }
 
+    //holds true or faulse to determine if the displayed prescription should have an incorrect date
     public bool IsOutOfDate
     {
         get { return _isOutOfDate; }
@@ -188,6 +220,7 @@ public class Medication
         set { _isOutOfDate = value; }
     }
 
+    //holds true fo false to determine is the displayed prescription should be signed b the doctor or not
     public bool IsSigned
     {
         get { return _isSigned; }
@@ -195,13 +228,7 @@ public class Medication
         set { _isSigned = value; }
     }
 
-    public void PrintDetails()
-    {
-        Debug.Log("Medication Name: " + _medicationName);
-        Debug.Log("Medication : " + _strength + _strengthUnit + " " + _medicationType);
-        Debug.Log("Medication Dose : " + _dose + " " + _dosingFrequency);
-    }
-
+    // Returns a formatted string representation of the _medication details
     public string PrintMedicationToScript()
     {
         string print = (MedicationName + " " + Strength + " " + StrengthUnit + " " + MedicationType + "\n"

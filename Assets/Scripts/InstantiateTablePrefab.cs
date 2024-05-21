@@ -4,19 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Used to instantiate the set GameObject prefab at the loaction of a specified type of room anchor
+/// </summary>
 public class InstantiateTablePrefab : MonoBehaviour
 {
-    // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
-    [SerializeField, Tooltip("Prefab to be placed into the scene, or object in the scene to be moved around.")]
+    [SerializeField, Tooltip("Prefab to be placed into the scene.")]
     public GameObject tablePrefab;
+   
     private OVRAnchor table;
-
 
     public float UpdateFrequencySeconds = 5;
 
     List<(GameObject, OVRLocatable)> _tableObjects = new List<(GameObject, OVRLocatable)>();
 
-    // List of Room Anchors https://developer.oculus.com/documentation/unity/unity-scene-ovranchor/
     void Start()
     {
         SpawnStart();
@@ -24,13 +25,15 @@ public class InstantiateTablePrefab : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
+    // Asynchronously fetches and initializes lists of room and table anchors
     async void SpawnStart()
     {
-        // fetch all rooms, with a SceneCapture fallback
+        // fetch room, with a SceneCapture fallback
         var rooms = new List<OVRAnchor>();
+
         var tableAnchors = new List<OVRAnchor>();
-        //var wallArtAnchors = new List<OVRAnchor>();
+
+        // Fetch room anchors. If none are found, request a scene capture and fetch again.
         await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(rooms);
         if (rooms.Count == 0)
         {
@@ -40,6 +43,7 @@ public class InstantiateTablePrefab : MonoBehaviour
 
             await OVRAnchor.FetchAnchorsAsync<OVRRoomLayout>(rooms);
         }
+        
         // fetch room elements, create objects for them
         var tasks = rooms.Select(async room =>
         {
@@ -52,7 +56,7 @@ public class InstantiateTablePrefab : MonoBehaviour
 
             foreach (var anchor in anchors)
             {
-
+                // if the anchor has the semantic classification "Table" add it to the list of tableAnchors
                 if (anchor.TryGetComponent(out OVRSemanticLabels labels) &&
                     labels.Labels.Contains(OVRSceneManager.Classification.Table))
                 {
@@ -70,6 +74,13 @@ public class InstantiateTablePrefab : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Asynchronously spawns a prefab on a specified table anchor within a room.
+    /// </summary>
+    /// <param name="prefab">the prefab to be spawned</param>
+    /// <param name="roomGameObject">parent gameobject to hold the prefab when instantiated</param>
+    /// <param name="table">the anchor where the prefab is to be instantiated</param>
+    /// <returns></returns>
     async Task SpawnOnTable(GameObject prefab, GameObject roomGameObject, OVRAnchor table)
     {
 
@@ -78,7 +89,7 @@ public class InstantiateTablePrefab : MonoBehaviour
                 return;
             await locatable.SetEnabledAsync(true);
 
-            // get semantic classification for object _name
+            // get semantic classification for object
             var label = "other";
             table.TryGetComponent(out OVRSemanticLabels labels);
             label = labels.Labels;
@@ -95,6 +106,9 @@ public class InstantiateTablePrefab : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Coroutine that periodically updates the positions of the anchors.
+    /// </summary>
     IEnumerator UpdateAnchorsPeriodically()
     {
         while (true)

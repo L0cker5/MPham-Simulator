@@ -2,33 +2,33 @@ using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using UnityEngine;
 
-/*
- * This class will check if a GameObject with the tag "Label"
- * has been attached to the prescription box. If it has the Label 
- * GameObject becomes a child of the Medication Box GameObject. 
- * It will then check the Medication Box GameObject tag and
- * update this to "PrescriptionMedication".
- * 
- * If the Label GameObject is removed from the Medication Box 
- * GameObject it is detach from the parent Medication Box GameObject
- * and the Medication Box GameObject tag is updated too "Medication".
- */
+/// <summary>
+/// This class will check if a GameObject with the tag "Label"
+/// has been attached to the prescription _box. If it has the Label 
+/// GameObject becomes a child of the Medication Box GameObject. 
+/// It will then check the Medication Box GameObject tag and
+/// update this to "PrescriptionMedication".
+///
+/// If the Label GameObject is removed from the Medication Box 
+/// GameObject it is detach from the parent Medication Box GameObject
+/// and the Medication Box GameObject tag is updated too "Medication".
+/// </summary>
 public class PrescriptionBoxTrigger : MonoBehaviour
 {
-    // A boolean indicating whether the label is attached to something
+    // A boolean indicating whether the _label is attached to something
     public bool lableIsAttached = false;
-    // Parent object of the box prefab
+    // Parent object of the _box prefab
     public GameObject parentObject;
-    // A reference to the prescription label object
-    GameObject prescriptionLabel;
+    // A reference to the prescription _label object
+    public GameObject prescriptionLabel;
 
     //Grabbable labelGrabbable;
 
     // Tag names used for object comparison
-    private readonly string label = "Label";
-    private readonly string attachedLabel = "Attached Label";
-    private readonly string prescriptionMedication = "PrescriptionMedication";
-    private readonly string medication = "Medication";
+    private readonly string _label = "Label";
+    private readonly string _attachedLabel = "Attached Label";
+    private readonly string _prescriptionMedication = "PrescriptionMedication";
+    private readonly string _medication = "Medication";
 
     /// <summary>
     /// Called when a collider enters the trigger area.
@@ -40,16 +40,9 @@ public class PrescriptionBoxTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(label))
+        if (other.gameObject.CompareTag(_label))
         {
             prescriptionLabel = other.gameObject;
-            //prescriptionLabel.GetComponentInChildren<Grabbable>().TransferOnSecondSelection = true;
-            //prescriptionLabel.GetComponentInChildren<HandGrabInteractable>().enabled = false;
-            
-            //prescriptionLabel.GetComponentInChildren<TwoGrabFreeTransformer>().enabled = false;
-            //Grabbable labelGrabbable = prescriptionLabel.GetComponent<Grabbable>();
-
-            //labelGrabbable.enabled = false;
 
             MakeChild(prescriptionLabel, true);
         }
@@ -64,7 +57,7 @@ public class PrescriptionBoxTrigger : MonoBehaviour
     /// <param name="other">the object exiting the trigger</param>
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag(attachedLabel))
+        if (other.gameObject.CompareTag(_attachedLabel))
         {
             prescriptionLabel = other.gameObject;
 
@@ -75,9 +68,9 @@ public class PrescriptionBoxTrigger : MonoBehaviour
     /// <summary>
     /// Sets the prescriptionLabel gameObject as a child of the parent object 
     /// if b is true. updates the tag to "Attached Label" and enables the 
-    /// Transfer On Second Selection check box in the Gabbable on the prescriptionLabel 
-    /// gameObject to prevent the label from being able to have its scale altered when 
-    /// attached to the box.  
+    /// Transfer On Second Selection check _box in the Gabbable on the prescriptionLabel 
+    /// gameObject to prevent the _label from being able to have its scale altered when 
+    /// attached to the _box.  
     /// </summary>
     /// <param name="pLabel">prescriptionLabel gameObject.</param>
     /// <param name="b">true or false.</param>
@@ -89,7 +82,7 @@ public class PrescriptionBoxTrigger : MonoBehaviour
         {
             pLabel.transform.SetParent(parentObject.transform);
             Debug.Log("Grabble disabled");
-            pLabel.tag = attachedLabel;
+            pLabel.tag = _attachedLabel;
             pLabel.GetComponentInChildren<Grabbable>().TransferOnSecondSelection = true;
             Debug.Log("Grabble disabled");
             UpdateTag(b);
@@ -112,7 +105,7 @@ public class PrescriptionBoxTrigger : MonoBehaviour
         if (!lableIsAttached)
         {
             pLabel.transform.SetParent(null);
-            pLabel.tag = label;
+            pLabel.tag = _label;
             pLabel.GetComponentInChildren<Grabbable>().TransferOnSecondSelection = false;
             UpdateTag(b);
         }
@@ -127,27 +120,27 @@ public class PrescriptionBoxTrigger : MonoBehaviour
     {
         // If the parent object is tagged as "Medication" and f == true,
         // it changes the parent object's tag to "PrescriptionMedication".
-        if (parentObject.CompareTag(medication) && (f == true))
+        if (parentObject.CompareTag(_medication) && (f == true))
         {
-            parentObject.tag = prescriptionMedication;
+            parentObject.tag = _prescriptionMedication;
         }
         // If the parent object is tagged as "Medication" and f == false,
         // it keeps the parent object tagged as "Medication".
-        else if (parentObject.CompareTag(medication) && (f == false))
+        else if (parentObject.CompareTag(_medication) && (f == false))
         {
-            parentObject.tag = medication;
+            parentObject.tag = _medication;
         }
         // If the parent object is tagged as "PrescriptionMedication" and f == false,
         // it changes the parent object's tag to "Medication".
-        else if (parentObject.CompareTag(prescriptionMedication) && (f == false))
+        else if (parentObject.CompareTag(_prescriptionMedication) && (f == false))
         {
-            parentObject.tag = medication;
+            parentObject.tag = _medication;
         }
         // If the parent object is tagged as "PrescriptionMedication" and f == true,
         // it keeps the parent object tagged as "PrescriptionMedication". 
-        else if (parentObject.CompareTag(prescriptionMedication) && (f == true))
+        else if (parentObject.CompareTag(_prescriptionMedication) && (f == true))
         {
-            parentObject.tag = prescriptionMedication;
+            parentObject.tag = _prescriptionMedication;
         }
     }
 
