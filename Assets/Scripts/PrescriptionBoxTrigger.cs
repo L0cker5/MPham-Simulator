@@ -81,10 +81,10 @@ public class PrescriptionBoxTrigger : MonoBehaviour
         if (lableIsAttached)
         {
             pLabel.transform.SetParent(parentObject.transform);
-            Debug.Log("Grabble disabled");
+            
             pLabel.tag = _attachedLabel;
+            
             pLabel.GetComponentInChildren<Grabbable>().TransferOnSecondSelection = true;
-            Debug.Log("Grabble disabled");
             UpdateTag(b);
         }
         else

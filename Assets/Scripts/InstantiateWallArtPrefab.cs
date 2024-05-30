@@ -47,7 +47,7 @@ public class InstantiateWallArtPrefab : MonoBehaviour
         // fetch room elements, create objects for them
         var tasks = rooms.Select(async room =>
         {
-            var roomObject = new GameObject($"Room-{room.Uuid}");
+            var roomObject = new GameObject($"{wallArtPrefab.name}AnchorLocation");
             if (!room.TryGetComponent(out OVRAnchorContainer container))
                 return;
 

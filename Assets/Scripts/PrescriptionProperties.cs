@@ -29,14 +29,14 @@ public class PrescriptionProperties : MonoBehaviour
     void Awake()
     {
         //get the lists of prescription, patient & doctor data
-        medicationData = ReadCSV.readMedicationData();
-        patientData = ReadCSV.readPatientData();
-        doctorData = ReadCSV.readDoctorData();
+        medicationData = ReadCSV.ReadMedicationData();
+        patientData = ReadCSV.ReadPatientData();
+        doctorData = ReadCSV.ReadDoctorData();
 
         //call the methods to get a random prescription, patient & doctor for the lists
-        prescription = getRandomMedication(medicationData);
-        patient = getRandomPatient(patientData);
-        doctor = getRandomDoctor(doctorData);
+        prescription = GetRandomMedication(medicationData);
+        patient = GetRandomPatient(patientData);
+        doctor = GetRandomDoctor(doctorData);
 
         AddInfoToScript();
     }
@@ -84,8 +84,6 @@ public class PrescriptionProperties : MonoBehaviour
         tmpPatientAge.text = age.ToString();
         // Sets the doctors information to be dispalyed
         tmpDoctorDetails.text = doctor.PrintDoctorToScript();
-
-
     }
 
     /// <summary>
@@ -142,7 +140,7 @@ public class PrescriptionProperties : MonoBehaviour
     /// <param name="dData">List of Doctors from the dummydoctordata.csv</param>
     /// <returns>A Doctor for the list</returns>
     /// <exception cref="ArgumentException">throws and exception if the list of Doctors is empty</exception>
-    private Doctor getRandomDoctor(List<Doctor> dData)
+    private Doctor GetRandomDoctor(List<Doctor> dData)
     {
 
         if (dData.Count <= 0)
@@ -171,7 +169,7 @@ public class PrescriptionProperties : MonoBehaviour
     /// <param name="pData">List of Patients from the dummypatientdata.csv</param>
     /// <returns>A Patient from the list</returns>
     /// <exception cref="ArgumentException">throws and exception if the list of Patients is empty</exception>
-    private Patient getRandomPatient(List<Patient> pData)
+    private Patient GetRandomPatient(List<Patient> pData)
     {
         if (pData.Count <= 0)
         {
@@ -196,7 +194,7 @@ public class PrescriptionProperties : MonoBehaviour
     /// <param name="mData">List of Medications from the medicationdata.csv</param>
     /// <returns>A Medication from the list</returns>
     /// <exception cref="ArgumentException">throws and exception if the list of Medications is empty</exception>
-    private Medication getRandomMedication(List<Medication> mData)
+    private Medication GetRandomMedication(List<Medication> mData)
     {
 
         if (mData.Count <= 0)

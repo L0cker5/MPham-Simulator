@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
+using System;
 
 public class PatientTest
 {
@@ -22,7 +18,6 @@ public class PatientTest
         invalidLow = ""; // empty string
         invalidHigh = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxy"; //51
 
-        //validDateOfBirth = new DateTime(2000, 01, 01, 00, 00, 00);
         validDateOfBirth = DateTime.MinValue;
         vaildMinDate = DateTime.MinValue;
         validMaxDate = DateTime.MinValue;
@@ -46,7 +41,6 @@ public class PatientTest
         Assert.Throws<ArgumentException>(() => new Patient(invalidLow, validMid, validHigh, validDateOfBirth));
         Assert.Throws<ArgumentException>(() => new Patient(validLow, invalidHigh, validHigh, validDateOfBirth));
         Assert.Throws<ArgumentException>(() => new Patient(validLow, validMid, invalidLow, validDateOfBirth));
-        //Assert.Throws<ArgumentException>(() => new Patient(validLow, validMid, validHigh, validDateOfBirth));
     }
 
     [Test]

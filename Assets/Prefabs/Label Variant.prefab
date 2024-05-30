@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: doseage
-      value: "\u200B"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
@@ -46,22 +46,22 @@ PrefabInstance:
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: strength
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: frequency
-      value: "\u200B"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: todaysDate
-      value: 03-05-2024
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: patientName
-      value: "\u200B"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: strengthUnit
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}
       propertyPath: medicationName
-      value: Simvastatin
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 835108111076168583, guid: e5977e27a92f7a34cb6421fe88fa16ef,
         type: 3}

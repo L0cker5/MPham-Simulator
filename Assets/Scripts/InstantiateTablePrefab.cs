@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -47,7 +48,8 @@ public class InstantiateTablePrefab : MonoBehaviour
         // fetch room elements, create objects for them
         var tasks = rooms.Select(async room =>
         {
-            var roomObject = new GameObject($"Room-{room.Uuid}");
+            var roomObject = new GameObject($"{tablePrefab.name}AnchorLocation");
+
             if (!room.TryGetComponent(out OVRAnchorContainer container))
                 return;
 
@@ -99,6 +101,9 @@ public class InstantiateTablePrefab : MonoBehaviour
             gameObject.transform.SetParent(roomGameObject.transform);
             var helper = new InstantiateHelper(gameObject);
             helper.SetTableLocation(locatable);
+
+            int milliseconds = 5000;
+            Thread.Sleep(milliseconds);
 
             Instantiate(prefab, gameObject.transform);
 

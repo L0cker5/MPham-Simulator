@@ -15,7 +15,7 @@ public class AccessMedicationList : MonoBehaviour
     {
         //List<Medication> medications = new List<Medication>();
 
-        //medications = ReadCSV.readMedicationData();
+        //medications = ReadCSV.ReadMedicationData();
 
         //Debug.Log("Access meds length " + medications.Count);
 

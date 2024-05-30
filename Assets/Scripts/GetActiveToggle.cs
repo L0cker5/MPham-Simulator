@@ -19,7 +19,7 @@ public class GetActiveToggle : MonoBehaviour
     private readonly string _medicationTypeTag = "Medication Type Toggle";
 
     /// <summary>
-    /// When a _toggle is changed for each of the three UI Canvas's it checks that the bool value of the toggel is set to ON
+    /// When a _toggle is changed for each of the UI Canvas's it checks that the bool value of the toggel is set to ON
     /// and compares the tag attached to the _toggle setting the text value of the selected _toggle as the value stored on
     /// the prescription label and displayed when printed
     /// </summary>

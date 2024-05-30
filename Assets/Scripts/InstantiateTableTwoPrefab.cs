@@ -45,7 +45,7 @@ public class InstantiateTableTwoPrefab : MonoBehaviour
         // fetch room elements, create objects for them
         var tasks = rooms.Select(async room =>
         {
-            var roomObject = new GameObject($"Room-{room.Uuid}");
+            var roomObject = new GameObject($"{tableTwoPrefab.name}AnchorLocation");
             if (!room.TryGetComponent(out OVRAnchorContainer container))
                 return;
 

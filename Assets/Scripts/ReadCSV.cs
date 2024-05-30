@@ -14,7 +14,7 @@ public class ReadCSV : MonoBehaviour
     /// </summary>
     /// <returns>List of Medications</returns>
     /// <exception cref="FileNotFoundException"></exception>
-    public static List<Medication> readMedicationData()
+    public static List<Medication> ReadMedicationData()
     {
         List<Medication> medicationsFromFile = new List<Medication>();
         string file = "medicationdata";
@@ -118,7 +118,7 @@ public class ReadCSV : MonoBehaviour
     /// </summary>
     /// <returns>A list of Patients</returns>
     /// <exception cref="FileNotFoundException"></exception>
-    public static List<Patient> readPatientData()
+    public static List<Patient> ReadPatientData()
     {
         List<Patient> patientsFromFile = new List<Patient>();
         string file = "dummypatientdata";
@@ -204,7 +204,7 @@ public class ReadCSV : MonoBehaviour
     /// </summary>
     /// <returns>A List of Doctors</returns>
     /// <exception cref="FileNotFoundException"></exception>
-    public static List<Doctor> readDoctorData()
+    public static List<Doctor> ReadDoctorData()
     {
         List<Doctor> doctorsFromFile = new List<Doctor>();
         string file = "dummydoctordata";
@@ -261,7 +261,7 @@ public class ReadCSV : MonoBehaviour
     /// </summary>
     /// <returns>List of BNF Labels</returns>
     /// <exception cref="FileNotFoundException"></exception>
-    public static List<BnfLabel> readBnfData()
+    public static List<BnfLabel> ReadBnfData()
     {
         List<BnfLabel> bnfFromFile = new List<BnfLabel>();
         string file = "bnflabels";

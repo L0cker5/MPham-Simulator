@@ -615,7 +615,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MPham Simulator
+  m_text: MPharm Simulator
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b036e831c0c90547b32a8a896d80f79, type: 2}
   m_sharedMaterial: {fileID: 2427308795250815149, guid: 5b036e831c0c90547b32a8a896d80f79,
@@ -2571,7 +2571,7 @@ PrefabInstance:
     - target: {fileID: 2426263455633424963, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}
       propertyPath: m_text
-      value: Quit Game
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 2746424816874572778, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}
@@ -2939,7 +2939,7 @@ PrefabInstance:
     - target: {fileID: 1627844292566684720, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}
       propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: MainScene
+      value: PharmacyScene
       objectReference: {fileID: 0}
     - target: {fileID: 1627844292566684720, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}

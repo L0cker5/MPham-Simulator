@@ -462,7 +462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb96d4dd6503f14880c79e3eaba9543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medsBox: {fileID: 6177236475647039143}
   _name: 
   _strength: 0
 --- !u!1 &8179127459728844809
@@ -741,6 +740,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _borderColor.a
       value: 0.42745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447944955529560065, guid: 79a1a6a036e555a4c895d630076e6300,
+        type: 3}
+      propertyPath: m_Name
+      value: DetectorRing
       objectReference: {fileID: 0}
     - target: {fileID: 1935312910945772084, guid: 79a1a6a036e555a4c895d630076e6300,
         type: 3}

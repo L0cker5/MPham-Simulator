@@ -59,13 +59,13 @@ public class ComputerManager : MonoBehaviour
     {
         ResetErrorMessages();
 
-        _nameError = CheckName(patientName.text);
-        _quantityError = CheckQuantity(quantity.text);
-        _strengthError = CheckStrength(strength.text);
-        _doseError = CheckDose(dose.text);
-        _frequencyError = CheckFrequency(frequency.text);
+        _nameError = CheckName(patientName.text.Trim());
+        _quantityError = CheckQuantity(quantity.text.Trim());
+        _strengthError = CheckStrength(strength.text.Trim());
+        _doseError = CheckDose(dose.text.Trim());
+        _frequencyError = CheckFrequency(frequency.text.Trim());
 
-        if (_nameError == false || _quantityError == false || _strengthError == false || _doseError == false || _frequencyError == false)
+        if (!_nameError || !_quantityError || !_strengthError || !_doseError || !_frequencyError)
         {
         
         }
@@ -90,7 +90,6 @@ public class ComputerManager : MonoBehaviour
             Enum.TryParse(strengthUnit.text, out StrengthUnit unit);
             Debug.Log("Unit " + unit);
             labelProperties.StrengthUnit = unit;
-            //StrengthUnitEnum(strengthUnit.text);
             Enum.TryParse(medicationType.text, out MedicationType type);
             labelProperties.MedicationType = type;
             labelProperties.Dosage = this.dose.text.Trim();
@@ -107,11 +106,6 @@ public class ComputerManager : MonoBehaviour
     /// </summary>
     private void ResetErrorMessages()
     {
-        _nameError = true;
-        _quantityError = true;
-        _strengthError = true;
-        _doseError = true;
-        _frequencyError = true;
 
         errorDose.enabled = false;
         errorFrequency.enabled = false;

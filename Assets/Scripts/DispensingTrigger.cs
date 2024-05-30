@@ -3,12 +3,12 @@ using UnityEngine;
 /// <summary>
 /// Detects when a medication box enters the trigger and reads its values 
 /// </summary>
-public class ShelfTrigger : MonoBehaviour
+public class DispensingTrigger : MonoBehaviour
 {
     private readonly string _box = "Box";
     private readonly string _prescriptionMedication = "PrescriptionMedication";
 
-    public bool shelftriggered = false;
+    public bool triggered = false;
 
     public GameObject meds;
 
@@ -27,16 +27,20 @@ public class ShelfTrigger : MonoBehaviour
     /// that the tag is "PrescriptionMedication", if the tags match it reads and stores the data from the box and label. 
     /// </summary>
     /// <param name="other">the object in the trigger area</param>
-    private void OnTriggerStay(Collider other)
+    //private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
+
     {
-        
+
         if (other.gameObject.CompareTag(_box))
         {
             BoxProperties boxProperties = other.GetComponentInParent<BoxProperties>();
 
             if (boxProperties.CompareTag(_prescriptionMedication))
             {
-                shelftriggered = true;
+                Debug.Log("Entered Trigger");
+
+                triggered = true;
 
                 boxMedicationName = boxProperties.Name;
                 boxStrength = boxProperties.Strength;
@@ -71,7 +75,7 @@ public class ShelfTrigger : MonoBehaviour
 
             if (boxProperties.CompareTag(_prescriptionMedication))
             {
-                shelftriggered = false;
+                triggered = false;
 
                 boxMedicationName = null;
                 boxStrength = 0;

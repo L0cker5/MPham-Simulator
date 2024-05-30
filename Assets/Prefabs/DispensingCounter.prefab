@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 5854154682483301202}
   - component: {fileID: 8637079167299881035}
   m_Layer: 0
-  m_Name: Main Menu
+  m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,85 +253,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &2775096087870004989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6428683264071833279}
-  - component: {fileID: 3509264148817322967}
-  - component: {fileID: 6625553589790711308}
-  m_Layer: 0
-  m_Name: Trigger
-  m_TagString: Trigger
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6428683264071833279
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2775096087870004989}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.125, y: -0.215, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.02, z: 0.8}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3100436699910867676}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3509264148817322967
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2775096087870004989}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 9, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6625553589790711308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2775096087870004989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31656a74d1209e8428b5c4d417c13d0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shelftriggered: 0
-  meds: {fileID: 0}
-  boxStrength: 0
-  labelStrength: 0
-  labelQuantity: 0
-  boxMedicationName: 
-  labelPatientName: 
-  labelTodaysDate: 
-  labelMedicationName: 
-  labelDoseage: 
-  labelFrequency: 
-  labelStrengthUnit: 0
-  labelMedicationType: 0
 --- !u!1 &5009240294495427414
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.023}
+  m_AnchoredPosition: {x: 0.03, y: 0.023}
   m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8505553409902406401
@@ -876,7 +797,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5600891000724990923}
-  - {fileID: 6428683264071833279}
+  - {fileID: 8375070479058135781}
   - {fileID: 7071767233571612005}
   - {fileID: 8717063254758199793}
   - {fileID: 5154000364578495743}
@@ -895,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15312c4e8fcf2794e9e4c62b584093dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 6625553589790711308}
+  trigger: {fileID: 3924736597374701669}
   pProps: {fileID: 4264934335682781434}
   displayText: {fileID: 5206529450590901180}
 --- !u!1001 &521146599465902840
@@ -949,7 +870,7 @@ PrefabInstance:
     - target: {fileID: 1627844292566684720, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}
       propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: MainScene
+      value: PharmacyScene
       objectReference: {fileID: 0}
     - target: {fileID: 1627844292566684720, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}
@@ -1905,7 +1826,7 @@ PrefabInstance:
     - target: {fileID: 1627844292566684720, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}
       propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: MainMenuScene
+      value: PharmacyScene
       objectReference: {fileID: 0}
     - target: {fileID: 1627844292566684720, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}
@@ -2324,6 +2245,145 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5856401614595334223}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6159559950608772578
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3100436699910867676}
+    m_Modifications:
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.215
+      objectReference: {fileID: 0}
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886191519256689501, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396228472731911943, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396228472731911943, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396228472731911943, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396228472731911943, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396228472731911943, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.217
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396228472731911943, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8356490765992686367, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      propertyPath: m_Name
+      value: Trigger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6842453788680097605, guid: 197734d76ad17cb4aaf93002ab347f57,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3924736597374701669}
+  m_SourcePrefab: {fileID: 100100000, guid: 197734d76ad17cb4aaf93002ab347f57, type: 3}
+--- !u!1 &832708895650587303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6842453788680097605, guid: 197734d76ad17cb4aaf93002ab347f57,
+    type: 3}
+  m_PrefabInstance: {fileID: 6159559950608772578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3924736597374701669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832708895650587303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31656a74d1209e8428b5c4d417c13d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggered: 0
+  meds: {fileID: 0}
+  boxStrength: 0
+  labelStrength: 0
+  labelQuantity: 0
+  boxMedicationName: 
+  labelPatientName: 
+  labelTodaysDate: 
+  labelMedicationName: 
+  labelDoseage: 
+  labelFrequency: 
+  labelStrengthUnit: 0
+  labelMedicationType: 0
+--- !u!4 &8375070479058135781 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2396228472731911943, guid: 197734d76ad17cb4aaf93002ab347f57,
+    type: 3}
+  m_PrefabInstance: {fileID: 6159559950608772578}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6964077986572506393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2375,7 +2435,7 @@ PrefabInstance:
     - target: {fileID: 1627844292566684720, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}
       propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: MainScene
+      value: PharmacyScene
       objectReference: {fileID: 0}
     - target: {fileID: 1627844292566684720, guid: b495da649c3fed34badc18d9151da09a,
         type: 3}

@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class BoxProperties : MonoBehaviour
 {
-    public GameObject medsBox;
+    //public GameObject medsBox;
 
     [SerializeField]
     private string _name;

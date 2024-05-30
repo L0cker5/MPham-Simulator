@@ -12,7 +12,7 @@ public class SimulatorManager : MonoBehaviour
 {
     // Access's the data stored in the trigger
     [SerializeField]
-    private ShelfTrigger trigger;
+    private DispensingTrigger trigger;
 
     // Access's the data stored in the prescripton
     [SerializeField]
@@ -86,11 +86,11 @@ public class SimulatorManager : MonoBehaviour
         displayText.color = Color.red;
         errorsList.Clear();
 
-        //ShelfTrigger trigger2 = new ShelfTrigger();
+        //DispensingTrigger trigger2 = new DispensingTrigger();
         string boxName = trigger.boxMedicationName;
         
         
-        if (trigger.shelftriggered == true)
+        if (trigger.triggered == true)
         {
         Debug.Log("Length of Trigger Name: " + trigger.boxMedicationName + " Length: " + trigger.boxMedicationName.Length);
             CheckSignedAndDate();

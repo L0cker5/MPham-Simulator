@@ -53,15 +53,7 @@ public class LabelProperties : MonoBehaviour
     /// </summary>
     private void CheckForBnf()
     {
-        _bnfData = ReadCSV.readBnfData();
-        
-        Debug.Log("BNF Labels: " + _bnfData.Count);
 
-        foreach (var bnfData in _bnfData)
-        {
-            Debug.Log("BNF: " + bnfData.Label);
-        }
-        
         prescription = GameObject.Find("Prescription");
 
         PrescriptionProperties prescriptionProperties = new PrescriptionProperties();
@@ -75,6 +67,7 @@ public class LabelProperties : MonoBehaviour
         }
         else
         {
+
             // String separating characters
             string[] separatingStrings = { ";", ";;" };
 
@@ -90,6 +83,12 @@ public class LabelProperties : MonoBehaviour
             {
                 if (n >= 21 && n <= 28)
                 {
+                    _bnfData = ReadCSV.ReadBnfData();
+                    //Debug.Log("BNF Labels: " + _bnfData.Count);
+                    //foreach (var bnfData in _bnfData)
+                    //{
+                    //Debug.Log("BNF: " + bnfData.Label);
+                    //}
                     int labelNum = 0;
                     labelNum = n;
                     Debug.Log("BNF Labels num : " + labelNum);
