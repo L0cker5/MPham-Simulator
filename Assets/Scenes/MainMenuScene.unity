@@ -308,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 2061150750893768252, guid: eb71ff0f5d4ca8b419c8909184313a26,
         type: 3}
       propertyPath: m_text
-      value: 'Other:'
+      value: 'Table:'
       objectReference: {fileID: 0}
     - target: {fileID: 5980160840456675601, guid: eb71ff0f5d4ca8b419c8909184313a26,
         type: 3}
